@@ -1,3 +1,4 @@
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
@@ -22,15 +23,152 @@
  }
 h1{
  text-align: center;
- font-size: 18px;
+ font-size: 28px;
  }
+ .player {
+    background-color: rgb(242,49,179);
+    width: 80%;
+    left: 10%;
+    right: 10%;
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: 48px 1fr 48px;
+    grid-gap: 16px;
+    padding: 8px 24px;
+    position: relative;
+    border-radius: 64px;
+    justify-content: center;
+    align-items: center;
+}
+
+.control,#current {
+    color: red;
+    text-shadow: 0 0 0.5em red, 0 0 0.5em red;
+    font-size: 28px;
+    font-weight: 600;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 16px;
+}
+
+#playbtn {
+    
+    text-shadow: 0 0 0.5em red, 0 0 0.5em red;
+    font-size: 28px;
+    color: red;
+    font-weight: 600;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: red;
+    cursor: pointer rgb(145,241,81)
+}
+
+#playbtn:hover {
+    -webkit-text-fill-color: red;
+}
+
+.info {
+    color: red;
+    font-weight: 600;
+    text-shadow: 0 0 0.5em red, 0 0 0.5em red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+#current {
+    text-align: right;
+}
+
+.bar {
+    --space: -4px;
+    background-color: #fff;
+    overflow: hidden;
+    left: var(--space);
+    right: var(--space);
+    top: var(--space);
+    bottom: var(--space);
+    position: absolute;
+    border-radius: 64px;
+    z-index: -2;
+    text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
+    opacity: 0;
+}
+
+#progress {
+    display: block;
+    width: var(--progress,0%);
+    background-color: #fff;
+    text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
+    transition: all 1s linear;
+    height: 100%;
+}
 </style>
 <body>
-<div><h1>Hạnh phúc đâu chỉ có cơm ngon và áo đẹp...<br>
+<div><h1>Thân gửi mấy thằng anh em cây khế!!!</h1></div>
 
-Mùa xuân đâu chỉ có hoa thơm và nắng hồng...<br>
+<div><audio id="player" src="https://formalized-monolith.000webhostapp.com/dcm.mp3"></audio><div>
+    <div class="player">
+      <div class="control">
+        <i class="fas fa-play" id="playbtn"></i>
+      </div>
+      <div class="info"><marquee style=font-family:Book Antiqua; scrollamount="20">
+       L I E N - H O A N - D I Z Z                      
+        </marquee><div class="bar">
+          <div id="progress"></div>
+        </div>
+      </div>
 
-Ϲuộc đời còn cả ...những nụ hôn !</h1></div>
+      <div id="current">0:00</div>
+    </div>
+   <script src="./player.js"></script>
+    <script>
+var player = document.getElementById("player");
+let progress = document.getElementById("progress");
+let playbtn = document.getElementById("playbtn");
+
+var playpause = function () {
+  if (player.paused) {
+    player.play();
+  } else {
+    player.pause();
+  }
+}
+
+playbtn.addEventListener("click", playpause);
+
+player.onplay = function () {
+  playbtn.classList.remove("fa-play");
+  playbtn.classList.add("fa-pause");
+}
+
+player.onpause = function () {
+  playbtn.classList.add("fa-play");
+  playbtn.classList.remove("fa-pause");
+}
+
+player.ontimeupdate = function () {
+  let ct = player.currentTime;
+  current.innerHTML = timeFormat(ct);
+  //progress
+  let duration = player.duration;
+  prog = Math.floor((ct * 100) / duration);
+  progress.style.setProperty("--progress", prog + "%");
+}
+
+function timeFormat(ct) {
+  minutes = Math.floor(ct / 60);
+  seconds = Math.floor(ct % 60);
+
+  if (seconds < 10) {
+    seconds = "0"+seconds;
+  }
+
+  return minutes + ":" + seconds;
+}
+    </script>
 <div><h1><a href="https://www.facebook.com/waybackhome88">...</a></h1></div>
 </body>
 </html>
