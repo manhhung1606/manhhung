@@ -22,6 +22,59 @@ h1{
  color: blue;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
+
+.var-highlight {
+  color: #red;
+  text-shadow: 0 0 0.5em red, 0 0 0.5em red;
+  font-weight: 300;
+  font-family: 'Jura', sans-serif;
+ 
+}
+
+.string-highlight {
+  color: #red;
+  font-weight: 300;
+  font-family: 'Jura', sans-serif;
+  text-shadow: 0 0 0.5em red, 0 0 0.5em red;
+  
+
+}
+
+#typewriter {
+  font-size: 3em;
+  font-weight: 300;
+  margin: 0;
+  font-family: 'Jura', sans-serif;
+  color: #FAFAFA;
+  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
+  
+
+  
+}
+#typewriter:after {
+  content: "_";
+  -webkit-animation: blink 500ms linear infinite alternate;
+          animation: blink 500ms linear infinite alternate;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
  .player {
     background-color: rgb(242,49,179);
     width: 75%;
@@ -106,6 +159,92 @@ h1{
 </style>
 <body>
 <div><h1>HUNGDEPTRAI.COM</h1></div>
+
+<pre id="typewriter"><span class="var-highlight">     Hi there...!</span>      
+           👉.<span class="string-highlight">     ───▄▀▀▀▄▄▄▄▄▄▄▀▀▀▄───</span>...
+           👉.<span class="string-highlight">     ───█▒▒░░░░░░░░░▒▒█───</span>...
+           👉.<span class="string-highlight">     ────█░░█░░░░░█░░█────</span>...
+           👉.<span class="string-highlight">     ─▄▄──█░░░▀█▀░░░█──▄▄─</span>...
+           👉.<span class="string-highlight">     █░░█─▀▄░░░░░░░▄▀─█░░█</span>...
+           👉.<span class="string-highlight">     █▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█</span>...
+           👉.<span class="string-highlight">     █░░╦─╦╔╗╦─╔╗╔╗╔╦╗╔╗░░█</span>...
+           👉.<span class="string-highlight">     █░░║║║╠─║─║─║║║║║╠─░░█</span>...
+           👉.<span class="string-highlight">     █░░╚╩╝╚╝╚╝╚╝╚╝╩─╩╚╝░░█</span>...
+           👉.<span class="string-highlight">     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█</span>...
+</pre>
+<script>
+  function setupTypewriter(t) {
+      var HTML = t.innerHTML;
+
+      t.innerHTML = "";
+
+      var cursorPosition = 0,
+          tag = "",
+          writingTag = false,
+          tagOpen = false,
+          typeSpeed = 100,
+        tempTypeSpeed = 0;
+
+      var type = function() {
+        
+          if (writingTag === true) {
+              tag += HTML[cursorPosition];
+          }
+
+          if (HTML[cursorPosition] === "<") {
+              tempTypeSpeed = 0;
+              if (tagOpen) {
+                  tagOpen = false;
+                  writingTag = true;
+              } else {
+                  tag = "";
+                  tagOpen = true;
+                  writingTag = true;
+                  tag += HTML[cursorPosition];
+              }
+          }
+          if (!writingTag && tagOpen) {
+              tag.innerHTML += HTML[cursorPosition];
+          }
+          if (!writingTag && !tagOpen) {
+              if (HTML[cursorPosition] === " ") {
+                  tempTypeSpeed = 0;
+              }
+              else {
+                  tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+              }
+              t.innerHTML += HTML[cursorPosition];
+          }
+          if (writingTag === true && HTML[cursorPosition] === ">") {
+              tempTypeSpeed = (Math.random() * typeSpeed) + 50;
+              writingTag = false;
+              if (tagOpen) {
+                  var newSpan = document.createElement("span");
+                  t.appendChild(newSpan);
+                  newSpan.innerHTML = tag;
+                  tag = newSpan.firstChild;
+              }
+          }
+
+          cursorPosition += 1;
+          if (cursorPosition < HTML.length - 1) {
+              setTimeout(type, tempTypeSpeed);
+          }
+
+      };
+
+      return {
+          type: type
+      };
+  }
+
+  var typer = document.getElementById('typewriter');
+
+  typewriter = setupTypewriter(typewriter);
+
+  typewriter.type();
+</script>
+
 
 <div><audio id="player" src="../unstoppable_sia_lyrics_vietsub_5492919899104221355.mp3"></audio><div>
     <div class="player">
