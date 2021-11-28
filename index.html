@@ -19,7 +19,7 @@
 h1{
  text-align: center;
  font-size: 35px;
- color: blue;
+ color: red;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
 .div {
@@ -31,7 +31,7 @@ h1{
 
 
 .var-highlight {
-  color: #red;
+  color: red;
   
   font-weight: 200;
   font-family: 'Jura', sans-serif;
@@ -39,7 +39,8 @@ h1{
 }
 
 .string-highlight {
-  color: #red;
+  color: red;
+  font-size: 10px;
   font-weight: 200;
   font-family: 'Jura', sans-serif;
   
@@ -49,7 +50,7 @@ h1{
 
 #typewriter {
   font-size: 1em;
-  color: #red;
+  color: red;
   font-weight: 400;
   margin: 0;
   font-family: 'Jura', sans-serif;
@@ -260,7 +261,7 @@ divserzeugen();
           tag = "",
           writingTag = false,
           tagOpen = false,
-          typeSpeed = 1,
+          typeSpeed = 0.1,
         tempTypeSpeed = 0;
 
       var type = function() {
