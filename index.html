@@ -354,66 +354,6 @@ function timeFormat(ct) {
 </script>
 
 
-<div><audio id="player" src="../unstoppable_sia_lyrics_vietsub_5492919899104221355.mp3"></audio><div>
-    <div class="player">
-      <div class="control">
-        <i class="fas fa-play" id="playbtn"></i>
-      </div>
-      <div class="info"><marquee style=font-family:Book Antiqua; scrollamount="20">
-       Song name: Unstopble-Sia...                        
-        </marquee><div class="bar">
-          <div id="progress"></div>
-        </div>
-      </div>
-
-      <div id="current">0:00</div>
-    </div>
-    <script>
-var player = document.getElementById("player");
-let progress = document.getElementById("progress");
-let playbtn = document.getElementById("playbtn");
-
-var playpause = function () {
-  if (player.paused) {
-    player.play();
-  } else {
-    player.pause();
-  }
-}
-
-playbtn.addEventListener("click", playpause);
-
-player.onplay = function () {
-  playbtn.classList.remove("fa-play");
-  playbtn.classList.add("fa-pause");
-}
-
-player.onpause = function () {
-  playbtn.classList.add("fa-play");
-  playbtn.classList.remove("fa-pause");
-}
-
-player.ontimeupdate = function () {
-  let ct = player.currentTime;
-  current.innerHTML = timeFormat(ct);
-  //progress
-  let duration = player.duration;
-  prog = Math.floor((ct * 100) / duration);
-  progress.style.setProperty("--progress", prog + "%");
-}
-
-function timeFormat(ct) {
-  minutes = Math.floor(ct / 60);
-  seconds = Math.floor(ct % 60);
-
-  if (seconds < 10) {
-    seconds = "0"+seconds;
-  }
-
-  return minutes + ":" + seconds;
-}
-    </script>
-<div><h1><a href="https://www.facebook.com/waybackhome88">N-M-H</a></h1></div>
 
 <center>
 
