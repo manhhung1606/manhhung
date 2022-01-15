@@ -2,16 +2,28 @@
     position: relative;
     z-index: 3;
   }
+
+  #snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1000;
+  }
   #no{
     position: absolute;
     display: inline-block;
     left: 35%; 
+    
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
     position: absolute;
     display: inline-block;
     left: 70%; 
+    
     -webkit-transition: all 0.3s ease-out;
   }
 #bg{
@@ -52,7 +64,7 @@
 header h2 {
   color: pink;
   font-family: 'Roboto', sans-serif;
-  font-size: 80px;
+  font-size: 30px;
   text-align: center;
 	margin-bottom: 30px;
 }
@@ -80,6 +92,7 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 7%; 
+    
     font-size: 14px;
     padding: 3px;
     -webkit-transition: all 0.1s ease-out;
@@ -88,6 +101,7 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 58%; 
+    
     font-size: 14px;
     padding: 3px;
     -webkit-transition: all 0.3s ease-out;
