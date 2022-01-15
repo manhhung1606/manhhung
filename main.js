@@ -104,7 +104,7 @@ $('#yes').click(function() {
         width: 800,
         padding: '3em',
         html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Trả lời đê, mau lên🙄🙄🙄'>",
-        background: '#fff url("./Stars-in-the-sky-daydreaming-26168110-1024-768.jpg")',
+        background: ' url("./Stars-in-the-sky-daydreaming-26168110-1024-768.jpg")',
         backdrop: `
               rgba(0,0,123,0.4)
               url("./18559ccfe163425e8328d4255049b817.gif")
@@ -119,7 +119,7 @@ $('#yes').click(function() {
             Swal.fire({
                 width: 900,
                 confirmButtonText: CONFIG.btnAccept,
-                background: '#fff url("./Stars-in-the-sky-daydreaming-26168110-1024-768.jpg")',
+                background: ' url("./Stars-in-the-sky-daydreaming-26168110-1024-768.jpg")',
                 title: CONFIG.mess,
                 text: CONFIG.messDesc,
                 confirmButtonColor: '#83d0c9',
