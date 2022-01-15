@@ -14,13 +14,13 @@
   }
   #no{
     position: relative;
-    display: inline-block;
+    
     left: 35%; 
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
     position: relative;
-    display: inline-block;
+    
     left: 70%; 
     -webkit-transition: all 0.3s ease-out;
   }
@@ -31,14 +31,7 @@
   bottom: 0;
   left: 0;
   
-  /* height: 100vh; */
-  z-index: 0;
-  background-repeat: no-repeat;
-  background-image: url(./291de5d2aac98028a7c1d139298a3b46.jpg);
-  background-size: cover;
-  background-position: 50%;
-  -webkit-filter: blur(4px);
-}
+  
 
 .swal2-image{
   object-fit: contain;
@@ -97,5 +90,5 @@ header h4 {
 }
 
 .swal2-backdrop-show{
-  background-size: 100px 100px !important;
+  
 }
