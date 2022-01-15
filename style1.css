@@ -110,5 +110,5 @@ header h4 {
 }
 
 .swal2-backdrop-show{
-  background-size: 100px 100px !important;
+  background-size: 100px 100px;
 }
