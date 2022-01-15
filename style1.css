@@ -3,6 +3,15 @@
     z-index: 3;
   }
 
+  #snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1000;
+  }
   #no{
     position: absolute;
     display: inline-block;
@@ -46,10 +55,10 @@
 }
 
 .swal2-title, .swal2-content{
-  color: #FAFAFA;
+  color: azure !important;
 }
 .swal2-popup {
-  border-radius: 10px ;
+  border-radius: 10px !important;
 }
 
 header h2 {
@@ -57,7 +66,7 @@ header h2 {
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
   text-align: center;
-	
+	margin-bottom: 30px;
 }
 header h4 {
   color: pink;
@@ -71,34 +80,34 @@ header h4 {
     font-family: 'Roboto', sans-serif;
     font-size: 45px;
     text-align: center;
-    
+    margin-bottom: 30px;
   }
   header h4 {
     
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    
+    padding: 15px;
   }
   #no{
     position: absolute;
     display: inline-block;
     left: 7%; 
-    
+    top: 40vh;
     font-size: 14px;
-    
+    padding: 3px;
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
     position: absolute;
     display: inline-block;
     left: 58%; 
-    
+    top: 40vh;
     font-size: 14px;
-    
+    padding: 3px;
     -webkit-transition: all 0.3s ease-out;
   }
 }
 
 .swal2-backdrop-show{
-  background-size: 100px 100px;
+  background-size: 100px 100px !important;
 }
