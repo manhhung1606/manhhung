@@ -25,7 +25,7 @@ function firstQuestion(){
         imageUrl: 'https://hungdeptrai.com/Pubg1.jpg',
         imageWidth: 300,
         imageHeight: 300,
-        background: '#fff url("https://hungdeptrai.com/Magical-night-christmas-winter-sky-star-HD-Wallpaper-1920x1200-1680x1050.jpg")',
+        background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
@@ -104,7 +104,7 @@ $('#yes').click(function() {
         width: 800,
         padding: '3em',
         html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Say something '>",
-        background: '#fff url("https://hungdeptrai.com/Magical-night-christmas-winter-sky-star-HD-Wallpaper-1920x1200-1680x1050.jpg")',
+        background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
         backdrop: `
               rgba(0,0,123,0.4)
               url("https://hungdeptrai.com/troll-la-gi-hinh-anh-troll-1024x934.png")
@@ -119,7 +119,7 @@ $('#yes').click(function() {
             Swal.fire({
                 width: 900,
                 confirmButtonText: CONFIG.btnAccept,
-                background: '#fff url("https://hungdeptrai.com/Magical-night-christmas-winter-sky-star-HD-Wallpaper-1920x1200-1680x1050.jpg")',
+                background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
                 title: CONFIG.mess,
                 text: CONFIG.messDesc,
                 confirmButtonColor: '#83d0c9',
