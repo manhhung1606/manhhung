@@ -13,13 +13,13 @@
     z-index: 1000;
   }
   #no{
-    position: relative;
+    
     
     left: 35%; 
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
-    position: relative;
+    
     
     left: 70%; 
     -webkit-transition: all 0.3s ease-out;
@@ -41,7 +41,7 @@
   color: red;
 }
 .swal2-popup {
-  border-radius: 10px !important;
+  
 }
 
 header h2 {
@@ -72,16 +72,14 @@ header h4 {
     padding: 15px;
   }
   #no{
-    position: absolute;
-    display: inline-block;
+    
     left: 7%; 
     font-size: 14px;
     padding: 3px;
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
-    position: absolute;
-    display: inline-block;
+    
     left: 58%; 
     font-size: 14px;
     padding: 3px;
