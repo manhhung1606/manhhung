@@ -81,7 +81,7 @@ header h4 {
     display: inline-block;
     left: 7%; 
     font-size: 14px;
-    
+    padding: 3px;
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
@@ -89,7 +89,7 @@ header h4 {
     display: inline-block;
     left: 58%; 
     font-size: 14px;
-    
+    padding: 3px;
     -webkit-transition: all 0.3s ease-out;
   }
 }
