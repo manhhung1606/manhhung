@@ -3,13 +3,13 @@
     z-index: 3;
   }
   #no{
-    position: absolute;
+    position: static;
     display: inline-block;
     left: 35%; 
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
-    position: absolute;
+    position: static;
     display: inline-block;
     left: 70%; 
     -webkit-transition: all 0.3s ease-out;
@@ -77,7 +77,7 @@ header h4 {
     padding: 15px;
   }
   #no{
-    position: absolute;
+    position: static;
     display: inline-block;
     left: 7%; 
     font-size: 14px;
@@ -85,7 +85,7 @@ header h4 {
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
-    position: absolute;
+    position: static;
     display: inline-block;
     left: 58%; 
     font-size: 14px;
