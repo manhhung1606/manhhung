@@ -143,7 +143,7 @@ h1{
 }
 
 #playbtn {
-    font-family: 'VT323', monospace;
+    
     text-shadow: 0 0 0.5em red, 0 0 0.5em red;
     font-size: 28px;
     color: red;
