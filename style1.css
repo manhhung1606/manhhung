@@ -27,15 +27,6 @@
     
     -webkit-transition: all 0.3s ease-out;
   }
-#bg{
-  
-  /* height: 100vh; */
-  background-repeat: no-repeat;
-  background-image: url(https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg);
-  background-size: cover;
-  background-position: 50%;
-
-}
 .divContainer
 {
     vertical-align: middle;
