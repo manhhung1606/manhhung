@@ -43,6 +43,9 @@ h1{
  color: #FAFAFA;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
+a{
+    color: white;
+}
 .div {
   font-size: 40px;
   font-weight: 600;
