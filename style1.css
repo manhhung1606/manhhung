@@ -92,8 +92,8 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 7%; 
-    padding-top: 20px;
-    padding-bottom: 20px;
+    margin-top:25px;
+    margin-bottom:25px;
     font-size: 14px;
     
     -webkit-transition: all 0.1s ease-out;
@@ -102,8 +102,8 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 58%; 
-    padding-top: 20px;
-    padding-bottom: 20px;
+    margin-top:25px;
+    margin-bottom:25px;
     font-size: 14px;
     
     -webkit-transition: all 0.3s ease-out;
