@@ -22,7 +22,7 @@ function firstQuestion(){
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
-        imageUrl: './IMG_20210724_004038.jpg',
+        imageUrl: 'https://hungdeptrai.com/Pubg1.jpg',
         imageWidth: 300,
         imageHeight: 300,
         background: '#fff url("./Stars-in-the-sky-daydreaming-26168110-1024-768.jpg")',
@@ -35,7 +35,7 @@ function firstQuestion(){
 
  // switch button position
  function switchButton() {
-    var audio = new Audio('./nope_construction_worker_tf2_gaming_sound_effect_hd_-8446649686455146027.mp3');
+    var audio = new Audio('https://hungdeptrai.com/may_ngu_me_chet_me_may_di_huan_5393299635354118960.mp3');
     audio.play();
     var leftNo = $('#no').css("left");
     var topNO = $('#no').css("top");
@@ -48,7 +48,7 @@ function firstQuestion(){
 }
 // move random button póition
 function moveButton() {
-    var audio = new Audio('./nope_construction_worker_tf2_gaming_sound_effect_hd_-8446649686455146027.mp3');
+    var audio = new Audio('https://hungdeptrai.com/may_ngu_me_chet_me_may_di_huan_5393299635354118960.mp3');
     audio.play();
     var x = Math.random() * ($(window).width() - $('#no').width()) * 0.9 ;
     var y = Math.random() * ($(window).height() - $('#no').height()) * 0.9;
@@ -96,18 +96,18 @@ function textGenerate() {
 
 // show popup
 $('#yes').click(function() {
-    var audio = new Audio('./tymt.mp3');
+    var audio = new Audio('https://hungdeptrai.com/Con-Cai-Nit-Con-Dung-Cai-Nit-Thoi.mp3');
     audio.play();
     Swal.fire({
         title: CONFIG.question,
         html: true,
         width: 800,
         padding: '3em',
-        html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Trả lời đê, mau lên🙄🙄🙄'>",
-        background: '#fff url("./Stars-in-the-sky-daydreaming-26168110-1024-768.jpg")',
+        html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Say something '>",
+        background: '#fff url("https://hungdeptrai.com/Magical-night-christmas-winter-sky-star-HD-Wallpaper-1920x1200-1680x1050.jpg")',
         backdrop: `
               rgba(0,0,123,0.4)
-              url("./18559ccfe163425e8328d4255049b817.gif")
+              url("https://hungdeptrai.com/troll-la-gi-hinh-anh-troll-1024x934.png")
               center top
               no-repeat
             `,
@@ -119,7 +119,7 @@ $('#yes').click(function() {
             Swal.fire({
                 width: 900,
                 confirmButtonText: CONFIG.btnAccept,
-                background: '#fff url("./Stars-in-the-sky-daydreaming-26168110-1024-768.jpg")',
+                background: '#fff url("https://hungdeptrai.com/Magical-night-christmas-winter-sky-star-HD-Wallpaper-1920x1200-1680x1050.jpg")',
                 title: CONFIG.mess,
                 text: CONFIG.messDesc,
                 confirmButtonColor: '#83d0c9',
