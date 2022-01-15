@@ -59,7 +59,7 @@
   color: red;
 }
 .swal2-popup {
-  border-radius: 10px !important;
+  border-radius: 10px;
 }
 
 header h2 {
