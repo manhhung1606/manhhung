@@ -22,10 +22,10 @@ function firstQuestion(){
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
-        imageUrl: 'https://hungdeptrai.com/Pubg1.jpg',
+        imageUrl: 'https://hungdeptrai.com/troll-la-gi-hinh-anh-troll-1024x934.png',
         imageWidth: 300,
         imageHeight: 300,
-        background: '#fff url("./Stars-in-the-sky-daydreaming-26168110-1024-768.jpg")',
+        background: '#fff url("https://hungdeptrai.com/Magical-night-christmas-winter-sky-star-HD-Wallpaper-1920x1200-1680x1050.jpg")',
         imageAlt: 'Quỳnh Hoa',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
