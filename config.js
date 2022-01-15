@@ -6,11 +6,11 @@ const CONFIG = {
     desc: 'Lâý tiền cho gái có đòi được không? ',
     btnYes: 'Có',
     btnNo: 'Không anh ạ',
-    question: ' Ơ thật hả...? ',
-    btnReply: ' Thật mà anh...',
+    question: ' Ơ thật hả em...? ',
+    btnReply: ' Send',
     reply: ' Ahihi, nãy em đùa đó... ',
-    mess: ' Send ',
-    messDesc: 'Á đù... Bấm follow FB anh thì a tha, ko thì pay acc',
-    btnAccept: ' Dạ🥺 ',
+    mess: ' Holyyyy..sheet!!! ',
+    messDesc: ' Thôi ko phải tự trách mình nữa e ạ, tuổi trẻ mà...! FB a đó, add anh đi. Hnao mời a cốc cafe là đc rồi. A tha cho đó, lần sau ko được nói dối nữa nha.  ',
+    btnAccept: ' Okee đại ca ',
     messLink: 'https://www.facebook.com/waybackhome88'
 }
