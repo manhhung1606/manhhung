@@ -16,14 +16,12 @@
     position: absolute;
     display: inline-block;
     left: 35%; 
-    top: 80vh;
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
     position: absolute;
     display: inline-block;
     left: 70%; 
-    top: 80vh;
     -webkit-transition: all 0.3s ease-out;
   }
 #bg{
@@ -55,7 +53,7 @@
 }
 
 .swal2-title, .swal2-content{
-  color: azure !important;
+  color: red;
 }
 .swal2-popup {
   border-radius: 10px !important;
@@ -66,7 +64,7 @@ header h2 {
   font-family: 'Roboto', sans-serif;
   font-size: 80px;
   text-align: center;
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 header h4 {
   color: pink;
@@ -92,7 +90,6 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 7%; 
-    top: 40vh;
     font-size: 14px;
     padding: 3px;
     -webkit-transition: all 0.1s ease-out;
@@ -101,7 +98,6 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 58%; 
-    top: 40vh;
     font-size: 14px;
     padding: 3px;
     -webkit-transition: all 0.3s ease-out;
