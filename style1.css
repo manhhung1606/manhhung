@@ -36,7 +36,7 @@
   /* height: 100vh; */
   z-index: 0;
   background-repeat: no-repeat;
-  background-image: url(./291de5d2aac98028a7c1d139298a3b46.jpg);
+  background-image: url(https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg);
   background-size: cover;
   background-position: 50%;
   -webkit-filter: blur(4px);
@@ -66,7 +66,7 @@ header h2 {
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
   text-align: center;
-	margin-bottom: 30px;
+	
 }
 header h4 {
   color: pink;
@@ -80,13 +80,13 @@ header h4 {
     font-family: 'Roboto', sans-serif;
     font-size: 45px;
     text-align: center;
-    margin-bottom: 30px;
+    
   }
   header h4 {
     
     font-family: 'Roboto', sans-serif;
     text-align: center;
-    padding: 15px;
+    
   }
   #no{
     position: absolute;
@@ -111,5 +111,5 @@ header h4 {
 }
 
 .swal2-backdrop-show{
-  background-size: 100px 100px !important;
+  background-size: 100px 100px;
 }
