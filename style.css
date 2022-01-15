@@ -33,19 +33,19 @@ opacity: 1.0;filter: alpha(opacity=50);} img:hover {opacity: 1.0;filter: alpha(o
 h1{
  font-family: 'VT323', monospace;
  text-align: center;
- font-size: 32px;
+ font-size: 40px;
  color: #FAFAFA;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
  p{
  font-family: 'VT323', monospace;
  text-align: center;
- font-size: 28px;
+ font-size: 35px;
  color: #FAFAFA;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
 .div {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 600;
   align-items: center;
   justify-content: center;
@@ -143,7 +143,7 @@ h1{
 }
 
 #playbtn {
-    
+    font-family: 'VT323', monospace;
     text-shadow: 0 0 0.5em red, 0 0 0.5em red;
     font-size: 28px;
     color: red;
@@ -158,6 +158,7 @@ h1{
 }
 
 .info {
+    font-family: 'VT323', monospace;
     color: red;
     font-weight: 600;
     text-transform: uppercase;
