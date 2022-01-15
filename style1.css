@@ -3,13 +3,13 @@
     z-index: 3;
   }
   #no{
-    position: static;
+    position: absolute;
     display: inline-block;
     left: 35%; 
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
-    position: static;
+    position: absolute;
     display: inline-block;
     left: 70%; 
     -webkit-transition: all 0.3s ease-out;
