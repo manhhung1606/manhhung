@@ -2,28 +2,16 @@
     position: relative;
     z-index: 3;
   }
-
-  #snow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 1000;
-  }
   #no{
     position: absolute;
     display: inline-block;
     left: 35%; 
-    top: 80vh;
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
     position: absolute;
     display: inline-block;
     left: 70%; 
-    top: 80vh;
     -webkit-transition: all 0.3s ease-out;
   }
 #bg{
@@ -92,7 +80,6 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 7%; 
-    top: 40vh;
     font-size: 14px;
     padding: 3px;
     -webkit-transition: all 0.1s ease-out;
@@ -101,7 +88,6 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 58%; 
-    top: 40vh;
     font-size: 14px;
     padding: 3px;
     -webkit-transition: all 0.3s ease-out;
