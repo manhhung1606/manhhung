@@ -23,8 +23,8 @@ function firstQuestion(){
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
         imageUrl: 'https://hungdeptrai.com/Pubg1.jpg',
-        imageWidth: 150,
-        imageHeight: 150,
+        imageWidth: 350,
+        imageHeight: 350,
         background: '#fff url("https://hungdeptrai.com/Magical-night-christmas-winter-sky-star-HD-Wallpaper-1920x1200-1680x1050.jpg")',
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
