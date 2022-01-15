@@ -30,18 +30,19 @@ opacity: 1.0;filter: alpha(opacity=50);} img:hover {opacity: 1.0;filter: alpha(o
 }
 h1{
  text-align: center;
- font-size: 28px;
+ font-size: 32px;
  color: #FAFAFA;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
  p{
  text-align: center;
- font-size: 20px;
+ font-size: 28px;
  color: #FAFAFA;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
 .div {
-  font-size: 28px;
+  font-size: 32px;
+  font-weight: bold
   font-weight: 400;
   align-items: center;
   justify-content: center;
