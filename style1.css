@@ -35,9 +35,8 @@
   left: 0;
   
   /* height: 100vh; */
-  z-index: 0;
   background-repeat: no-repeat;
-  background-image: url(https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg);
+  background-image: url();
   background-size: cover;
   background-position: 50%;
   -webkit-filter: blur(4px);
