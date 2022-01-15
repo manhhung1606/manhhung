@@ -26,7 +26,7 @@ function firstQuestion(){
         imageWidth: 300,
         imageHeight: 300,
         background: '#fff url("https://hungdeptrai.com/Magical-night-christmas-winter-sky-star-HD-Wallpaper-1920x1200-1680x1050.jpg")',
-        imageAlt: 'Quỳnh Hoa',
+        imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
         $('.content').show(200);
