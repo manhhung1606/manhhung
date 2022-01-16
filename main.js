@@ -107,7 +107,7 @@ $('#yes').click(function() {
         background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
         backdrop: `
               rgba(0,0,123,0.4)
-              url("https://hungdeptrai.com/troll-la-gi-hinh-anh-troll-1024x934.png")
+              url("https://hungdeptrai.com/FB_IMG_1630673201387.jpg")
               center top
               no-repeat
             `,
