@@ -30,6 +30,8 @@
 .divContainer
 {
     vertical-align: middle;
+    font-family: 'VT323', monospace;
+    font-size: 25px;
     text-align: center; <!-- If you want horizontal center alignment -->
 }
 .divContainer > *
