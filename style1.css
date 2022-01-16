@@ -100,8 +100,12 @@ header h4 {
     padding: 3px;
     -webkit-transition: all 0.3s ease-out;
   }
-}
+
 
 .swal2-backdrop-show{
   background-size: 100px 100px;
+}
+.text{
+fontsize: 30px;
+}
 }
