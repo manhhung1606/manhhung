@@ -101,7 +101,7 @@ $('#yes').click(function() {
     Swal.fire({
         title: CONFIG.question,
         html: true,
-        width: 300,
+        width: 800,
         padding: '3em',
         html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Say something... '>",
         background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
