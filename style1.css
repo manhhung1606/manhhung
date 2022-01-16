@@ -45,6 +45,7 @@
 }
 .swal2-image{
   object-fit: contain;
+  top: 30%;
 }
 
 .swal2-title, .swal2-content{
