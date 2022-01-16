@@ -36,7 +36,7 @@
 {
     vertical-align: middle;
     font-family: 'VT323', monospace;
-    font-size: 25px;
+    font-size: 30px;
     text-align: center; <!-- If you want horizontal center alignment -->
 }
 .divContainer > *
@@ -62,7 +62,7 @@ header h2 {
   color: #FAFAFA;
   text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
   font-family: 'VT323', monospace;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   margin-bottom: 30px;
 }
@@ -80,7 +80,7 @@ header h4 {
     font-family: 'VT323', monospace;
     color: #FAFAFA;
     text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
-    font-size: 45px;
+    font-size: 30px;
     text-align: center;
     margin-bottom: 30px;
   }
@@ -97,7 +97,7 @@ header h4 {
     display: inline-block;
     left: 7%; 
     top: 40vh;
-    font-size: 14px;
+    font-size: 20px;
     padding: 3px;
     -webkit-transition: all 0.1s ease-out;
   }
@@ -106,7 +106,7 @@ header h4 {
     display: inline-block;
     left: 58%; 
     top: 40vh;
-    font-size: 14px;
+    font-size: 20px;
     padding: 3px;
     -webkit-transition: all 0.3s ease-out;
   }
