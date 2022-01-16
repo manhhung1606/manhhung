@@ -6,11 +6,11 @@ const CONFIG = {
     desc: 'Lâý tiền cho gái có đòi được không? ',
     btnYes: 'Có',
     btnNo: 'Không anh ạ',
-    question: ' Ơ thật hả em...? ',
-    btnReply: ' Send',
-    reply: ' Ahihi, nãy em đùa đó... ',
-    mess: ' Holyyyy..sheet!!! ',
-    messDesc: ' Thôi ko phải tự trách mình nữa e ạ, tuổi trẻ mà...! FB a đó, add anh đi. Hnao mời a cốc cafe là đc rồi. A tha cho đó, lần sau ko được nói dối nữa nha.  ',
-    btnAccept: ' Okee đại ca ',
+    question: ' Ơ thật hả ...? ',
+    btnReply: ' Send to Xấu zai từ bé ',
+    reply: ' Thực ra thì em cũng không chắc anh ạ, nhưng có 1 điều em dám chắc ... Đó là anh Hùng đẹp zai nhất cmn Vịnh Bắc Bộ🤣🤣🤣 ',
+    mess: ' 🥰🥰🥰 ',
+    messDesc: ' Cảm ơn em đã nói ra điều mà ai cũng biết, hihi... Hâm mộ a lâu rùi đúng k?   ',
+    btnAccept: ' Vâng ...hihi ',
     messLink: 'https://www.facebook.com/waybackhome88'
 }
