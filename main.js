@@ -53,7 +53,7 @@ function moveButton() {
     var x = Math.random() * ($(window).width() - $('#no').width()) * 0.9 ;
     var y = Math.random() * ($(window).height() - $('#no').height()) * 0.9;
     var left = x + 'px';
-    var top = y + 'py';
+    var top = y + 'px';
     $('#no').css("left", left);
     $('#no').css("top", top);
 }
