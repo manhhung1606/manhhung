@@ -34,12 +34,11 @@
   }
   #bg{
   position: fixed;
-  top: 30%;
+  top: 50%;
   right: 0;
   bottom: 30%;
   left: 0;
-  
-  /* height: 100vh; */
+  height: 80vh; 
  }
 
 .divContainer
