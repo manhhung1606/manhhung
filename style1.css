@@ -22,14 +22,14 @@
     position: absolute;
     display: inline-block;
     left: 35%; 
-    
+    top: 80vh;
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
     position: absolute;
     display: inline-block;
     left: 70%; 
-    
+    top: 80vh;
     -webkit-transition: all 0.3s ease-out;
   }
 .divContainer
@@ -96,7 +96,7 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 7%; 
-    top: 60vh;
+    top: 40vh;
     font-size: 20px;
     padding: 3px;
     -webkit-transition: all 0.1s ease-out;
@@ -105,7 +105,7 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 58%; 
-    top: 60vh;
+    top: 40vh;
     font-size: 20px;
     padding: 3px;
     -webkit-transition: all 0.3s ease-out;
