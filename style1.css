@@ -21,7 +21,7 @@
   #no{
     position: absolute;
     display: inline-block;
-    left: 35%; 
+    left: 30%; 
     
     -webkit-transition: all 0.1s ease-out;
   }
