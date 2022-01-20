@@ -44,6 +44,14 @@ h1{
 a{
     color: white;
 }
+.demo {
+
+            font-family: 'VT323', monospace;
+
+            text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
+            padding: 50px;
+            font-size: 30px;
+        }
 .div {
   font-size: 40px;
   font-weight: 600;
