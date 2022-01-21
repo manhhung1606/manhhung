@@ -6,7 +6,7 @@
   
   #txtReason{
   font-size: 30px;
-  font-color: red;
+  font-color: #FAFAFA;
   }
 
   #snow {
@@ -59,7 +59,7 @@
 .swal2-title, .swal2-content{
   font-family: 'VT323', monospace;
   font-size: 30px;
-  color: red !important;
+  color: #FAFAFA !important;
   
 }
 .swal2-popup {
@@ -96,6 +96,7 @@ header h4 {
     
     font-family: 'VT323', monospace;
     color: #FAFAFA;
+    font-size: 30px;
     text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
     text-align: center;
     padding: 30px;
