@@ -45,7 +45,7 @@
     vertical-align: middle;
     font-family: 'VT323', monospace;
     font-size: 30px;
-    color: #FAFAFA !important;
+    color: FAFAFA !important;
     text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
     text-align: center; <!-- If you want horizontal center alignment -->
 }
@@ -61,7 +61,7 @@
 .swal2-title, .swal2-content{
   font-family: 'VT323', monospace;
   font-size: 30px;
-  color: #FAFAFA !important;
+  color: FAFAFA !important;
   text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
 }
 .swal2-popup {
@@ -69,7 +69,7 @@
 }
 
 header h2 {
-  color: #FAFAFA!important;
+  color: FAFAFA!important;
   text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
   font-family: 'VT323', monospace;
   font-size: 30px;
@@ -77,7 +77,7 @@ header h2 {
   margin-bottom: 30px;
 }
 header h4 {
-  color: #FAFAFA !important;
+  color: FAFAFA !important;
   text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
   font-family: 'VT323', monospace;
   font-size: 30px;
@@ -88,7 +88,7 @@ header h4 {
   header h2 {
     
     font-family: 'VT323', monospace;
-    color: #FAFAFA !important;
+    color: FAFAFA !important;
     text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
     font-size: 30px;
     text-align: center;
@@ -97,7 +97,7 @@ header h4 {
   header h4 {
     
     font-family: 'VT323', monospace;
-    color: #FAFAFA !important;
+    color: FAFAFA !important;
     font-size: 30px;
     text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
     text-align: center;
