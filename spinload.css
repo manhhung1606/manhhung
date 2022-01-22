@@ -5,8 +5,7 @@
 	left:0;
 	right:0;
 	bottom:0;
-	background-image: url('https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg');
-        background-repeat: no-repeat; /* change if the mask should have another color then white */
+	background-color: #FFFF00; /* change if the mask should have another color then white */
 	z-index:9999999; /* makes sure it stays on top */
 }
 
