@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap'); @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
   html, body {
-  font-size: 40px;
+  font-size: 37px;
   text-align: center;
   align-items: center;
   background-image: url('https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg');
@@ -39,7 +39,7 @@ h1{
  p{
  font-family: 'VT323', monospace;
  text-align: center;
- font-size: 40px;
+ font-size: 37px;
  color: #FAFAFA;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
@@ -52,7 +52,7 @@ a{
             color: #FAFAFA;
             text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
             padding: 50px;
-            font-size: 40px;
+            font-size: 37px;
         }
 .div {
   font-size: 40px;
