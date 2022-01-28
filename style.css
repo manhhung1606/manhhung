@@ -8,6 +8,7 @@
   background-image: url('https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 #a {
 onmousedown:stop;
