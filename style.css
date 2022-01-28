@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap'); @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
   html, body {
-  font-size: 30px;
+  font-size: 40px;
   text-align: center;
   align-items: center;
   background-image: url('https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg');
@@ -32,14 +32,14 @@ opacity: 1.0;filter: alpha(opacity=50);} img:hover {opacity: 1.0;filter: alpha(o
 h1{
  font-family: 'VT323', monospace;
  text-align: center;
- font-size: 30px;
+ font-size: 40px;
  color: #FAFAFA;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
  p{
  font-family: 'VT323', monospace;
  text-align: center;
- font-size: 30px;
+ font-size: 40px;
  color: #FAFAFA;
  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
  }
@@ -52,7 +52,7 @@ a{
             color: #FAFAFA;
             text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
             padding: 50px;
-            font-size: 30px;
+            font-size: 40px;
         }
 .div {
   font-size: 40px;
@@ -176,7 +176,7 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 35px;
+    font-size: 40px;
 }
 
 #current {
