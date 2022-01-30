@@ -51,7 +51,7 @@ function moveButton() {
     var audio = new Audio('https://hungdeptrai.com/nicolas_cage_laughing_7943556063031366853 (mp3cut.net).mp3');
     audio.play();
     var x = Math.random() * ($(window).width() - $('#no').width()) * 0.9 ;
-    var y = Math.random() * ($(window).height() - $('#no').height()) * 0.9;
+    var y = Math.random() * ($(window).height() - $('#no').height()) * 0.2;
     var left = x + 'px';
     var top = y + 'px';
     $('#no').css("left", left);
