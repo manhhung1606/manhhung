@@ -23,8 +23,8 @@ function firstQuestion(){
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
         imageUrl: 'https://hungdeptrai.com/tải xuống.webp',
-        imageWidth: 400,
-        imageHeight: 400,
+        imageWidth: 500,
+        imageHeight: 500,
         background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
