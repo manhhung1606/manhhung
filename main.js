@@ -22,7 +22,7 @@ function firstQuestion(){
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
-        imageUrl: 'https://hungdeptrai.com/Pubg1.jpg',
+        imageUrl: 'https://hungdeptrai.com/tải xuống.webp',
         imageWidth: 300,
         imageHeight: 300,
         background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
