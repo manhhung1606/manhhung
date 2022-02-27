@@ -8,4 +8,4 @@
 // Obfuscated by Javascript Obfuscator
 // http://javascript-source.com
 //***********************************************
-wowReInitor(jQuery("#wowslider-container1"),{effect:"squares",prev:"",next:"",duration:10*100,delay:30*100,width:960,height:500,autoPlay:true,stopOnHover:false,loop:false,bullets:true,caption:true,controls:true,logo:"engine1/loading.gif",images:0});
+wowReInitor(jQuery("#wowslider-container1"),{effect:"squares",prev:"",next:"",duration:10*100,delay:30*100,width:960,height:400,autoPlay:true,stopOnHover:false,loop:false,bullets:true,caption:true,controls:true,logo:"engine1/loading.gif",images:0});
