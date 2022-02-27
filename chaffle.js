@@ -139,26 +139,6 @@
         case 'en':
           str = String.fromCharCode(33 + Math.round(Math.random() * 99))
           break
-
-        case 'ja':
-          str = String.fromCharCode(19968 + Math.round(Math.random() * 80))
-          break
-
-        case 'ja-hiragana':
-          str = String.fromCharCode(12353 + Math.round(Math.random() * 85))
-          break
-
-        case 'ja-katakana':
-          str = String.fromCharCode(12449 + Math.round(Math.random() * 85))
-          break
-
-        case 'ua':
-          str = String.fromCharCode(1040 + Math.round(Math.random() * 55))
-          break
-
-        case 'cn':
-          str = String.fromCharCode(19968 + Math.floor(Math.random() * 20901))
-          break
       }
       return str
     },
