@@ -80,4 +80,3 @@
 				$(imgs[i]).wrap('<a href="mai'+'lto:'+a[1]+'@'+a[2]+'.com">');
 	});
 })(jQuery);
-				
