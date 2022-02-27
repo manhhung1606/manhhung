@@ -74,41 +74,6 @@ a{
 }
 
   
-.var-highlight {
-  background-color: #fff;
-  color: blue;
-  font-size: 28px;
-  font-weight: 600;
-  font-family: 'Jura', sans-serif;
- 
-}
-
-.string-highlight {
-  background-color: #fff;
-  color: red;
-  font-size: 28px;
-  font-weight: 400;
-  font-family: 'Jura', sans-serif;
-  
-  
-
-}
-
-#typewriter {
-  font-size: 1em;
-  font-weight: 400;
-  margin: 0;
-  font-family: 'Jura', sans-serif;
-  
-  
-
-  
-}
-#typewriter:after {
-  content: "_";
-  -webkit-animation: blink 500ms linear infinite alternate;
-          animation: blink 500ms linear infinite alternate;
-}
 
 @-webkit-keyframes blink {
   0% {
