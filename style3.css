@@ -14,6 +14,7 @@
 * html #wowslider-container1{ height:500px;width:960px }
 #wowslider-container1 ul{
 	position:relative;
+        height: 100%;
 	width: 10000%; 
 	left:0;
 	list-style:none;
