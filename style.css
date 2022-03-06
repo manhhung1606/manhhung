@@ -5,7 +5,8 @@ html, body {
   font-size: 37px;
   text-align: center;
   align-items: center;
-  background-image: url('https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg');
+  background-image: url('');
+  background-color: #000;
   background-repeat: no-repeat;
   background-image: cover;
   background-size: 100% 100%;
@@ -13,15 +14,7 @@ html, body {
   padding: 0px;
   margin: 0;
   background-repeat: no-repeat;
-  color: ##ff0042;
-  transition: all 0.35s linear;
-};
 }
-.menu {
-    height: 100%;
-    background-image: url('https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg');
-    background-size: cover;
-}  
 #a {
 onmousedown:stop;
 animation-name: rotate ;
