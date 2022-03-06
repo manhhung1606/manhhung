@@ -6,13 +6,16 @@ html, body {
   text-align: center;
   align-items: center;
   background-image: url('https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg');
-  background-position:center center;
-    background-repeat:no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-attachment:scroll;
+  background-repeat: no-repeat;
+  background-image: cover;
+  background-size: 100% 100%;
+  align-items: center;
+  padding: 0px;
+  margin: 0;
+  background-repeat: no-repeat;
+  color: ##ff0042;
+  transition: all 0.35s linear;
+};
 }
 .menu {
     height: 100%;
