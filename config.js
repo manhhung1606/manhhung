@@ -1,6 +1,6 @@
 const CONFIG = {
     introTitle: 'Welcome to hungdeptrai.com!',
-    introDesc: ` Nơi chôn giấu những kỉ niệm `,
+    introDesc: ` Nơi chôn giấu những kỉ niệm...! `,
     btnIntro: ' 😍 ',
     title: ' Ae có thấy đẹp không? ',
     desc: ' ... ',
