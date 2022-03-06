@@ -96,7 +96,7 @@ function textGenerate() {
 
 // show popup
 $('#yes').click(function() {
-    var audio = new Audio('https://hungdeptrai.com/may_ngu_me_chet_me_may_di_huan_5393299635354118960.mp3');
+    var audio = new Audio('https://hungdeptrai.com/nicolas_cage_laughing_7943556063031366853 (mp3cut.net).mp3');
     audio.play();
     Swal.fire({
         title: CONFIG.question,
