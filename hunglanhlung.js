@@ -41,7 +41,7 @@ function intensifyScrolling() {
         return;
     scrollIntensificationInProgress = true;
     var txtDiv = document.createElement("div");
-    txtDiv.innerText = "FBI warning...!";
+    txtDiv.innerText = "FBI WARNING !";
     txtDiv.style.position = "fixed";
     txtDiv.style.top = "45%";
     txtDiv.style.left = "40%";
