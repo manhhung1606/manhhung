@@ -121,7 +121,7 @@ window.addEventListener("contextmenu", function(evt) {
 
 var css = document.createElement("style");
 css.type = "text/css";
-css.innerHTML = "* { color: #FAFAFA;text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;font-family: \"VT323, monospace\" ; }";
+css.innerHTML = "* { color: #white;font-family: \"VT323\" ; }";
 document.body.appendChild(css);
 
 
