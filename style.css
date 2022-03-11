@@ -60,12 +60,6 @@ a{
             padding: 50px;
             font-size: 37px;
         }
-.div {
-  font-size: 40px;
-  font-weight: 600;
-  align-items: center;
-  justify-content: center;
-}
 #snow {
     position: fixed;
     top: 0;
