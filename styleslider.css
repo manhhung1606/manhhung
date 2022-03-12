@@ -9,8 +9,9 @@
 /*=== Reset Styles ===*/
 /*====================*/
 
-.slider-wrapper { 
-	width: 80%; 
+.slider-wrapper {
+        height: 500px; 
+	width: 920px;
 	margin: 100px auto;
 }
 
