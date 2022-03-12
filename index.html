@@ -17,6 +17,10 @@
  <link rel="stylesheet" type="text/css" href="https://hungdeptrai.com/style.css">
  <link rel="stylesheet" type="text/css" href="https://hungdeptrai.com/style1.css">
  <link rel="stylesheet" type="text/css" href="https://hungdeptrai.com/spinload.css">
+ <link rel="stylesheet" href="default.css" type="text/css" media="screen" />
+ <link rel="stylesheet" href="bar.css" type="text/css" media="screen" />
+ <link rel="stylesheet" href="nivo-slider.css" type="text/css" media="screen" />
+ <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 <script type="text/javascript" src="https://hungdeptrai.com/jquery.js"></script>
 <script type="text/javascript" src="https://hungdeptrai.com/a.js"></script> 
 </head>
@@ -69,31 +73,29 @@
 <p>
   Một số kỉ niệm của mình khi còn chơi PUBGM ... 
 </p>
-<div>
-        <!-- Start WOWSlider.com BODY section -->
-        
-<link rel="stylesheet" type="text/css" href="https://hungdeptrai.com/style3.css" media="screen" />
-
-<div id="wowslider-container1">
-<div class="ws_images"><ul>
-<li><img src="../received_837954396567827.webp" alt="1" title="mùa 5" id="wows0" /></li>
-<li><img src="../received_2327218530935302.webp" alt="2" title="mùa 5" id="wows1" /></li>
-<li><img src="../received_359530867984384.jpeg" alt="3" title="5" id="wows2" /></li>
-<li><img src="../received_254859575397602.webp" alt="4" title="mùa 5" id="wows3" /></li>
-<li><img src="../received_2327218530935302.webp" alt="..." title="kkkns" id="wows4" /></li>
-<li><img src="../Screenshot_2020-04-05-22-10-33-80_59b007cddc88d2e774f410ce614e91c8.png" alt="r" title="6" id="wows5" /></li>
-<li><img src="../Screenshot_2020-03-20-22-53-34-20_59b007cddc88d2e774f410ce614e91c8.png" alt="r" title="6" id="wows6" /></li>
-<li><img src="../Screenshot_2020-03-12-23-01-15-84_59b007cddc88d2e774f410ce614e91c8.png" alt="fj" title="6" id="wows7" /></li>
-<li><img src="../Screenshot_2020-03-12-22-52-43-17_59b007cddc88d2e774f410ce614e91c8.png" alt="s" title="6" id="wows8" /></li>
-<li><img src="../Screenshot_2020-03-10-11-40-31-93_59b007cddc88d2e774f410ce614e91c8.png" alt="sn" title="mùa 6" id="wows9" /></li>
-</ul></div>
-
-</div></div>
-
-<div class="ws_shadow"></div>
+<div id="wrapper">
+<div class="slider-wrapper theme-default">
+<div id="slider" class="nivoSlider"> 
+<img src="../received_837954396567827.webp" data-thumb="../received_837954396567827.webp" alt="" /> 
+<img src="../received_2327218530935302.webp" data-thumb="../received_2327218530935302.webp" alt="" title="2019" /></a> 
+<img src="../received_359530867984384.jpeg" data-thumb="../received_359530867984384.jpeg" alt="" data-transition="slideInLeft" /> 
+<img src="../received_254859575397602.webp" data-thumb="../received_254859575397602.webp" alt="" title="2019" /> </div>
+<img src="../received_2327218530935302.webp" data-thumb="../received_2327218530935302.webp" alt="" title="2019" />
+<img src="../Screenshot_2020-04-05-22-10-33-80_59b007cddc88d2e774f410ce614e91c8.png" data-thumb="../Screenshot_2020-04-05-22-10-33-80_59b007cddc88d2e774f410ce614e91c8.png" alt="" title="2019" />
+<img src="../Screenshot_2020-03-20-22-53-34-20_59b007cddc88d2e774f410ce614e91c8.png" data-thumb="../Screenshot_2020-03-20-22-53-34-20_59b007cddc88d2e774f410ce614e91c8.png" alt="" title="2019" />
+<img src="../Screenshot_2020-03-12-23-01-15-84_59b007cddc88d2e774f410ce614e91c8.png" data-thumb="../Screenshot_2020-03-12-23-01-15-84_59b007cddc88d2e774f410ce614e91c8.png" alt="" title="2019" />
+<img src="../Screenshot_2020-03-12-22-52-43-17_59b007cddc88d2e774f410ce614e91c8.png" data-thumb="../Screenshot_2020-03-12-22-52-43-17_59b007cddc88d2e774f410ce614e91c8.png" alt="" title="2019" />
+<img src="../Screenshot_2020-03-10-11-40-31-93_59b007cddc88d2e774f410ce614e91c8.png" data-thumb="../Screenshot_2020-03-10-11-40-31-93_59b007cddc88d2e774f410ce614e91c8.png" alt="" title="2019" />
+<img src="../received_254859575397602.webp" data-thumb="../received_254859575397602.webp" alt="" title="2019" />
 </div>
-<script type="text/javascript" src="https://hungdeptrai.com/wowslider.js"></script>
-<script type="text/javascript" src="https://hungdeptrai.com/script.js"></script> 
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+<script type="text/javascript" src="jquery.nivo.slider.js"></script> 
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider();
+    });
+    </script> 
 
         <header>
           <h2 id="title"></h2>
