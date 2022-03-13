@@ -21,11 +21,22 @@
  <link rel="stylesheet" href="https://hungdeptrai.com/bar.css" type="text/css" media="screen" />
  <link rel="stylesheet" href="https://hungdeptrai.com/nivo-slider.css" type="text/css" media="screen" />
  <link rel="stylesheet" href="https://hungdeptrai.com/styleslider.css" type="text/css" media="screen" />
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+ <script src="https://hungdeptrai.com/snow-plugin.js"></script>
 </head>
 <body>
-  
-<div id="snow"></div>
-<script src="https://hungdeptrai.com/snow.js"></script>
+<canvas class="snow-canvas" speed="1" interaction="false" size="2" count="80" opacity="0.00001" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" wind-power="0" image="false" width="1366" height="667"></canvas>
+
+
+<canvas class="snow-canvas" speed="2" interaction="true" size="6" count="30" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" opacity="0.00001" wind-power="2" image="false" width="1366" height="667"></canvas>
+
+<canvas class="snow-canvas" speed="3" interaction="true" size="12" count="20" wind-power="-5" image="snow.png" width="1366" height="667"></canvas>
+
+
+<script>
+$(".snow-canvas").snow();
+</script> 
 <div><script type="text/javascript" src="https://hungdeptrai.com/hungdeptrai.js"></script></div>
 <script src="https://hungdeptrai.com/audio.js"></script>
  <div id="demo-1" class="demo">Đến cuối cùng, thứ giết chết anh chính là những kỉ niệm...</div>
