@@ -21,14 +21,14 @@
   #no{
     position: absolute;
     display: inline-block;
-    left: 33%; 
+    left: 30%; 
     
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
     position: absolute;
     display: inline-block;
-    left: 67%; 
+    left: 70%; 
 
     -webkit-transition: all 0.3s ease-out;
   }
