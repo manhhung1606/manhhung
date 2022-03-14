@@ -1,5 +1,5 @@
 
-   audio = new Audio("https://hungdeptrai.com/Two Steps From Hell - Evergreen Extended.mp3");
+   audio = new Audio("https://hungdeptrai.com/Windy Hill.mp3");
 
 document.onclick = function() {
   audio.play();
