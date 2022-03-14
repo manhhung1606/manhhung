@@ -52,7 +52,8 @@
     position:absolute;
     left:0px;
     bottom:0px;
-    color:#00ffff;
+    text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
+    color:#FAFAFA;
     width:100%;
     z-index:8;
     padding: 5px 10px;
