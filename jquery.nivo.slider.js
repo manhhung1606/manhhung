@@ -638,7 +638,7 @@
         effect: 'random',
         slices: 15,
         boxCols: 8,
-        boxRows: 10,
+        boxRows: 20,
         animSpeed: 500,
         pauseTime: 3000,
         startSlide: 0,
