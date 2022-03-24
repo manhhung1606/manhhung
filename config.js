@@ -9,8 +9,8 @@ const CONFIG = {
     question: ' Woahhh, thật hả??? Thế có muốn xem nhiều hơn nữa ko?... ',
     btnReply: ' Send to Xấu zai từ bé ',
     reply: ' Có...hjhj ',
-    mess: ' Vậy thì vào FB của t nè... ',
-    messDesc: ' My FB...',
+    mess: ' Vậy thì vào FB của mình nè... ',
+    messDesc: ' ...',
     btnAccept: ' Lest goo ... ',
     messLink: 'https://www.facebook.com/waybackhome88'
 }
