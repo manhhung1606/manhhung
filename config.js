@@ -6,7 +6,7 @@ const CONFIG = {
     desc: ' Nếu mà nói dối là bạn sẽ ế suốt đời... ',
     btnYes: ' Có ',
     btnNo: ' Không ',
-    question: ' Thật ko ? ',
+    question: ' Thật hả ? ',
     btnReply: ' Send to Xấu zai từ bé ',
     reply: ' Thật mà...hjhj... Tớ mà nói điêu thì tớ làm chó😂... ',
     mess: ' 👍 ',
