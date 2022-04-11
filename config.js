@@ -3,7 +3,7 @@ const CONFIG = {
     introDesc: ` (∪ ◡ ∪) Một thời để nhớ...!(*^ -^*) `,
     btnIntro: ' Ok, lest go! ',
     title: ' Ae có thấy đẹp không? ',
-    desc: ' Nếu mà nói dối là bạn sẽ ế suốt đời... ',
+    desc: ' Nếu mà nói dối là bạn sẽ ế suốt đời😂... ',
     btnYes: ' Có ',
     btnNo: ' Không ',
     question: ' Thật hả ? ',
