@@ -1,5 +1,5 @@
 
-   audio = new Audio("https://hungdeptrai.com/late_night_melancholy_rude_boy_white_cherry_slowed_reverb_-2607903975075864947.mp3");
+   audio = new Audio("https://hungdeptrai.com/nhac_nen_co_be_ban_diem_bat_hu_1489387.mp3");
 
 document.onclick = function() {
   audio.play();
