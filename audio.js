@@ -1,5 +1,5 @@
 
-   audio = new Audio("https://hungdeptrai.com/X2Download.com - Future - Mask Off __ Aesthetic Remix __ Nhạc Tik Tok Thịnh Hành (128 kbps).mp3");
+   audio = new Audio("https://hungdeptrai.com/X2Download.com - TheFatRat & Anjulie - Close To The Sun x Origin (128 kbps).mp3");
 
 document.onclick = function() {
   audio.play();
