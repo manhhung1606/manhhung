@@ -8,7 +8,6 @@
 	background-image:url(https://hungdeptrai.com/Pubg1.jpg); /* change if the mask should have another color then white */
 	z-index:9999999; /* makes sure it stays on top */
 }
-.frontText{position:fixed;font-size:22px;text-transform:uppercase;font-weight:700}
 .spinner {
 	position:absolute;
 	left:50%; /* centers the loading animation horizontally one the screen */
