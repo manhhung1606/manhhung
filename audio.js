@@ -1,5 +1,5 @@
 
-   audio = new Audio("https://hungdeptrai.com/y2mate.com - Alan Walker Sabrina Carpenter Farruko On My Way Official Alternate Music Video.mp3");
+   audio = new Audio("https://hungdeptrai.com/Alan_Walker_-_Sunday_Music_Video_(getmp3.pro).mp3");
 
 document.onclick = function() {
   audio.play();
