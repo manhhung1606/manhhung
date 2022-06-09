@@ -1,5 +1,5 @@
 
-   audio = new Audio("https://hungdeptrai.com/AI_L_NGI_THNG_EM_-_QUN_AP_L_(getmp3.pro).mp3");
+   audio = new Audio("https://hungdeptrai.com/Mt_Bc_Yu_Vn_Dm_au_Lyrics_V_(getmp3.pro).mp3");
 
 document.onclick = function() {
   audio.play();
