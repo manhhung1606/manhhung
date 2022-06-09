@@ -22,7 +22,7 @@ function firstQuestion(){
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
-        imageUrl: 'https://hungdeptrai.com/tải xuống.webp',
+        imageUrl: 'https://hungdeptrai.com/Pubg1.jpg',
         imageWidth: 500,
         imageHeight: 500,
         background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
@@ -35,7 +35,7 @@ function firstQuestion(){
 
  // switch button position
  function switchButton() {
-    var audio = new Audio('https://hungdeptrai.com/X2Download.com - WHAT THE FUCK (Sound Effect Audio.mp3');
+    var audio = new Audio('https://hungdeptrai.com/Cau-noi-ao-that-day-kha-banh-www_tiengdong_com.mp3');
     audio.play();
     var leftNo = $('#no').css("left");
     var topNO = $('#no').css("top");
@@ -48,7 +48,7 @@ function firstQuestion(){
 }
 // move random button póition
 function moveButton() {
-    var audio = new Audio('https://hungdeptrai.com/X2Download.com - WHAT THE FUCK (Sound Effect 128 kbps).mp3');
+    var audio = new Audio('https://hungdeptrai.com/Cau-noi-ao-that-day-kha-banh-www_tiengdong_com.mp3');
     audio.play();
     var x = Math.random() * ($(window).width() - $('#no').width()) * 0.9 ;
     var y = Math.random() * ($(window).height() - $('#no').height()) * 0.3;
