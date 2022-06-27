@@ -1,5 +1,5 @@
 
-   audio = new Audio("past_lives_born_sapientdream_603077226658670431 (1).mp3");
+   audio = new Audio("https://hungdeptrai.com/Passlives.mp3");
 
 document.onclick = function() {
   audio.play();
