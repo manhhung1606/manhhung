@@ -1,5 +1,5 @@
 
-   audio = new Audio("https://hungdeptrai.com/Past_lives_-_Dots_(getmp3.pro).mp3");
+   audio = new Audio("https://hungdeptrai.com/La_Vie_Ne_Ment_Past_Original_mix_(getmp3.pro).mp3");
 
 document.onclick = function() {
   audio.play();
