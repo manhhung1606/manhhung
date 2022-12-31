@@ -12,5 +12,5 @@ const CONFIG = {
     mess: ' 👍 ',
     messDesc: ' Yêu thế nhờ...! ',
     btnAccept: ' Add me ',
-    messLink: 'https://www.facebook.com/waybackhome88'
+    messLink: 'https://www.facebook.com/iamueynagn.666'
 }
