@@ -22,10 +22,10 @@ function firstQuestion(){
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
-        imageUrl: 'https://hungdeptrai.com/Pubg1.jpg',
+        imageUrl: 'https://manhhung1606.github.io/manhhung/Pubg1.jpg',
         imageWidth: 500,
         imageHeight: 500,
-        background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
+        background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
@@ -35,7 +35,7 @@ function firstQuestion(){
 
  // switch button position
  function switchButton() {
-    var audio = new Audio('https://hungdeptrai.com/Cau-noi-ao-that-day-kha-banh-www_tiengdong_com.mp3');
+    var audio = new Audio('https://manhhung1606.github.io/manhhung/Cau-noi-ao-that-day-kha-banh-www_tiengdong_com.mp3');
     audio.play();
     var leftNo = $('#no').css("left");
     var topNO = $('#no').css("top");
@@ -48,7 +48,7 @@ function firstQuestion(){
 }
 // move random button póition
 function moveButton() {
-    var audio = new Audio('https://hungdeptrai.com/Cau-noi-ao-that-day-kha-banh-www_tiengdong_com.mp3');
+    var audio = new Audio('https://manhhung1606.github.io/manhhung/Cau-noi-ao-that-day-kha-banh-www_tiengdong_com.mp3');
     audio.play();
     var x = Math.random() * ($(window).width() - $('#no').width()) * 0.9 ;
     var y = Math.random() * ($(window).height() - $('#no').height()) * 0.3;
@@ -104,10 +104,10 @@ $('#yes').click(function() {
         width: 800,
         padding: '3em',
         html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Say something... '>",
-        background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
+        background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
         backdrop: `
               rgba(0,0,123,0.4)
-              url("https://hungdeptrai.com/FB_IMG_1630673201387.jpg")
+              url("https://manhhung1606.github.io/manhhung/FB_IMG_1630673201387.jpg")
               center top
               no-repeat
             `,
@@ -119,7 +119,7 @@ $('#yes').click(function() {
             Swal.fire({
                 width: 900,
                 confirmButtonText: CONFIG.btnAccept,
-                background: '#fff url("https://hungdeptrai.com/291de5d2aac98028a7c1d139298a3b46.jpg")',
+                background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
                 title: CONFIG.mess,
                 text: CONFIG.messDesc,
                 confirmButtonColor: '#83d0c9',
