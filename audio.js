@@ -1,5 +1,5 @@
 
-   audio = new Audio("https://hungdeptrai.com/kiemhieptinhduyen.mp3");
+   audio = new Audio("https://manhhung1606.github.io/manhhung/kiemhieptinhduyen.mp3");
 
 document.onclick = function() {
   audio.play();
