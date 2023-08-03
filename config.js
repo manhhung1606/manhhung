@@ -1,5 +1,5 @@
 const CONFIG = {
-    introTitle: 'Welcome to hungdeptrai.com!',
+    introTitle: 'Chào mừng bạn đến với website của Mạnh Hùng...',
     introDesc: ` (∪ ◡ ∪) Một thời để nhớ...!(*^ -^*) `,
     btnIntro: ' Ok, lest go! ',
     title: ' Đằng ấy có thấy đẹp không? ',
