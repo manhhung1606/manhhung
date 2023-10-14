@@ -1,5 +1,5 @@
 
-   audio = new Audio("https://manhhung1606.github.io/y2meta.com - Детский сон (320 kbps).mp3");
+   audio = new Audio("https://manhhung1606.github.io/manhhung/y2meta.com - Детский сон (320 kbps).mp3");
 
 document.onclick = function() {
   audio.play();
