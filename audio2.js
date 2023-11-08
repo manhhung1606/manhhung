@@ -1,3 +1,4 @@
+function __ongconoimay() {
 ManhHungAudio();
 }
 const ManhHung_List = [
