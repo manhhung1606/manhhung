@@ -10,7 +10,7 @@ const ManhHung_List = [
 "https://manhhung1606.github.io/manhhung/AI_L_NGI_THNG_EM_-_QUN_AP_L_(getmp3.pro).mp3",
 "https://manhhung1606.github.io/manhhung/Hoa Cỏ Lau (Tina Cover).mp3",
 "https://manhhung1606.github.io/manhhung/y2meta.com - Mua Roi Lang Tham (320 kbps).mp3",
-"https://manhhung1606.github.io/manhhung[MV] Xe Đạp - Thùy Chi ft. M4U  The Pink Team.mp3",
+"https://manhhung1606.github.io/manhhung/[MV] Xe Đạp - Thùy Chi ft. M4U  The Pink Team.mp3",
   ];
   //Random music
   let index = Math.floor(Math.random() * ManhHung_List.length);
