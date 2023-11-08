@@ -1,4 +1,4 @@
-function __ongconoimayF12caiconcac() {
+function __MAIMAIMOTTINHYEU1606() {
 ManhHungAudio();
 }
 const ManhHung_List = [
