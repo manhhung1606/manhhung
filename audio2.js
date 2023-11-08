@@ -2,7 +2,7 @@ function __ongconoimay() {
 ManhHungAudio();
 }
 const ManhHung_List = [
-"https://manhhung1606.github.io/manhhung/Happynewyear.mp3",
+"https://manhhung1606.github.io/manhhung/hoa_bang_lang_kidz_prod_tam_ke_-7278750744407002829.mp3",
 "https://manhhung1606.github.io/manhhung/Alan_Walker_-_Sunday_Music_Video_(getmp3.pro).mp3",
 "https://manhhung1606.github.io/manhhung/Passlives.mp3",
 "https://manhhung1606.github.io/manhhung/Ong Ba Gia Tao Lo Het - Binh Gold_ Lil S.mp3",
