@@ -14,6 +14,6 @@ const ManhHung_List = [
   document.addEventListener("click", ManhHungAudio);
   audio.addEventListener("ended", function() {
     index = (index + 1) % ManhHung_List.length;
-    audio.src = manhhung_list[index];
+    audio.src = ManhHung_List[index];
     audio.play();
   });
