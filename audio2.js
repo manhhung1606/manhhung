@@ -2,7 +2,7 @@ function __MAIMAIMOTTINHYEU1606() {
 ManhHungAudio();
 }
 const ManhHung_List = [
-"https://manhhung1606.github.io/manhhung/hoa_bang_lang_kidz_prod_tam_ke_-7278750744407002829.mp3",
+"https://manhhung1606.github.io/manhhung/Chờ đợi quá khứ.mp3",
 "https://manhhung1606.github.io/manhhung/mv_anh_tin_minh_da_cho_nhau_mot_ky_niem_thu_thuy_ft_luong_bang_quang_6771119687899202332.mp3",
 "https://manhhung1606.github.io/manhhung/vietsub_ai_phi_hau_huyen_-224110807638924782.mp3",
 "https://manhhung1606.github.io/manhhung/y2meta.com - Ngồi Bên Em (320 kbps).mp3",
