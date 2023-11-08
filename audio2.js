@@ -7,7 +7,7 @@ const ManhHung_List = [
 "https://manhhung1606.github.io/manhhung/vietsub_ai_phi_hau_huyen_-224110807638924782.mp3",
 "https://manhhung1606.github.io/manhhung/Ong Ba Gia Tao Lo Het - Binh Gold_ Lil S.mp3",
 "https://manhhung1606.github.io/manhhung/Mt_Bc_Yu_Vn_Dm_au_Lyrics_V_(getmp3.pro).mp3",
-"https://manhhung1606.github.io/manhhung/y2mate.com - Alan Walker Sabrina Carpenter Farruko On My Way Official Alternate Music Video.mp3",
+"https://manhhung1606.github.io/manhhung/X2Download.app - █▬█ █ ▀█▀ Bài Học Trong Cuộc Sống - Tiay (Rap Việt 2012) (320 kbps).mp3",
 "https://manhhung1606.github.io/manhhung/y2meta.com - Windy Hill (320 kbps).mp3",
   ];
   //Random music
