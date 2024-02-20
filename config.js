@@ -1,5 +1,5 @@
 const CONFIG = {
-    introTitle: 'Oh, chào bạn nhé ! Đây là website của Mạnh Hùng...',
+    introTitle: 'Oh, chào bạn nhé ! Mình là  Mạnh Hùng...',
     introDesc: ` (∪ ◡ ∪) Một thời để nhớ...!(*^ -^*) `,
     btnIntro: ' Ok, lest go! ',
     title: ' Đằng ấy có thấy đẹp không? ',
