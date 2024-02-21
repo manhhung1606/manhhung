@@ -1,6 +1,6 @@
 const CONFIG = {
-    introTitle: 'Oh, chào bạn nhé ! Mình là  Mạnh Hùng...',
-    introDesc: ` (∪ ◡ ∪) Một thời để nhớ...!(*^ -^*) `,
+    introTitle: 'Hi, chào cậu ! Mình là  Mạnh Hùng...',
+    introDesc: ` (∪ ◡ ∪) ...NMH... (*^ -^*) `,
     btnIntro: ' Ok, lest go! ',
     title: ' Đằng ấy có thấy đẹp không? ',
     desc: ' Nếu mà nói dối là đằng ấy sẽ ế suốt đời😂... ',
