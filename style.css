@@ -14,6 +14,8 @@ html, body {
   align-items: center;
   padding: 0px;
   margin: 0;
+  height: 100%;
+  margin-bottom: 0; 
 }
 #a {
 onmousedown:stop;
