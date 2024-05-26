@@ -2,7 +2,6 @@ function __MAIMAIMOTTINHYEU1606() {
 ManhHungAudio();
 }
 const ManhHung_List = [
-"https://manhhung1606.github.io/manhhung/Y2meta.app - THIS LOVE x ONCE AGAIN - JAPANDEE x THEREON REMIX (128 kbps).mp3",
 "https://manhhung1606.github.io/manhhung/Chờ đợi quá khứ.mp3",
 "https://manhhung1606.github.io/manhhung/vietsub_ai_phi_hau_huyen_-224110807638924782.mp3",
 "https://manhhung1606.github.io/manhhung/y2meta.com - Ngồi Bên Em (320 kbps).mp3",
