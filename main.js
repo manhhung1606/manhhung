@@ -22,7 +22,7 @@ function firstQuestion(){
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
-        imageUrl: 'https://manhhung1606.github.io/manhhung/FB_IMG_1714212964186.jpg',
+        imageUrl: 'https://manhhung1606.github.io/manhhung/Save = Follow♡「Hương 」♡.jpeg',
         imageWidth: 500,
         imageHeight: 500,
         background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
