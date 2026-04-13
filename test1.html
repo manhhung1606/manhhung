@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:::WELCOME TO MANHHUNG1606 - FROM BẮC GIANG WITH LOVE:::</title>
+    
+    <link rel="shortcut icon" type="image/png" href="https://manhhung1606.github.io/manhhung/Pubg1.jpg"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/style.css">
+    <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/loadd.css">
+    <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/style1.css">
+    <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/spinload.css">
+    <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/snow.css">
+    <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/default.css">
+    <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/nivo-slider.css">
+
+    <style>
+        /* Tối ưu hóa hiển thị cho canvas */
+        body { margin: 0; overflow-x: hidden; background-color: #000; }
+        .snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas class="snow-canvas" speed="1" interaction="false" size="2" count="80" opacity="0.1" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)"></canvas>
+    <canvas class="snow-canvas" speed="2" interaction="true" size="6" count="30" opacity="0.1" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)"></canvas>
+    <canvas class="snow-canvas" speed="3" interaction="true" size="12" count="20" image="https://manhhung1606.github.io/manhhung/snow.png"></canvas>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
+    
+    <script src="https://manhhung1606.github.io/manhhung/snow-plugin.js"></script>
+    <script src="https://manhhung1606.github.io/manhhung/hungdeptrai.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Kích hoạt tuyết
+            if ($.fn.snow) {
+                $(".snow-canvas").snow();
+            }
+
+            // Ghi chú về Nhạc: 
+            // File audio2.js của bạn sẽ tự động chạy thông qua hungdeptrai.js 
+            // hoặc được nhúng trực tiếp nếu trình duyệt cho phép.
+            console.log("Website của Mạnh Hùng đã sẵn sàng!");
+        });
+    </script>
+
+</body>
+</html>
