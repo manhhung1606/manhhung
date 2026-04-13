@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>:::WELCOME TO MANHHUNG1606- FROM BẮC GIANG WITH LOVE:::</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+
+  <!-- Custom CSS (giữ nguyên của bạn) -->
+  <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/style.css">
+  <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/loadd.css">
+  <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/style1.css">
+  <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/spinload.css">
+  <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/snow.css">
+  <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/default.css">
+  <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/bar.css">
+  <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/nivo-slider.css">
+  <link rel="stylesheet" href="https://manhhung1606.github.io/manhhung/styleslider.css">
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.3/howler.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Plugins -->
+  <script src="https://manhhung1606.github.io/manhhung/snow-plugin.js"></script>
+  <script src="https://manhhung1606.github.io/manhhung/jquery.nivo.slider.js"></script>
+  <script src="https://manhhung1606.github.io/manhhung/textShuffle.js"></script>
+  <script src="https://manhhung1606.github.io/manhhung/jquery.textShuffle.js"></script>
+
+</head>
+
+<body>
+
+<!-- Snow effect -->
+<canvas class="snow-canvas"></canvas>
+
+<!-- Text intro -->
+<div id="demo-1">Tháng năm vẫn vậy...</div>
+<div id="demo-2">Nhưng con người thì đã đổi thay...</div>
+<div id="demo-3">Chỉ có những kỉ niệm là còn mãi...</div>
+
+<!-- Slider -->
+<div id="slider" class="nivoSlider"></div>
+
+<!-- Buttons -->
+<div class="text-center mt-4">
+  <button id="yes" class="btn btn-danger">Yes</button>
+  <button id="no" class="btn btn-info">No</button>
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-5">
+  <p>Design by ♥️ <a href="https://www.github.com/xauzaitube1606">Mạnh Hùng</a></p>
+</footer>
+
+<!-- Main JS -->
+<script>
+
+// Snow
+$(function(){
+  $(".snow-canvas").snow();
+});
+
+// Text effect
+$(function(){
+  $('#demo-1').textShuffle();
+  $('#demo-2').textShuffle({bindEvent:'click'});
+  $('#demo-3').textShuffle({chars:'0101010101', animationSpeed:50});
+});
+
+// FULL IMAGE LIST
+const images = [
+"https://manhhung1606.github.io/manhhung/received_837954396567827.webp",
+"https://manhhung1606.github.io/manhhung/received_2327218530935302.webp",
+"https://manhhung1606.github.io/manhhung/received_359530867984384.jpeg",
+"https://manhhung1606.github.io/manhhung/received_254859575397602.webp",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-04-05-22-10-33-80_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-20-22-53-34-20_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-12-23-01-15-84_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-12-22-52-43-17_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-12-23-02-07-28_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-12-23-03-32-20_59b007cddc88d2e774f410ce614e91c8(1).png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-13-14-27-24-73_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-13-22-21-04-27_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-13-22-22-27-37_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-14-23-17-48-44_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-15-23-12-05-74_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-15-23-13-00-41_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-16-14-54-12-18_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-17-22-24-00-80_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-17-22-24-41-84_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-17-22-26-04-07_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-17-22-26-22-37_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-20-23-04-20-64_59b007cddc88d2e774f410ce614e91c8(1).png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-25-23-00-24-37_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-04-06-22-14-07-03_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-04-08-22-03-41-50_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-04-24-22-33-52-77_59b007cddc88d2e774f410ce614e91c8.png",
+"https://manhhung1606.github.io/manhhung/Screenshot_2020-03-11-22-02-48-69_59b007cddc88d2e774f410ce614e91c8.png"
+];
+
+$(window).on('load', function(){
+  images.forEach(img => {
+    $('#slider').append(`<img src="${img}" />`);
+  });
+  $('#slider').nivoSlider();
+});
+
+
+// ===== AUDIO PLAYER (AUTO RANDOM) =====
+function __MAIMAIMOTTINHYEU1606() {
+  ManhHungAudio();
+}
+
+const ManhHung_List = [
+"https://manhhung1606.github.io/manhhung/Chờ đợi quá khứ.mp3",
+"https://manhhung1606.github.io/manhhung/vietsub_ai_phi_hau_huyen_-224110807638924782.mp3",
+"https://manhhung1606.github.io/manhhung/y2meta.com - Ngồi Bên Em (320 kbps).mp3",
+"https://manhhung1606.github.io/manhhung/Mt_Bc_Yu_Vn_Dm_au_Lyrics_V_(getmp3.pro).mp3",
+"https://manhhung1606.github.io/manhhung/X2Download.app - █▬█ █ ▀█▀ Bài Học Trong Cuộc Sống - Tiay (Rap Việt 2012) (320 kbps).mp3",
+"https://manhhung1606.github.io/manhhung/AI_L_NGI_THNG_EM_-_QUN_AP_L_(getmp3.pro).mp3"
+];
+
+let index = Math.floor(Math.random() * ManhHung_List.length);
+const audio = new Audio(ManhHung_List[index]);
+
+function ManhHungAudio() {
+  audio.play();
+}
+
+// Click anywhere to play (bypass browser autoplay restriction)
+document.addEventListener("click", ManhHungAudio);
+
+// Auto next song
+audio.addEventListener("ended", function() {
+  index = (index + 1) % ManhHung_List.length;
+  audio.src = ManhHung_List[index];
+  audio.play();
+});
+
+</script>
+</body>
+</html>
