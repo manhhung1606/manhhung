@@ -11,6 +11,6 @@ const CONFIG = {
     reply: ' Thật mà...hjhj... Tớ mà nói điêu thì tớ làm chó😂... ',
     mess: ' 👍 ',
     messDesc: ' Yêu thế nhờ...! ',
-    btnAccept: ' Add me ',
-    messLink: 'https://www.facebook.com/nagnueyiam.666'
+    btnAccept: ' Mình biết mà .hiihaa ',
+    messLink: 'https://www.facebook.com/whisperofhope.1606
 }
