@@ -101,7 +101,7 @@ $('#yes').click(function() {
     Swal.fire({
         title: CONFIG.question,
         html: true,
-        width: 800,
+        width: 500,
         padding: '3em',
         html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Say something... '>",
         background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
@@ -117,7 +117,7 @@ $('#yes').click(function() {
     }).then((result) => {
         if (result.value) {
             Swal.fire({
-                width: 900,
+                width: 500,
                 confirmButtonText: CONFIG.btnAccept,
                 background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
                 title: CONFIG.mess,
