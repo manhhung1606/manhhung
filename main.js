@@ -103,7 +103,7 @@ $('#yes').click(function() {
         html: true,
         width: 500,
         padding: '3em',
-        html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Say something... '>",
+        html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Viết gì cũng được '>",
         background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
         backdrop: `
               rgba(0,0,123,0.4)
