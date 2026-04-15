@@ -12,5 +12,5 @@ const CONFIG = {
     mess: ' 👍 ',
     messDesc: ' Yêu thế nhờ...! ',
     btnAccept: ' Mình biết mà .hiihaa ',
-    messLink: 'https://www.facebook.com/whisperofhope.1606',
+    messLink: '',
 }
