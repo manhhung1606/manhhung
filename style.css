@@ -6,8 +6,6 @@ html, body {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: scroll; /* dùng scroll thay fixed cho mobile */
-  min-height: 100vh;
   font-family: 'Jura', sans-serif;
   font-size: 37px;
   text-align: center;
@@ -23,6 +21,8 @@ html, body {
   height: 100%;
   margin-bottom: 0;
   overflow-x: hidden;
+  min-height: 100%;
+  background-attachment: fixed;
 }
 #a {
 onmousedown:stop;
