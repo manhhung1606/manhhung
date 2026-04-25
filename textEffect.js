@@ -11,7 +11,6 @@ function randomChar() {
     return chars[Math.floor(Math.random() * chars.length)];
 }
 
-// Tạo trái tim rơi ngẫu nhiên
 function createHeart() {
     const heart = document.createElement('div');
     heart.innerHTML = '❤️';
