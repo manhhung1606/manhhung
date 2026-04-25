@@ -22,7 +22,7 @@
   #no{
     position: absolute;
     display: inline-block;
-    left: 25%; 
+    left: 20%; 
     z-index: 999;
     font-size: 24px;
     padding: 12px 35px;
@@ -109,8 +109,8 @@ header h4 {
   #no{
     position: absolute;
     display: inline-block;
-    left: 10%; 
-    bottom: 15vh;
+    left: 7%; 
+    bottom: 20vh;
     font-size: 20px;
     padding: 10px 25px;
     z-index: 999;
@@ -119,8 +119,8 @@ header h4 {
   #yes{
     position: absolute;
     display: inline-block;
-    left: 55%; 
-    bottom: 15vh;
+    left: 58%; 
+    bottom: 20vh;
     font-size: 20px;
     padding: 10px 25px;
     z-index: 999;
