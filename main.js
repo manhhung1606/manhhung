@@ -18,7 +18,8 @@ function init(){
 }
 
 function firstQuestion(){
-    $('.contentt').hide();
+    $('body').css('overflow', 'hidden');
+    $('#wrapper, header, #yes, #no, .demo, .inner-width').hide();
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
@@ -29,8 +30,7 @@ function firstQuestion(){
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
-        $('body > *').css('visibility', 'visible'); 
-        $('.contentt').show(200);
+        $('#wrapper, header, #yes, #no, .demo, .inner-width').show(200);
       })
 }
 
