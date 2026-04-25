@@ -25,7 +25,7 @@ audio.addEventListener("ended", function () {
 
 // Giọng đọc lời chào, xong rồi nhạc mới chạy
 window.addEventListener('load', function () {
-  const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng');
+  const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng.Chúc bạn có những phút giây thư giãn thật vui vẻ nha. ');
   msg.lang = 'vi-VN';
   msg.rate = 0.9;
 
