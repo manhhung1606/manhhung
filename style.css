@@ -170,20 +170,267 @@ a {
   height: 30px;
   background: #bbb;
 }
-.footer-design {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 12px 0;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    font-size: 14px;
-    z-index: 10000;
-    pointer-events: auto; /* không cản click các nút bên dưới nếu có */
-}
 
-.footer-design span {
-    color: #00ffcc;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #0a0a1a;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    footer {
+      width: 100%;
+      padding: 28px 20px 22px;
+      background: linear-gradient(180deg, transparent 0%, #050510 60%);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Starfield bg */
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 40%, rgba(255,255,255,0.3) 0%, transparent 100%);
+      pointer-events: none;
+      animation: starTwinkle 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes starTwinkle {
+      0% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    /* Top divider glow line */
+    .glow-line {
+      height: 2px;
+      width: 80%;
+      margin: 0 auto 20px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        #ff69b4 20%,
+        #00cfff 50%,
+        #a855f7 80%,
+        transparent 100%
+      );
+      border-radius: 2px;
+      animation: lineGlow 2s ease-in-out infinite alternate;
+      box-shadow:
+        0 0 8px #ff69b4,
+        0 0 20px #00cfff,
+        0 0 40px #a855f7;
+    }
+
+    @keyframes lineGlow {
+      0% {
+        box-shadow: 0 0 6px #ff69b4, 0 0 18px #00cfff, 0 0 35px #a855f7;
+        opacity: 0.8;
+      }
+      100% {
+        box-shadow: 0 0 14px #ff69b4, 0 0 35px #00cfff, 0 0 70px #a855f7;
+        opacity: 1;
+      }
+    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #0a0a1a;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    footer {
+      width: 100%;
+      padding: 28px 20px 22px;
+      background: linear-gradient(180deg, transparent 0%, #050510 60%);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* Starfield bg */
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 40%, rgba(255,255,255,0.3) 0%, transparent 100%);
+      pointer-events: none;
+      animation: starTwinkle 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes starTwinkle {
+      0% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    /* Top divider glow line */
+    .glow-line {
+      height: 2px;
+      width: 80%;
+      margin: 0 auto 20px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        #ff69b4 20%,
+        #00cfff 50%,
+        #a855f7 80%,
+        transparent 100%
+      );
+      border-radius: 2px;
+      animation: lineGlow 2s ease-in-out infinite alternate;
+      box-shadow:
+        0 0 8px #ff69b4,
+        0 0 20px #00cfff,
+        0 0 40px #a855f7;
+    }
+
+    @keyframes lineGlow {
+      0% {
+        box-shadow: 0 0 6px #ff69b4, 0 0 18px #00cfff, 0 0 35px #a855f7;
+        opacity: 0.8;
+      }
+      100% {
+        box-shadow: 0 0 14px #ff69b4, 0 0 35px #00cfff, 0 0 70px #a855f7;
+        opacity: 1;
+      }
+    }
+    /* Main copyright text */
+    .copyright-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+
+      background: linear-gradient(90deg,
+        #ff69b4, #ff9de2, #00cfff, #a855f7, #ff69b4
+      );
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+
+      animation: rainbowShift 3s linear infinite, glowPulse 1.8s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 8px #ff69b4) drop-shadow(0 0 16px #00cfff);
+    }
+
+    @keyframes rainbowShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    @keyframes glowPulse {
+      0% { filter: drop-shadow(0 0 5px #ff69b4) drop-shadow(0 0 10px #00cfff); }
+      100% { filter: drop-shadow(0 0 14px #ff69b4) drop-shadow(0 0 28px #a855f7) drop-shadow(0 0 50px #00cfff); }
+    }
+
+    /* "No Copyright" badge */
+    .no-copyright-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 5px 16px;
+      border-radius: 30px;
+      border: 1px solid rgba(0, 207, 255, 0.4);
+      background: rgba(0, 207, 255, 0.06);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.7);
+      animation: badgePulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(0,207,255,0.3), inset 0 0 8px rgba(0,207,255,0.05);
+        border-color: rgba(0,207,255,0.3);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(168,85,247,0.5), inset 0 0 15px rgba(168,85,247,0.1);
+        border-color: rgba(168,85,247,0.6);
+      }
+    }
+
+    .nc-icon {
+      font-size: 14px;
+      animation: iconSpin 4s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes iconSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Designer credit */
+    .designer-credit {
+      margin-top: 12px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      animation: fadeFlicker 3s ease-in-out infinite;
+    }
+
+    .designer-credit span {
+      background: linear-gradient(90deg, #ff69b4, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      animation: glowPulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeFlicker {
+      0%, 90%, 100% { opacity: 0.6; }
+      45% { opacity: 1; }
+    }
+
+    /* Floating sparkles */
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .sparkle:nth-child(1) { background: #ff69b4; left: 8%; top: 30%; animation: floatSparkle 4s ease-in-out infinite; }
+    .sparkle:nth-child(2) { background: #00cfff; left: 20%; top: 60%; animation: floatSparkle 3.5s ease-in-out infinite 0.5s; }
+    .sparkle:nth-child(3) { background: #a855f7; left: 85%; top: 25%; animation: floatSparkle 5s ease-in-out infinite 1s; }
+    .sparkle:nth-child(4) { background: #ffd700; left: 75%; top: 65%; animation: floatSparkle 4.5s ease-in-out infinite 0.8s; }
+    .sparkle:nth-child(5) { background: #ff69b4; left: 50%; top: 20%; animation: floatSparkle 3.8s ease-in-out infinite 1.5s; }
+
+    @keyframes floatSparkle {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; box-shadow: 0 0 6px currentColor; }
+      50% { transform: translateY(-12px) scale(1.5); opacity: 1; box-shadow: 0 0 15px currentColor, 0 0 30px currentColor; }
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
