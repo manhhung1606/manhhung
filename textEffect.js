@@ -18,12 +18,16 @@ function createLeaf() {
 }
 
 // Hiện từng chữ cái bay từ phải qua trái
-function showLine(lineIndex) {
-    if (lineIndex >= lines.length) return;
+function showLine(lineIndex, callback) {
+    if (lineIndex >= lines.length) {
+        if (callback) callback();
+        return;
+    }
 
     const demoIds = ['demo-1', 'demo-2', 'demo-3'];
     const el = document.getElementById(demoIds[lineIndex]);
     el.innerHTML = '';
+    el.style.opacity = 1;
 
     const text = lines[lineIndex];
     let i = 0;
@@ -31,8 +35,7 @@ function showLine(lineIndex) {
     const interval = setInterval(() => {
         if (i >= text.length) {
             clearInterval(interval);
-            // Hiện dòng tiếp theo sau 1 giây
-            setTimeout(() => showLine(lineIndex + 1), 1000);
+            setTimeout(() => showLine(lineIndex + 1, callback), 800);
             return;
         }
 
@@ -40,24 +43,37 @@ function showLine(lineIndex) {
         span.classList.add('fly-char');
         span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
         el.appendChild(span);
-
-        // Trigger animation
         setTimeout(() => span.classList.add('landed'), 50);
-
         i++;
     }, 80);
 }
 
+// Fade out tất cả các dòng
+function fadeOutAll(callback) {
+    const demoIds = ['demo-1', 'demo-2', 'demo-3'];
+    demoIds.forEach(id => {
+        const el = document.getElementById(id);
+        el.style.transition = 'opacity 1.5s ease';
+        el.style.opacity = 0;
+    });
+    setTimeout(callback, 1800);
+}
+
+// Vòng lặp chính
+function startLoop() {
+    showLine(0, function() {
+        // Sau khi hiện hết 3 dòng, đợi 2 giây rồi fade out
+        setTimeout(() => {
+            fadeOutAll(() => {
+                // Đợi thêm 1 giây rồi lặp lại
+                setTimeout(startLoop, 1000);
+            });
+        }, 2000);
+    });
+}
+
 // Khởi động
 window.addEventListener('load', function () {
-    // Tạo lá bay liên tục
     setInterval(createLeaf, 400);
-
-    // Ẩn hết text trước
-    ['demo-1', 'demo-2', 'demo-3'].forEach(id => {
-        document.getElementById(id).innerHTML = '';
-    });
-
-    // Bắt đầu hiện chữ sau 1 giây
-    setTimeout(() => showLine(0), 1000);
+    setTimeout(startLoop, 1000);
 });
