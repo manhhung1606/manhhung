@@ -351,3 +351,15 @@ footer {
 .nc-icon {
   font-size: 20px !important;
 }
+/* Fix nút không bị footer đè */
+button {
+  position: relative;
+  z-index: 10;
+}
+
+/* Fix footer xuống dưới nút */
+footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 60px;
+}
