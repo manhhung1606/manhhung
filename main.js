@@ -18,7 +18,7 @@ function init(){
 }
 
 function firstQuestion(){
-    $('.content').hide();
+    $('.contentt').hide();
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
@@ -29,7 +29,7 @@ function firstQuestion(){
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
-        $('.content').show(200);
+        $('.contentt').show(200);
       })
 }
 
