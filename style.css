@@ -315,3 +315,39 @@ footer::before {
   0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
   50% { transform: translateY(-12px) scale(1.5); opacity: 1; }
 }
+/* Fix footer xuống dưới cùng */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+  padding: 28px 20px 22px;
+}
+
+/* Chỉnh cỡ chữ footer tương đồng với web */
+.copyright-text {
+  font-size: 30px !important;
+  letter-spacing: 4px;
+}
+
+.no-copyright-badge {
+  font-size: 16px !important;
+  letter-spacing: 2px;
+  padding: 8px 24px;
+}
+
+.designer-credit {
+  font-size: 30px !important;
+  margin-top: 16px;
+}
+
+.designer-credit a {
+  font-size: 30px !important;
+}
+
+.nc-icon {
+  font-size: 20px !important;
+}
