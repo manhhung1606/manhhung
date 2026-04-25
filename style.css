@@ -323,8 +323,9 @@ body {
 }
 
 footer {
-  margin-top: auto;
+  margin-top: 60px;
   padding: 28px 20px 22px;
+
 }
 
 /* Chỉnh cỡ chữ footer tương đồng với web */
