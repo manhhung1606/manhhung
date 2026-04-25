@@ -19,7 +19,7 @@ function init(){
 
 function firstQuestion(){
     $('body').css('overflow', 'hidden');
-    $('#wrapper, header, #yes, #no, .demo, .inner-width, center, p,  span[id^="a"], #chaffle-title').hide();
+    $('#wrapper, header, #yes, #no, .demo, .inner-width, center, p,  span[id^="a"], #chaffle-title, canvas, #slider').hide();
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
@@ -30,7 +30,7 @@ function firstQuestion(){
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
-        $('#wrapper, header, #yes, #no, .demo, .inner-width, center, p,   span[id^="a"], #chaffle-title').show(200);
+        $('#wrapper, header, #yes, #no, .demo, .inner-width, center, p,   span[id^="a"], #chaffle-title, canvas, #slider').show(200);
       })
 }
 
