@@ -24,6 +24,8 @@
     display: inline-block;
     left: 20%; 
     z-index: 999;
+    font-size: 24px;
+    padding: 12px 35px;
     -webkit-transition: all 0.1s ease-out;
   }
   #yes{
@@ -31,6 +33,8 @@
     display: inline-block;
     left: 75%; 
     z-index: 999;
+    font-size: 24px;
+    padding: 12px 35px;
     -webkit-transition: all 0.3s ease-out;
   }
   #bg{
@@ -48,7 +52,7 @@
     font-size: 37px;
     color: #FAFAFA !important;
     text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
-    text-align: center; <!-- If you want horizontal center alignment -->
+    text-align: center;
 }
 .divContainer > *
 {
@@ -95,7 +99,6 @@ header h4 {
     margin-bottom: 30px;
   }
   header h4 {
-    
     font-family: 'Jura', sans-serif;
     color: #FAFAFA !important;
     font-size: 37px;
@@ -108,8 +111,8 @@ header h4 {
     display: inline-block;
     left: 7%; 
     bottom: 20vh;
-    font-size: 30px;
-    padding: 3px;
+    font-size: 20px;
+    padding: 10px 25px;
     z-index: 999;
     -webkit-transition: all 0.1s ease-out;
   }
@@ -118,16 +121,15 @@ header h4 {
     display: inline-block;
     left: 58%; 
     bottom: 20vh;
-    font-size: 30px;
-    padding: 3px;
+    font-size: 20px;
+    padding: 10px 25px;
     z-index: 999;
     -webkit-transition: all 0.3s ease-out;
   }
-
 
 .swal2-backdrop-show{
   background-size: 50px 50px !important;
   top: 30% !important;
   position: fixed;
 }
- 
+}
