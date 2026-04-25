@@ -110,7 +110,7 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 7%; 
-    bottom: 20vh;
+    bottom: 12vh;
     font-size: 20px;
     padding: 10px 25px;
     z-index: 999;
@@ -120,7 +120,7 @@ header h4 {
     position: absolute;
     display: inline-block;
     left: 58%; 
-    bottom: 20vh;
+    bottom: 12vh;
     font-size: 20px;
     padding: 10px 25px;
     z-index: 999;
