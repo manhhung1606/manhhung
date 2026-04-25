@@ -4,87 +4,76 @@ const lines = [
     "Chỉ có những kỉ niệm là còn mãi..."
 ];
 
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*";
-const demoIds = ['demo-1', 'demo-2', 'demo-3'];
-
-function randomChar() {
-    return chars[Math.floor(Math.random() * chars.length)];
+// Tạo lá vàng
+function createLeaf() {
+    const leaf = document.createElement('div');
+    leaf.classList.add('leaf');
+    leaf.innerHTML = '🍂';
+    leaf.style.top = Math.random() * 100 + 'vh';
+    leaf.style.fontSize = (Math.random() * 20 + 10) + 'px';
+    leaf.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    leaf.style.opacity = Math.random() * 0.7 + 0.3;
+    document.body.appendChild(leaf);
+    setTimeout(() => leaf.remove(), 5000);
 }
 
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.innerHTML = '❤️';
-    const size = Math.random() * 15 + 8;
-    const left = Math.random() * 100;
-    const duration = Math.random() * 4 + 3;
-    heart.style.cssText = `
-        position: fixed;
-        top: -30px;
-        left: ${left}vw;
-        font-size: ${size}px;
-        opacity: ${Math.random() * 0.6 + 0.3};
-        animation: heartFall ${duration}s linear forwards;
-        pointer-events: none;
-        z-index: 9998;
-    `;
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), duration * 1000 + 500);
-}
+// Hiện từng chữ cái bay từ phải qua trái
+function showLine(lineIndex, callback) {
+    if (lineIndex >= lines.length) {
+        if (callback) callback();
+        return;
+    }
 
-function chaffleLine(lineIndex, callback) {
+    const demoIds = ['demo-1', 'demo-2', 'demo-3'];
     const el = document.getElementById(demoIds[lineIndex]);
-    const text = lines[lineIndex];
-    let iteration = 0;
-    const maxIteration = text.length * 5;
-
-    el.style.transition = 'none';
+    el.innerHTML = '';
     el.style.opacity = 1;
 
+    const text = lines[lineIndex];
+    let i = 0;
+
     const interval = setInterval(() => {
-        el.textContent = text
-            .split("")
-            .map((char, index) => {
-                if (index < Math.floor(iteration / 5)) return char;
-                if (char === ' ' || char === '.') return char;
-                return randomChar();
-            })
-            .join("");
-
-        if (iteration >= maxIteration) {
+        if (i >= text.length) {
             clearInterval(interval);
-            el.textContent = text;
-
-            setTimeout(() => {
-                el.style.transition = 'opacity 1s ease';
-                el.style.opacity = 0;
-                setTimeout(() => {
-                    el.textContent = '';
-                    if (callback) callback();
-                }, 1000);
-            }, 1500);
+            setTimeout(() => showLine(lineIndex + 1, callback), 800);
+            return;
         }
 
-        iteration++;
-    }, 30);
+        const span = document.createElement('span');
+        span.classList.add('fly-char');
+        span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
+        el.appendChild(span);
+        setTimeout(() => span.classList.add('landed'), 50);
+        i++;
+    }, 80);
 }
 
-function startLoop() {
+// Fade out tất cả các dòng
+function fadeOutAll(callback) {
+    const demoIds = ['demo-1', 'demo-2', 'demo-3'];
     demoIds.forEach(id => {
         const el = document.getElementById(id);
-        el.textContent = '';
+        el.style.transition = 'opacity 1.5s ease';
         el.style.opacity = 0;
     });
+    setTimeout(callback, 1800);
+}
 
-    chaffleLine(0, function() {
-        chaffleLine(1, function() {
-            chaffleLine(2, function() {
+// Vòng lặp chính
+function startLoop() {
+    showLine(0, function() {
+        // Sau khi hiện hết 3 dòng, đợi 2 giây rồi fade out
+        setTimeout(() => {
+            fadeOutAll(() => {
+                // Đợi thêm 1 giây rồi lặp lại
                 setTimeout(startLoop, 1000);
             });
-        });
+        }, 2000);
     });
 }
 
-window.addEventListener('load', function() {
-    setInterval(createHeart, 600);
+// Khởi động
+window.addEventListener('load', function () {
+    setInterval(createLeaf, 400);
     setTimeout(startLoop, 1000);
 });
