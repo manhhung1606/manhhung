@@ -10,11 +10,10 @@
 /*====================*/
 
 .slider-wrapper {
-    height: auto; 
-    width: 100%;
-    margin: 0 auto;
+        height: 500px; 
+	width: 920px;
+	margin: 100px auto;  /* dòng này */
 }
-
 /*====================*/
 /*=== Other Styles ===*/
 /*====================*/
