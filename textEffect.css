@@ -7,13 +7,23 @@
     text-align: center;
     opacity: 0;
 }
+
 @keyframes heartFall {
     0% {
         top: -30px;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translateX(0);
+    }
+    25% {
+        transform: rotate(15deg) translateX(10px);
+    }
+    50% {
+        transform: rotate(-15deg) translateX(-10px);
+    }
+    75% {
+        transform: rotate(10deg) translateX(5px);
     }
     100% {
         top: 110vh;
-        transform: rotate(360deg);
+        transform: rotate(0deg) translateX(0);
     }
 }
