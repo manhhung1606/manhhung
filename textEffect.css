@@ -1,0 +1,33 @@
+.fly-char {
+    display: inline-block;
+    transform: translateX(300px);
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.fly-char.landed {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.leaf {
+    position: fixed;
+    right: -50px;
+    animation: leafFall linear forwards;
+    z-index: 9998;
+    pointer-events: none;
+}
+
+@keyframes leafFall {
+    0% {
+        right: -50px;
+        transform: rotate(0deg) translateY(0);
+    }
+    50% {
+        transform: rotate(180deg) translateY(30px);
+    }
+    100% {
+        right: 110vw;
+        transform: rotate(360deg) translateY(-20px);
+    }
+}
