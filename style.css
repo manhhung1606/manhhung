@@ -88,7 +88,9 @@ a{
     pointer-events: none;
     z-index: 1000;
 }
-
+.swal2-container {
+    z-index: 99999999 !important;
+}
   
 
 @-webkit-keyframes blink {
