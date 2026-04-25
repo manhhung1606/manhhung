@@ -11,13 +11,33 @@ function randomChar() {
     return chars[Math.floor(Math.random() * chars.length)];
 }
 
+// Tạo trái tim rơi ngẫu nhiên
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.innerHTML = '❤️';
+    const size = Math.random() * 15 + 8;
+    const left = Math.random() * 100;
+    const duration = Math.random() * 4 + 3;
+    heart.style.cssText = `
+        position: fixed;
+        top: -30px;
+        left: ${left}vw;
+        font-size: ${size}px;
+        opacity: ${Math.random() * 0.6 + 0.3};
+        animation: heartFall ${duration}s linear forwards;
+        pointer-events: none;
+        z-index: 9998;
+    `;
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), duration * 1000 + 500);
+}
+
 function chaffleLine(lineIndex, callback) {
     const el = document.getElementById(demoIds[lineIndex]);
     const text = lines[lineIndex];
     let iteration = 0;
     const maxIteration = text.length * 5;
 
-    // Reset opacity
     el.style.transition = 'none';
     el.style.opacity = 1;
 
@@ -35,7 +55,6 @@ function chaffleLine(lineIndex, callback) {
             clearInterval(interval);
             el.textContent = text;
 
-            // Đợi 1.5 giây rồi mờ dần
             setTimeout(() => {
                 el.style.transition = 'opacity 1s ease';
                 el.style.opacity = 0;
@@ -51,18 +70,15 @@ function chaffleLine(lineIndex, callback) {
 }
 
 function startLoop() {
-    // Reset tất cả
     demoIds.forEach(id => {
         const el = document.getElementById(id);
         el.textContent = '';
         el.style.opacity = 0;
     });
 
-    // Hiện lần lượt từng dòng
     chaffleLine(0, function() {
         chaffleLine(1, function() {
             chaffleLine(2, function() {
-                // Lặp lại sau 1 giây
                 setTimeout(startLoop, 1000);
             });
         });
@@ -70,24 +86,6 @@ function startLoop() {
 }
 
 window.addEventListener('load', function() {
+    setInterval(createHeart, 600);
     setTimeout(startLoop, 1000);
 });
-// Tạo trái tim rơi
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.innerHTML = '❤️';
-    heart.style.cssText = `
-        position: fixed;
-        top: -30px;
-        left: ${Math.random() * 100}vw;
-        font-size: ${Math.random() * 20 + 10}px;
-        opacity: ${Math.random() * 0.7 + 0.3};
-        animation: heartFall ${Math.random() * 3 + 3}s linear forwards;
-        pointer-events: none;
-        z-index: 9998;
-    `;
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-}
-
-setInterval(createHeart, 500);
