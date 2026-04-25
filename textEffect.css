@@ -1,38 +1,19 @@
-.fly-char {
-    display: inline-block;
-    max-width: 100vw;
-    transform: translateX(50px);
-    opacity: 0;
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-}
-
-.fly-char.landed {
-    transform: translateX(0);
-    opacity: 1;
-}
-
-.leaf {
-    position: fixed;
-    right: -50px;
-    animation: leafFall linear forwards;
-    z-index: 9998;
-    pointer-events: none;
-}
 #demo-1, #demo-2, #demo-3 {
-    overflow: hidden;
-    max-width: 100vw;
+    font-family: 'Jura', sans-serif;
+    color: #FAFAFA;
+    text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
+    padding: 20px;
+    font-size: 37px;
+    text-align: center;
+    opacity: 0;
 }
-
-@keyframes leafFall {
+@keyframes heartFall {
     0% {
-        right: -50px;
-        transform: rotate(0deg) translateY(0);
-    }
-    50% {
-        transform: rotate(180deg) translateY(30px);
+        top: -30px;
+        transform: rotate(0deg);
     }
     100% {
-        right: 110vw;
-        transform: rotate(360deg) translateY(-20px);
+        top: 110vh;
+        transform: rotate(360deg);
     }
 }
