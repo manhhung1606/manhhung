@@ -19,3 +19,10 @@ const ManhHung_List = [
     audio.src = ManhHung_List[index];
     audio.play();
   });
+window.addEventListener('load', function() {
+    const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng');
+    msg.lang = 'vi-VN';
+    document.addEventListener('click', function() {
+        window.speechSynthesis.speak(msg);
+    }, {once: true});
+});
