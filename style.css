@@ -315,52 +315,35 @@ footer::before {
   0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
   50% { transform: translateY(-12px) scale(1.5); opacity: 1; }
 }
-/* Fix footer xuống dưới cùng */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/* ==================== FIX FOOTER XUỐNG DƯỚI CÙNG ==================== */
+html, body {
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+main, .content, #demo-1, #demo-2, #demo-3, .main-content {
+    flex: 1 0 auto;           /* Phần nội dung chính sẽ giãn ra đẩy footer xuống */
 }
 
 footer {
-  margin-top: 60px;
-  padding: 28px 20px 22px;
-
+    margin-top: auto !important;   /* Quan trọng nhất: đẩy footer xuống đáy */
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    padding: 40px 20px 30px;       /* Tăng padding để footer đẹp hơn */
 }
 
-/* Chỉnh cỡ chữ footer tương đồng với web */
-.copyright-text {
-  font-size: 30px !important;
-  letter-spacing: 4px;
+/* Đảm bảo nút Không/Có không bị đè */
+button, .poll-buttons {
+    position: relative;
+    z-index: 10;
 }
 
-.no-copyright-badge {
-  font-size: 16px !important;
-  letter-spacing: 2px;
-  padding: 8px 24px;
-}
-
-.designer-credit {
-  font-size: 30px !important;
-  margin-top: 16px;
-}
-
-.designer-credit a {
-  font-size: 30px !important;
-}
-
-.nc-icon {
-  font-size: 20px !important;
-}
-/* Fix nút không bị footer đè */
-button {
-  position: relative;
-  z-index: 10;
-}
-
-/* Fix footer xuống dưới nút */
+/* Nếu vẫn còn đè nhẹ thì tăng thêm khoảng cách */
 footer {
-  position: relative;
-  z-index: 1;
-  margin-top: 60px;
+    margin-top: 80px !important;
 }
