@@ -1,6 +1,5 @@
-function __MAIMAIMOTTINHYEU1606() {
-ManhHungAudio();
-}
+<script>
+// Danh sách nhạc
 const ManhHung_List = [
   "https://manhhung1606.github.io/manhhung/DnB - Feint - We Won t Be Alone (feat. Laura Brehm) Monstercat Release.mp3",
   "https://manhhung1606.github.io/manhhung/Edward Maya Vika Jigulina - Stereo Love (Jay Latune Remix).mp3",
@@ -11,30 +10,41 @@ const ManhHung_List = [
   "https://manhhung1606.github.io/manhhung/Passenger - Let Her Go (Feat. Ed Sheeran - Anniversary Edition) Official Video.mp3",
   "https://manhhung1606.github.io/manhhung/SLANDER - Love Is Gone ft. Dylan Matthew (Acoustic).mp3",
   "https://manhhung1606.github.io/manhhung/So Far Away (Acoustic) - Martin Garrix David Guetta (Cover by Adam Christopher).mp3",
-  "https://manhhung1606.github.io/manhhung/shayne_ward_no_promises_video_3739383572241379958.mp3",
+  "https://manhhung1606.github.io/manhhung/shayne_ward_no_promises_video_3739383572241379958.mp3"
 ];
 
-//Random music
-  let index = Math.floor(Math.random() * ManhHung_List.length);
-  const audio = new Audio(ManhHung_List[index]);
-  function ManhHungAudio() {audio.play();}
-  document.addEventListener("click", ManhHungAudio);
-  audio.addEventListener("ended", function() {
-    index = (index + 1) % ManhHung_List.length;
-    audio.src = ManhHung_List[index];
-    audio.play();
-  });
-// Giọng đọc lời chào, xong rồi nhạc mới chạy
-  window.addEventListener('load', function () {
-    const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng.Chúc bạn có những phút giây thư giãn thật vui vẻ. ');
-    msg.lang = 'vi-VN';
-    msg.rate = 0.9;
+// Tạo audio một lần
+let currentIndex = Math.floor(Math.random() * ManhHung_List.length);
+const audio = new Audio(ManhHung_List[currentIndex]);
 
-    msg.onend = function () {
-      audio.play();
-    };
+// Hàm phát nhạc
+function playMusic() {
+  audio.play().catch(err => console.log("Audio play error:", err));
+}
 
-    document.addEventListener('click', function () {
-      window.speechSynthesis.speak(msg);
-    }, { once: true });
-  });
+// Khi nhạc kết thúc → chuyển bài tiếp theo
+audio.addEventListener("ended", function() {
+  currentIndex = (currentIndex + 1) % ManhHung_List.length;
+  audio.src = ManhHung_List[currentIndex];
+  playMusic();
+});
+
+// Phần giọng nói chào mừng
+window.addEventListener('load', function () {
+  const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng. Chúc bạn có những phút giây thư giãn thật vui vẻ.');
+  msg.lang = 'vi-VN';
+  msg.rate = 0.9;
+
+  // Khi giọng nói đọc xong thì mới phát nhạc
+  msg.onend = function () {
+    playMusic();
+  };
+
+  // Click lần đầu tiên trên trang → đọc lời chào (chỉ chạy 1 lần)
+  document.addEventListener('click', function handler() {
+    window.speechSynthesis.speak(msg);
+    // Xóa listener sau lần click đầu để tránh đọc lại nhiều lần
+    document.removeEventListener('click', handler);
+  }, { once: true });
+});
+</script>
