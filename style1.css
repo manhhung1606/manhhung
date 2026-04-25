@@ -132,4 +132,7 @@ header h4 {
   top: 30% !important;
   position: fixed;
 }
+.inner-width {
+    margin-top: 60px;
+}    
 }
