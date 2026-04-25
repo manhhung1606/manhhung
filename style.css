@@ -97,9 +97,7 @@ a {
   z-index: 1000;
 }
 
-.swal2-container {
-  z-index: 99999999 !important;
-}
+
 
 @-webkit-keyframes blink {
   0% { opacity: 0; }
