@@ -1,5 +1,5 @@
 function __MAIMAIMOTTINHYEU1606() {
-  ManhHungAudio();
+ManhHungAudio();
 }
 const ManhHung_List = [
   "https://manhhung1606.github.io/manhhung/DnB - Feint - We Won t Be Alone (feat. Laura Brehm) Monstercat Release.mp3",
