@@ -170,3 +170,20 @@ a {
   height: 30px;
   background: #bbb;
 }
+.footer-design {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 14px;
+    z-index: 10000;
+    pointer-events: none; /* không cản click các nút bên dưới nếu có */
+}
+
+.footer-design span {
+    color: #00ffcc;
+}
