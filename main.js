@@ -29,6 +29,7 @@ function firstQuestion(){
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
+        $('body > *').css('visibility', 'visible'); 
         $('.contentt').show(200);
       })
 }
