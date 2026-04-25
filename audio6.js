@@ -16,7 +16,8 @@ const ManhHung_List = [
 ];
 
 // Random nhạc
-let index = 0;
+
+let index = Math.floor(Math.random() * ManhHung_List.length);
 const audio = new Audio(ManhHung_List[index]);
 
 function ManhHungAudio() { audio.play(); }
