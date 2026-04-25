@@ -31,7 +31,6 @@ function firstQuestion(){
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
         $('#wrapper, header, #yes, #no, .inner-width, center, p,   span[id^="a"], #chaffle-title, #slider').show(200);
-        setTimeout(startLoop, 500);
     })
 }
 
