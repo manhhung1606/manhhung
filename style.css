@@ -181,7 +181,7 @@ a {
     color: #fff;
     font-size: 14px;
     z-index: 10000;
-    pointer-events: none; /* không cản click các nút bên dưới nếu có */
+    pointer-events: auto; /* không cản click các nút bên dưới nếu có */
 }
 
 .footer-design span {
