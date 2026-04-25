@@ -1,4 +1,3 @@
-<script>
 // Danh sách nhạc
 const ManhHung_List = [
   "https://manhhung1606.github.io/manhhung/DnB - Feint - We Won t Be Alone (feat. Laura Brehm) Monstercat Release.mp3",
@@ -47,4 +46,3 @@ window.addEventListener('load', function () {
     document.removeEventListener('click', handler);
   }, { once: true });
 });
-</script>
