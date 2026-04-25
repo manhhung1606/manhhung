@@ -15,7 +15,8 @@ html, body {
   padding: 0px;
   margin: 0;
   height: 100%;
-  margin-bottom: 0; 
+  margin-bottom: 0;
+  overflow-x: hidden;
 }
 #a {
 onmousedown:stop;
