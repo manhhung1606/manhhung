@@ -1,7 +1,6 @@
 function __MAIMAIMOTTINHYEU1606() {
   ManhHungAudio();
 }
-
 const ManhHung_List = [
   "https://manhhung1606.github.io/manhhung/DnB - Feint - We Won t Be Alone (feat. Laura Brehm) Monstercat Release.mp3",
   "https://manhhung1606.github.io/manhhung/Edward Maya Vika Jigulina - Stereo Love (Jay Latune Remix).mp3",
@@ -15,15 +14,13 @@ const ManhHung_List = [
   "https://manhhung1606.github.io/manhhung/shayne_ward_no_promises_video_3739383572241379958.mp3",
 ];
 
-// Random nhạc
-
-let index = Math.floor(Math.random() * ManhHung_List.length);
-const audio = new Audio(ManhHung_List[index]);
-
-function ManhHungAudio() { audio.play(); }
-
-audio.addEventListener("ended", function () {
-  index = (index + 1) % ManhHung_List.length;
-  audio.src = ManhHung_List[index];
-  audio.play();
-});
+//Random music
+  let index = Math.floor(Math.random() * ManhHung_List.length);
+  const audio = new Audio(ManhHung_List[index]);
+  function ManhHungAudio() {audio.play();}
+  document.addEventListener("click", ManhHungAudio);
+  audio.addEventListener("ended", function() {
+    index = (index + 1) % ManhHung_List.length;
+    audio.src = ManhHung_List[index];
+    audio.play();
+  });
