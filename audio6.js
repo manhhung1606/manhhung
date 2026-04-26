@@ -14,7 +14,7 @@ const ManhHung_List = [
 ];
 
 // Tạo audio một lần
-let currentIndex = Math.floor(Math.random() * ManhHung_List.length);
+let currentIndex = 0;
 const audio = new Audio(ManhHung_List[currentIndex]);
 
 // Hàm phát nhạc - đọc lời chào trước, sau đó mới phát nhạc
@@ -39,7 +39,7 @@ function playMusic() {
 
 // Khi nhạc kết thúc → chuyển bài tiếp theo
 audio.addEventListener("ended", function() {
-  currentIndex = (currentIndex + 1) % ManhHung_List.length;
+  currentIndex = Math.floor(Math.random() * ManhHung_List.length);
   audio.src = ManhHung_List[currentIndex];
   audio.play().catch(err => console.log("Audio play error:", err));
 });
