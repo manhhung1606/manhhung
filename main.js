@@ -31,6 +31,13 @@ function firstQuestion(){
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
         $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p,   span[id^="a"], #chaffle-title, #slider, footer, #chaffle-box').show(200);
+        var script = document.createElement('script');
+    script.src = 'https://manhhung1606.github.io/manhhung/chaffle2.js';
+    document.body.appendChild(script);
+    
+    if (typeof playMusic === 'function') {
+        playMusic();
+    }
         if (typeof playMusic === 'function') {
         playMusic();
         }
