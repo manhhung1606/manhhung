@@ -39,10 +39,19 @@ window.addEventListener('load', function () {
     playMusic();
   };
 
-  // Click lần đầu tiên trên trang → đọc lời chào (chỉ chạy 1 lần)
-  document.addEventListener('click', function handler() {
-    window.speechSynthesis.speak(msg);
-    // Xóa listener sau lần click đầu để tránh đọc lại nhiều lần
-    document.removeEventListener('click', handler);
-  }, { once: true });
+  // Đợi SweetAlert render xong rồi gắn vào nút confirm
+  setTimeout(function () {
+    var confirmBtn = document.querySelector('.swal2-confirm');
+    if (confirmBtn) {
+      confirmBtn.addEventListener('click', function () {
+        window.speechSynthesis.speak(msg);
+      }, { once: true });
+    } else {
+      // Fallback: nếu không tìm thấy nút SweetAlert thì dùng click thường
+      document.addEventListener('click', function handler() {
+        window.speechSynthesis.speak(msg);
+        document.removeEventListener('click', handler);
+      }, { once: true });
+    }
+  }, 700);
 });
