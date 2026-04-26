@@ -28,28 +28,41 @@ audio.addEventListener("ended", function() {
   playMusic();
 });
 
-// Phần giọng nói chào mừng
+// Phần giọng nói chào mừng + phát nhạc
 window.addEventListener('load', function () {
-  const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng. Chúc bạn có những phút giây thư giãn thật vui vẻ.');
-  msg.lang = 'vi-VN';
-  msg.rate = 0.9;
-
-  // Khi giọng nói đọc xong thì mới phát nhạc
-  msg.onend = function () {
-    playMusic();
-  };
-
-  // Đợi SweetAlert render xong rồi gắn vào nút confirm
   setTimeout(function () {
     var confirmBtn = document.querySelector('.swal2-confirm');
+
+    function startAudio() {
+      // Kiểm tra trình duyệt có hỗ trợ SpeechSynthesis không
+      if ('speechSynthesis' in window) {
+        const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng. Chúc bạn có những phút giây thư giãn thật vui vẻ.');
+        msg.lang = 'vi-VN';
+        msg.rate = 0.9;
+
+        // Khi đọc xong thì phát nhạc
+        msg.onend = function () {
+          playMusic();
+        };
+
+        // Timeout phòng trường hợp speech bị treo, không gọi onend
+        setTimeout(function () {
+          playMusic();
+        }, 8000);
+
+        window.speechSynthesis.speak(msg);
+      } else {
+        // Trình duyệt không hỗ trợ (FB WebView...) → phát nhạc luôn
+        playMusic();
+      }
+    }
+
     if (confirmBtn) {
-      confirmBtn.addEventListener('click', function () {
-        window.speechSynthesis.speak(msg);
-      }, { once: true });
+      confirmBtn.addEventListener('click', startAudio, { once: true });
     } else {
-      // Fallback: nếu không tìm thấy nút SweetAlert thì dùng click thường
+      // Fallback nếu không tìm thấy nút SweetAlert
       document.addEventListener('click', function handler() {
-        window.speechSynthesis.speak(msg);
+        startAudio();
         document.removeEventListener('click', handler);
       }, { once: true });
     }
