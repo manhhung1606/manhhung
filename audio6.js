@@ -16,55 +16,29 @@ const ManhHung_List = [
 let currentIndex = Math.floor(Math.random() * ManhHung_List.length);
 const audio = new Audio(ManhHung_List[currentIndex]);
 
-// Hàm phát nhạc
+// Hàm phát nhạc - đọc lời chào trước, sau đó mới phát nhạc
 function playMusic() {
-  audio.play().catch(err => console.log("Audio play error:", err));
+  if ('speechSynthesis' in window) {
+    const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng. Chúc bạn có những phút giây thư giãn thật vui vẻ.');
+    msg.lang = 'vi-VN';
+    msg.rate = 0.9;
+    msg.onend = function () {
+      audio.play().catch(err => console.log("Audio play error:", err));
+    };
+    // Phòng trường hợp speech bị treo
+    setTimeout(function () {
+      audio.play().catch(err => console.log("Audio play error:", err));
+    }, 8000);
+    window.speechSynthesis.speak(msg);
+  } else {
+    // FB WebView → phát nhạc luôn
+    audio.play().catch(err => console.log("Audio play error:", err));
+  }
 }
 
 // Khi nhạc kết thúc → chuyển bài tiếp theo
 audio.addEventListener("ended", function() {
   currentIndex = (currentIndex + 1) % ManhHung_List.length;
   audio.src = ManhHung_List[currentIndex];
-  playMusic();
-});
-
-// Phần giọng nói chào mừng + phát nhạc
-window.addEventListener('load', function () {
-  setTimeout(function () {
-    var confirmBtn = document.querySelector('.swal2-confirm');
-
-    function startAudio() {
-      // Kiểm tra trình duyệt có hỗ trợ SpeechSynthesis không
-      if ('speechSynthesis' in window) {
-        const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng. Chúc bạn có những phút giây thư giãn thật vui vẻ.');
-        msg.lang = 'vi-VN';
-        msg.rate = 0.9;
-
-        // Khi đọc xong thì phát nhạc
-        msg.onend = function () {
-          playMusic();
-        };
-
-        // Timeout phòng trường hợp speech bị treo, không gọi onend
-        setTimeout(function () {
-          playMusic();
-        }, 8000);
-
-        window.speechSynthesis.speak(msg);
-      } else {
-        // Trình duyệt không hỗ trợ (FB WebView...) → phát nhạc luôn
-        playMusic();
-      }
-    }
-
-    if (confirmBtn) {
-      confirmBtn.addEventListener('click', startAudio, { once: true });
-    } else {
-      // Fallback nếu không tìm thấy nút SweetAlert
-      document.addEventListener('click', function handler() {
-        startAudio();
-        document.removeEventListener('click', handler);
-      }, { once: true });
-    }
-  }, 700);
+  audio.play().catch(err => console.log("Audio play error:", err));
 });
