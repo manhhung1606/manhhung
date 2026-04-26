@@ -30,7 +30,7 @@ function firstQuestion(){
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
-        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p,   span[id^="a"], #chaffle-title, #slider, footer').show(200);
+        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p,   span[id^="a"], #chaffle-title, #slider, footer, #chaffle-box').show(200);
         if (typeof playMusic === 'function') {
         playMusic();
         }
