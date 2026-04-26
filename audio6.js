@@ -1,5 +1,6 @@
 // Danh sách nhạc
 const ManhHung_List = [
+  "https://manhhung1606.github.io/manhhung/Gặp Người Đúng Lúc [ ❣ Lời Việt ❣ ] [SASAH-gigmQ].mp3",
   "https://manhhung1606.github.io/manhhung/DnB - Feint - We Won t Be Alone (feat. Laura Brehm) Monstercat Release.mp3",
   "https://manhhung1606.github.io/manhhung/Edward Maya Vika Jigulina - Stereo Love (Jay Latune Remix).mp3",
   "https://manhhung1606.github.io/manhhung/Charlie Puth - One Call Away Official Video.mp3",
