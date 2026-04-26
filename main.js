@@ -30,13 +30,27 @@ function firstQuestion(){
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
-  $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p,   span[id^="a"], #chaffle-title, #slider, footer,').show(200);
+        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer').show(200);
+
         var script = document.createElement('script');
         script.src = 'https://manhhung1606.github.io/manhhung/chaffle2.js';
+        script.onload = function() {
+            const div = document.createElement('div');
+            div.id = 'chaffle-title';
+            div.style.cssText = `
+                font-family: 'Jura', sans-serif;
+                font-size: 37px;
+                text-align: center;
+                padding: 10px;
+                letter-spacing: 2px;
+            `;
+            document.body.insertBefore(div, document.body.firstChild);
+            chaffleText(div);
+        };
         document.body.appendChild(script);
-    
+
         if (typeof playMusic === 'function') {
-        playMusic();
+            playMusic();
         }
     })
 }
