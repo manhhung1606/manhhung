@@ -31,6 +31,9 @@ function firstQuestion(){
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
         $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p,   span[id^="a"], #chaffle-title, #slider, footer').show(200);
+        if (typeof playMusic === 'function') {
+        playMusic();
+        }
     })
 }
 
