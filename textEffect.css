@@ -15,23 +15,25 @@
 }
 
 /* Lock layout để chống nhảy dòng */
-#demo-1, #demo-2, #demo-3 {
+#demo-1,
+#demo-2,
+#demo-3 {
     font-family: 'Jura', sans-serif !important;
     color: #FAFAFA !important;
     text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan !important;
     font-size: 37px !important;
+
     display: block !important;
     text-align: center !important;
-    
-    /* TRỊ DỨT ĐIỂM KHOẢNG CÁCH */
-    padding: 0 !important;      /* Xóa sổ cái 50px cũ */
-    margin: 0 auto !important;  /* Không cho tụi nó đẩy nhau */
-    line-height: 1.1 !important; /* Ép khoảng cách dòng cực thấp */
-    min-height: 0 !important;    /* Cho phép khung co lại sát chữ */
-    
-    overflow: hidden;
-    max-width: 100vw;
-    white-space: normal;
+
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    position: relative !important;
 }
 
 
