@@ -4,7 +4,7 @@ const lines = [
     "Chỉ có những kỉ niệm là còn mãi..."
 ];
 
-// Tạo lá vàng
+// Tạo lá tim rơi
 function createLeaf() {
     const leaf = document.createElement('div');
     leaf.classList.add('leaf');
@@ -14,10 +14,10 @@ function createLeaf() {
     leaf.style.animationDuration = (Math.random() * 3 + 2) + 's';
     leaf.style.opacity = Math.random() * 0.7 + 0.3;
     document.body.appendChild(leaf);
-    setTimeout(() => leaf.remove(), 5000);
+    setTimeout(() => leaf.remove(), 6000);
 }
 
-// Show line: Pre-render trước → Animate lần lượt (giữ cảm giác từng chữ bay vào)
+// Hiển thị chữ bay (đã fix nhảy dòng + bay từng chữ)
 function showLine(lineIndex, callback) {
     if (lineIndex >= lines.length) {
         if (callback) callback();
@@ -32,7 +32,7 @@ function showLine(lineIndex, callback) {
 
     const text = lines[lineIndex];
 
-    // Bước 1: Tạo tất cả span trước (lock layout)
+    // Pre-render tất cả chữ trước để tránh nhảy dòng
     for (let char of text) {
         const span = document.createElement('span');
         span.classList.add('fly-char');
@@ -40,20 +40,18 @@ function showLine(lineIndex, callback) {
         el.appendChild(span);
     }
 
-    // Bước 2: Animate từng chữ bay vào lần lượt
+    // Bay từng chữ một
     const spans = el.querySelectorAll('.fly-char');
     spans.forEach((span, i) => {
         setTimeout(() => {
             span.classList.add('landed');
-        }, 30 + i * 65);     // ← Điều chỉnh số này để thay đổi tốc độ bay (65 = khá chậm & đẹp)
+        }, 40 + i * 70);
     });
 
     // Chuyển sang dòng tiếp theo
-    const nextDelay = 600 + text.length * 65;   // delay sau khi dòng hiện xong
-    setTimeout(() => showLine(lineIndex + 1, callback), nextDelay);
+    setTimeout(() => showLine(lineIndex + 1, callback), 800 + text.length * 70);
 }
 
-// Fade out
 function fadeOutAll(callback) {
     const demoIds = ['demo-1', 'demo-2', 'demo-3'];
     demoIds.forEach(id => {
@@ -64,19 +62,30 @@ function fadeOutAll(callback) {
     setTimeout(callback, 1800);
 }
 
-// Vòng lặp chính
 function startLoop() {
     showLine(0, function() {
         setTimeout(() => {
             fadeOutAll(() => {
-                setTimeout(startLoop, 1000);
+                setTimeout(startLoop, 1200);
             });
-        }, 2800);
+        }, 3000);
     });
 }
 
-// Khởi động
+// === Hàm để main.js gọi từ bên ngoài ===
+window.startTextEffect = function() {
+    setInterval(createLeaf, 400);   // Bắt đầu rơi lá
+    startLoop();                    // Bắt đầu chữ bay
+};
+
+window.stopTextEffect = function() {
+    document.querySelectorAll('#demo-1, #demo-2, #demo-3').forEach(el => {
+        el.style.opacity = '0';
+    });
+    $('.leaf').remove(); // xóa lá đang rơi
+};
+
+// Khởi tạo ban đầu: Ẩn hết
 window.addEventListener('load', function () {
-    setInterval(createLeaf, 400);
-    setTimeout(startLoop, 1000);
+    stopTextEffect();
 });
