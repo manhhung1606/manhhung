@@ -233,7 +233,6 @@
           'hologramScan',
           'neonPulse'
         ];
-
         currentEffect = anims[Math.floor(Math.random() * anims.length)];
       }
 
@@ -278,12 +277,8 @@
       }, settings.pauseTime);
 
       slider.hover(
-        function () {
-          vars.paused = true;
-        },
-        function () {
-          vars.paused = false;
-        }
+        function () { vars.paused = true; },
+        function () { vars.paused = false; }
       );
     }
 
