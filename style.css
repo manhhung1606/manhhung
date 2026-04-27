@@ -27,13 +27,6 @@ html, body {
   position: relative;
 }
 
-#demo-1, #demo-2, #demo-3 {
-  overflow: hidden;
-  width: 100%;
-  max-width: 100vw;
-  position: relative;
-}
-
 #a {
   animation-name: rotate;
   animation-duration: 5s;
