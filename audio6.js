@@ -22,7 +22,7 @@ function playMusic() {
   if ('speechSynthesis' in window) {
     const msg = new SpeechSynthesisUtterance('Chào mừng bạn đến với website của Mạnh Hùng. Chúc bạn có những phút giây thư giãn thật vui vẻ.');
     msg.lang = 'vi-VN';
-    msg.rate = 1.0;
+    msg.rate = 0.92;
     msg.onend = function () {
       audio.play().catch(err => console.log("Audio play error:", err));
     };
