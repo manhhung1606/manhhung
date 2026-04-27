@@ -1,5 +1,56 @@
-// ================= MATRIX + NEON TITLE V2 =================
+// ================= MATRIX BACKGROUND =================
+const canvas = document.createElement("canvas");
+canvas.id = "matrix";
+document.body.appendChild(canvas);
 
+const ctx = canvas.getContext("2d");
+
+canvas.style.cssText = `
+position: fixed;
+top: 0;
+left: 0;
+z-index: -1;
+opacity: 0.2;
+pointer-events: none;
+`;
+
+let w, h;
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+const matrixChars = "01MATRIXMANHHUNG☆☆☆HACK";
+const fontSize = 16;
+let drops = Array(Math.floor(window.innerWidth / fontSize)).fill(1);
+
+function drawMatrix() {
+  ctx.fillStyle = "rgba(0,0,0,0.08)";
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.fillStyle = "#00ff99";
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > h && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+
+    drops[i]++;
+  }
+
+  requestAnimationFrame(drawMatrix);
+}
+
+drawMatrix();
+
+
+// ================= NEON TITLE =================
 const targetText = "MẠNH.HÙNG☆☆☆16-06";
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
 
@@ -18,7 +69,6 @@ let chaffleState = {
 
 
 // ================= CREATE TITLE =================
-
 function createChaffleEl() {
   let old = document.getElementById("chaffle-title");
   if (old) old.remove();
@@ -28,34 +78,41 @@ function createChaffleEl() {
 
   div.style.cssText = `
     position: fixed;
-    top: 35px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
 
     font-family: 'Jura', sans-serif;
-    font-size: 42px;
+    font-size: clamp(18px, 5vw, 42px);
     font-weight: bold;
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     text-align: center;
+
+    color: white;
     white-space: nowrap;
+    max-width: 95vw;
+    overflow: hidden;
 
     pointer-events: none;
     user-select: none;
   `;
 
   document.body.appendChild(div);
+
+  // tránh đè nội dung phía dưới
+  document.body.style.paddingTop = "90px";
+
   return div;
 }
 
 
 // ================= EXPLOSION EFFECT =================
-
 function explode() {
   const el = chaffleState.el;
 
   el.style.transition = "0.2s";
-  el.style.transform = "translateX(-50%) scale(1.25)";
+  el.style.transform = "translateX(-50%) scale(1.2)";
   el.style.filter = "brightness(2.5) drop-shadow(0 0 30px cyan)";
 
   setTimeout(() => {
@@ -66,49 +123,41 @@ function explode() {
 
 
 // ================= UPDATE ENGINE =================
-
 function updateChaffle() {
   if (!chaffleState.running) return;
 
   requestAnimationFrame(updateChaffle);
 
   let html = targetText.split("").map((char, i) => {
-
-    // hiệu ứng random chữ nhanh
     let display =
       i < Math.floor(chaffleState.iteration / 2)
         ? char
         : chars[Math.floor(Math.random() * chars.length)];
 
-    // glitch nhẹ
     if (Math.random() < 0.12) {
       display = chars[Math.floor(Math.random() * chars.length)];
     }
 
-    // màu chạy liên tục
     const palette = chaffleState.palette;
     const color =
       palette[(i + Math.floor(chaffleState.iteration / 2)) % palette.length];
 
     return `
       <span style="
-        display:inline-block;
-        color:${color};
+        display: inline-block;
+        color: ${color};
         text-shadow:
           0 0 5px ${color},
           0 0 15px ${color},
           0 0 30px ${color},
           0 0 60px ${color};
         transition: 0.05s linear;
-      ">
-        ${display}
-      </span>
+      ">${display}</span>
     `;
   }).join("");
 
   chaffleState.el.innerHTML = html;
 
-  // nổ sáng mỗi vòng
   if (chaffleState.iteration % 180 === 0 && chaffleState.iteration !== 0) {
     explode();
   }
@@ -118,7 +167,6 @@ function updateChaffle() {
 
 
 // ================= START =================
-
 function startChaffle() {
   stopChaffle();
 
@@ -126,7 +174,6 @@ function startChaffle() {
   chaffleState.running = true;
   chaffleState.iteration = 0;
 
-  // đổi bảng màu liên tục
   setInterval(() => {
     chaffleState.palette =
       colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
@@ -137,17 +184,17 @@ function startChaffle() {
 
 
 // ================= STOP =================
-
 function stopChaffle() {
   chaffleState.running = false;
 
   let el = document.getElementById("chaffle-title");
   if (el) el.remove();
+
+  document.body.style.paddingTop = "0px";
 }
 
 
 // ================= RUN =================
-
 startChaffle();
 
 // ================= CODE CŨ =================
