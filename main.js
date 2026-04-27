@@ -50,6 +50,7 @@ function firstQuestion(){
         var script = document.createElement('script');
         script.src = 'https://manhhung1606.github.io/manhhung/chaffle2.js';
         script.onload = function() {
+            if (document.getElementById('chaffle-title')) return;
             const div = document.createElement('div');
             div.id = 'chaffle-title';
             div.style.cssText = `
