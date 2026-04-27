@@ -1,14 +1,112 @@
+// ================= CHAFFLE EFFECT (GỘP) =================
+const targetText = "MẠNH.HÙNG☆☆☆16-06";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*";
+
+const colorPalettes = [
+  ["#FF0000","#FF2200","#FF4400","#FF6600","#FF8800","#FFaa00","#FFcc00","#FFee00","#FFff00","#FFee00","#FFcc00","#FFaa00","#FF8800","#FF6600","#FF4400","#FF2200"],
+  ["#00FFFF","#00DDFF","#00BBFF","#0099FF","#0077FF","#0055FF","#0033FF","#0011FF","#0011FF","#0033FF","#0055FF","#0077FF","#0099FF","#00BBFF","#00DDFF","#00FFFF"],
+  ["#FF0000","#FF4000","#FF8000","#FFC000","#FFFF00","#C0FF00","#80FF00","#40FF00","#00FF00","#00FF40","#00FF80","#00FFC0","#00FFFF","#00C0FF","#0080FF","#FF00FF"],
+  ["#FF00FF","#EE00EE","#DD00DD","#CC00CC","#BB00BB","#AA00AA","#9900AA","#8800BB","#7700CC","#6600DD","#5500EE","#4400FF","#5500EE","#6600DD","#7700CC","#8800BB"],
+];
+
+let chaffleState = {
+  el: null,
+  iteration: 0,
+  colorOffset: 0,
+  palette: colorPalettes[0],
+  running: false,
+  paletteInterval: null
+};
+
+function createChaffleEl() {
+  let old = document.getElementById("chaffle-title");
+  if (old) old.remove();
+
+  const div = document.createElement("div");
+  div.id = "chaffle-title";
+  div.style.cssText = `
+    font-family: 'Jura', sans-serif;
+    font-size: 37px;
+    text-align: center;
+    padding: 10px;
+    letter-spacing: 2px;
+  `;
+
+  document.body.prepend(div);
+  return div;
+}
+
+function updateChaffle() {
+  if (!chaffleState.running) return;
+
+  const { el, iteration } = chaffleState;
+  const maxIteration = targetText.length * 5;
+
+  const spans = targetText.split("").map((char, i) => {
+    if (i < Math.floor(iteration / 5)) return targetText[i];
+    if (char === ' ' || char === '.' || char === '☆') return char;
+    return chars[Math.floor(Math.random() * chars.length)];
+  });
+
+  el.innerHTML = spans.map(c => `<span>${c}</span>`).join("");
+
+  const spanEls = el.querySelectorAll("span");
+  spanEls.forEach((span, i) => {
+    const colorIndex = (i + chaffleState.colorOffset) % chaffleState.palette.length;
+    span.style.color = chaffleState.palette[colorIndex];
+    span.style.textShadow = `0 0 8px ${chaffleState.palette[colorIndex]}`;
+  });
+
+  chaffleState.colorOffset = (chaffleState.colorOffset + 1) % chaffleState.palette.length;
+
+  if (iteration < maxIteration) {
+    chaffleState.iteration++;
+  } else {
+    setTimeout(() => {
+      chaffleState.iteration = 0;
+    }, 3000);
+  }
+
+  requestAnimationFrame(updateChaffle);
+}
+
+function startChaffle() {
+  stopChaffle(); // đảm bảo không bị chồng
+
+  chaffleState.el = createChaffleEl();
+  chaffleState.iteration = 0;
+  chaffleState.running = true;
+
+  chaffleState.paletteInterval = setInterval(() => {
+    chaffleState.palette = colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
+  }, 5000);
+
+  updateChaffle();
+}
+
+function stopChaffle() {
+  chaffleState.running = false;
+
+  if (chaffleState.paletteInterval) {
+    clearInterval(chaffleState.paletteInterval);
+    chaffleState.paletteInterval = null;
+  }
+
+  let el = document.getElementById("chaffle-title");
+  if (el) el.remove();
+}
+// ================= END CHAFFLE =================
+
+
+// ================= CODE CŨ =================
 $(document).ready(function() {
-    // process bar
     setTimeout(function() {
         firstQuestion();
         $('.spinner').fadeOut();
         $('#preloader').delay(350).fadeOut('slow');
-        $('body').delay(350).css({
-            'overflow': 'visible'
-        });
+        $('body').delay(350).css({'overflow': 'visible'});
     }, 600);
-})
+});
 
 function init(){
     $('#title').text(CONFIG.title)
@@ -20,9 +118,11 @@ function init(){
 function firstQuestion(){
     $('body').css('overflow', 'hidden');
     
-    // Ẩn mạnh tay tất cả phần tử, bao gồm chữ bay và lá
-    $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').hide();
-    $('.leaf').remove();   // Xóa lá nếu có
+    // Ẩn + XÓA chaffle luôn
+    $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #slider, footer, #demo-1, #demo-2, #demo-3').hide();
+    stopChaffle(); // 🔥 QUAN TRỌNG
+
+    $('.leaf').remove();
 
     Swal.fire({
         title: CONFIG.introTitle,
@@ -35,46 +135,29 @@ function firstQuestion(){
         confirmButtonText: CONFIG.btnIntro
     }).then(function(){
         
-        // Hiện lại tất cả các phần tử
-        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').show(200);
+        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #slider, footer, #demo-1, #demo-2, #demo-3').show(200);
         
-        // Bật chữ bay
         $('#demo-1, #demo-2, #demo-3').css('opacity', '1');
 
-        // === KHỞI ĐỘNG hiệu ứng chữ bay + lá rơi ===
         if (typeof window.startTextEffect === 'function') {
             window.startTextEffect();
         }
 
-        // Load chaffle title (giữ nguyên phần này)
-        var script = document.createElement('script');
-        script.src = 'https://manhhung1606.github.io/manhhung/chaffle2.js';
-        script.onload = function() {
-            const div = document.createElement('div');
-            div.id = 'chaffle-title';
-            div.style.cssText = `
-                font-family: 'Jura', sans-serif;
-                font-size: 37px;
-                text-align: center;
-                padding: 10px;
-                letter-spacing: 2px;
-            `;
-            document.body.insertBefore(div, document.body.firstChild);
-            chaffleText(div);
-        };
-        document.body.appendChild(script);
+        // 🔥 CHẠY CHAFFLE SAU POPUP
+        setTimeout(() => {
+            startChaffle();
+        }, 300);
 
-        // Gọi giọng đọc + nhạc SAU khi popup đóng
-setTimeout(() => {
-    if (typeof playMusic === 'function') {
-        playMusic();
-    }
-}, 800);   // đợi thêm 0.8 giây cho mượt
-    })
+        setTimeout(() => {
+            if (typeof playMusic === 'function') {
+                playMusic();
+            }
+        }, 800);
+    });
 }
 
- // switch button position
- function switchButton() {
+// ================= BUTTON =================
+function switchButton() {
     var audio = new Audio('https://manhhung1606.github.io/manhhung/Cau-noi-ao-that-day-kha-banh-www_tiengdong_com.mp3');
     audio.play();
     var leftNo = $('#no').css("left");
@@ -86,34 +169,30 @@ setTimeout(() => {
     $('#yes').css("left", leftNo);
     $('#yes').css("top", topNO);
 }
-// move random button póition
+
 function moveButton() {
     var audio = new Audio('https://manhhung1606.github.io/manhhung/Cau-noi-ao-that-day-kha-banh-www_tiengdong_com.mp3');
     audio.play();
     var x = Math.random() * ($(window).width() - $('#no').width()) * 0.9 ;
     var y = Math.random() * ($(window).height() - $('#no').height()) * 0.3;
-    var left = x + 'px';
-    var top = y + 'px';
-    $('#no').css("left", left);
-    $('#no').css("top", top);
+    $('#no').css("left", x + 'px');
+    $('#no').css("top", y + 'px');
 }
 
 init()
 
 var n = 0;
 $('#no').mousemove(function() {
-    if (n < 1)
-        switchButton();
-    if (n > 1)
-        moveButton();
+    if (n < 1) switchButton();
+    if (n > 1) moveButton();
     n++;
 });
-$('#no').click(() => {
-    if (screen.width>=900)
-        switchButton();
-})
 
-// generate text in input
+$('#no').click(() => {
+    if (screen.width>=900) switchButton();
+});
+
+// ================= INPUT TEXT =================
 function textGenerate() {
     var n = "";
     var text = " " + CONFIG.reply;
@@ -134,24 +213,22 @@ function textGenerate() {
     setTimeout("textGenerate()", 1);
 }
 
-// show popup
+// ================= YES BUTTON =================
 $('#yes').click(function() {
     var audio = new Audio('https://hungdeptrai.com');
     audio.play();
     Swal.fire({
         title: CONFIG.question,
-        html: true,
         width: 800,
         padding: '3em',
-        html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate()  placeholder=' Viết gì cũng được '>",
+        html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate() placeholder=' Viết gì cũng được '>",
         background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
         backdrop: `
-              rgba(0,0,123,0.4)
-              url("https://manhhung1606.github.io/manhhung/FB_IMG_1630673201387.jpg")
-              center top
-              no-repeat
-            `,
-        confirmButtonColor: '#3085d6',
+          rgba(0,0,123,0.4)
+          url("https://manhhung1606.github.io/manhhung/FB_IMG_1630673201387.jpg")
+          center top
+          no-repeat
+        `,
         confirmButtonColor: '#fe8a71',
         confirmButtonText: CONFIG.btnReply
     }).then((result) => {
@@ -165,8 +242,8 @@ $('#yes').click(function() {
                 confirmButtonColor: '#83d0c9',
                 onClose: () => {
                     window.location = CONFIG.messLink;
-                  }
-            })
+                }
+            });
         }
-    })
-})
+    });
+});
