@@ -1,7 +1,7 @@
 // Danh sách nhạc
 const ManhHung_List = [
   "https://manhhung1606.github.io/manhhung/Gặp Người Đúng Lúc [ ❣ Lời Việt ❣ ] [SASAH-gigmQ].mp3",
-  "https://manhhung1606.github.io/manhhung/B-Complex - Beautiful Lies [tzqw_Dqa0SU].mp3",
+  "https://manhhung1606.github.io/manhhung/Alan Walker, Sabrina Carpenter & Farruko - On My Way (McYaoYao Remix V4) Chinese DJ 2020 🔥 [YzIilqoTnm4].mp3",
   "https://manhhung1606.github.io/manhhung/DnB - Feint - We Won t Be Alone (feat. Laura Brehm) Monstercat Release.mp3",
   "https://manhhung1606.github.io/manhhung/Edward Maya Vika Jigulina - Stereo Love (Jay Latune Remix).mp3",
   "https://manhhung1606.github.io/manhhung/Charlie Puth - One Call Away Official Video.mp3",
