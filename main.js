@@ -1,61 +1,12 @@
-// ================= MATRIX BACKGROUND =================
-const canvas = document.createElement("canvas");
-canvas.id = "matrix";
-document.body.appendChild(canvas);
+// ================= MATRIX + NEON TITLE V2 =================
 
-const ctx = canvas.getContext("2d");
-
-canvas.style.cssText = `
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-opacity:0.2;
-pointer-events:none;
-`;
-
-let w, h;
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-const matrixChars = "01MATRIXMANHHUNG☆☆☆HACK";
-const fontSize = 16;
-let drops = Array(Math.floor(window.innerWidth / fontSize)).fill(1);
-
-function drawMatrix() {
-  ctx.fillStyle = "rgba(0,0,0,0.08)";
-  ctx.fillRect(0, 0, w, h);
-
-  ctx.fillStyle = "#00ff99";
-  ctx.font = fontSize + "px monospace";
-
-  for (let i = 0; i < drops.length; i++) {
-    const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-    if (drops[i] * fontSize > h && Math.random() > 0.975) {
-      drops[i] = 0;
-    }
-    drops[i]++;
-  }
-
-  requestAnimationFrame(drawMatrix);
-}
-drawMatrix();
-
-
-// ================= CHAFFLE CORE =================
 const targetText = "MẠNH.HÙNG☆☆☆16-06";
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
 
 const colorPalettes = [
-  ["#ff0000","#ff7300","#fffb00","#48ff00","#00ffd5","#002bff","#7a00ff","#ff00c8"],
-  ["#00f0ff","#00aaff","#0066ff","#0033ff","#2200ff","#4400ff","#6600ff","#8800ff"],
-  ["#ff0080","#ff00ff","#cc00ff","#9900ff","#6600ff","#3300ff","#0000ff","#00ccff"]
+  ["#ff0000", "#ff7300", "#fffb00", "#48ff00", "#00ffd5", "#002bff", "#7a00ff", "#ff00c8"],
+  ["#00f0ff", "#00aaff", "#0066ff", "#0033ff", "#2200ff", "#4400ff", "#6600ff", "#8800ff"],
+  ["#ff0080", "#ff00ff", "#cc00ff", "#9900ff", "#6600ff", "#3300ff", "#0000ff", "#00ccff"]
 ];
 
 let chaffleState = {
@@ -66,28 +17,31 @@ let chaffleState = {
 };
 
 
-// ================= CREATE ELEMENT =================
+// ================= CREATE TITLE =================
+
 function createChaffleEl() {
   let old = document.getElementById("chaffle-title");
   if (old) old.remove();
 
   const div = document.createElement("div");
   div.id = "chaffle-title";
+
   div.style.cssText = `
     position: fixed;
-    top: 30px;
+    top: 35px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
 
     font-family: 'Jura', sans-serif;
     font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 4px;
     text-align: center;
-    letter-spacing: 3px;
-    color: white;
+    white-space: nowrap;
 
     pointer-events: none;
-    white-space: nowrap;
+    user-select: none;
   `;
 
   document.body.appendChild(div);
@@ -95,39 +49,76 @@ function createChaffleEl() {
 }
 
 
-// ================= RENDER ENGINE =================
+// ================= EXPLOSION EFFECT =================
+
+function explode() {
+  const el = chaffleState.el;
+
+  el.style.transition = "0.2s";
+  el.style.transform = "translateX(-50%) scale(1.25)";
+  el.style.filter = "brightness(2.5) drop-shadow(0 0 30px cyan)";
+
+  setTimeout(() => {
+    el.style.transform = "translateX(-50%) scale(1)";
+    el.style.filter = "none";
+  }, 200);
+}
+
+
+// ================= UPDATE ENGINE =================
+
 function updateChaffle() {
   if (!chaffleState.running) return;
 
   requestAnimationFrame(updateChaffle);
 
   let html = targetText.split("").map((char, i) => {
+
+    // hiệu ứng random chữ nhanh
     let display =
-      i < Math.floor(chaffleState.iteration / 5)
+      i < Math.floor(chaffleState.iteration / 2)
         ? char
         : chars[Math.floor(Math.random() * chars.length)];
 
-    const color = chaffleState.palette[i % chaffleState.palette.length];
+    // glitch nhẹ
+    if (Math.random() < 0.12) {
+      display = chars[Math.floor(Math.random() * chars.length)];
+    }
 
-    return `<span style="
-      display:inline-block;
-      color:${color};
-      text-shadow:
-        0 0 5px ${color},
-        0 0 15px ${color},
-        0 0 30px ${color};
-      transform: scale(1);
-      opacity:1;
-      transition:0s;
-    ">${display}</span>`;
+    // màu chạy liên tục
+    const palette = chaffleState.palette;
+    const color =
+      palette[(i + Math.floor(chaffleState.iteration / 2)) % palette.length];
+
+    return `
+      <span style="
+        display:inline-block;
+        color:${color};
+        text-shadow:
+          0 0 5px ${color},
+          0 0 15px ${color},
+          0 0 30px ${color},
+          0 0 60px ${color};
+        transition: 0.05s linear;
+      ">
+        ${display}
+      </span>
+    `;
   }).join("");
 
   chaffleState.el.innerHTML = html;
+
+  // nổ sáng mỗi vòng
+  if (chaffleState.iteration % 180 === 0 && chaffleState.iteration !== 0) {
+    explode();
+  }
+
   chaffleState.iteration++;
 }
 
 
 // ================= START =================
+
 function startChaffle() {
   stopChaffle();
 
@@ -135,22 +126,29 @@ function startChaffle() {
   chaffleState.running = true;
   chaffleState.iteration = 0;
 
+  // đổi bảng màu liên tục
   setInterval(() => {
     chaffleState.palette =
       colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
-  }, 4000);
+  }, 2500);
 
   updateChaffle();
 }
 
 
 // ================= STOP =================
+
 function stopChaffle() {
   chaffleState.running = false;
 
   let el = document.getElementById("chaffle-title");
   if (el) el.remove();
 }
+
+
+// ================= RUN =================
+
+startChaffle();
 
 // ================= CODE CŨ =================
 $(document).ready(function() {
