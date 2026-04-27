@@ -56,10 +56,10 @@ function fadeOutAll(callback) {
     const demoIds = ['demo-1', 'demo-2', 'demo-3'];
     demoIds.forEach(id => {
         const el = document.getElementById(id);
-        el.style.transition = 'opacity 1.5s ease';
+        el.style.transition = 'opacity 0.8s ease';
         el.style.opacity = 0;
     });
-    setTimeout(callback, 1800);
+    setTimeout(callback, 900);
 }
 
 function startLoop() {
@@ -68,7 +68,7 @@ function startLoop() {
             fadeOutAll(() => {
                 setTimeout(startLoop, 1200);
             });
-        }, 3000);
+        }, 2500);
     });
 }
 
