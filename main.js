@@ -47,35 +47,21 @@ function firstQuestion(){
         }
 
         // Load chaffle title (giữ nguyên phần này)
-        // 1. Kiểm tra xem DIV đã tồn tại chưa, nếu có rồi thì dừng toàn bộ script luôn
-        if (document.getElementById('chaffle-title')) return;
-
-       var script = document.createElement('script');
-       script.src = 'https://manhhung1606.github.io/manhhung/chaffle2.js';
-       script.onload = function() {
-    // 2. Kiểm tra lại một lần nữa trong onload cho chắc chắn
-       if (document.getElementById('chaffle-title')) return;
-
-       const div = document.createElement('div');
-       div.id = 'chaffle-title';
-       div.style.cssText = `
-        font-family: 'Jura', sans-serif;
-        font-size: 37px;
-        text-align: center;
-        padding: 10px;
-        letter-spacing: 2px;
-    `;
-    
-    // Chèn vào đầu body
-      document.body.insertBefore(div, document.body.firstChild);
-    
-    // Gọi hàm chạy hiệu ứng chữ
-      chaffleText(div);
-};
-
-// 3. QUAN TRỌNG: Phải có dòng này để kích hoạt việc tải script
-document.head.appendChild(script);
-
+        var script = document.createElement('script');
+        script.src = 'https://manhhung1606.github.io/manhhung/chaffle2.js';
+        script.onload = function() {
+            if (document.getElementById('chaffle-title')) return;
+            const div = document.createElement('div');
+            div.id = 'chaffle-title';
+            div.style.cssText = `
+                font-family: 'Jura', sans-serif;
+                font-size: 37px;
+                text-align: center;
+                padding: 10px;
+                letter-spacing: 2px;
+            `;
+            document.body.insertBefore(div, document.body.firstChild);
+            chaffleText(div);
         };
         document.body.appendChild(script);
 
