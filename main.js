@@ -74,16 +74,23 @@ function createChaffleEl() {
   const div = document.createElement("div");
   div.id = "chaffle-title";
   div.style.cssText = `
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+
     font-family: 'Jura', sans-serif;
     font-size: 42px;
     text-align: center;
-    padding: 15px;
     letter-spacing: 3px;
-    position: relative;
     color: white;
+
+    pointer-events: none;
+    white-space: nowrap;
   `;
 
-  document.body.prepend(div);
+  document.body.appendChild(div);
   return div;
 }
 
