@@ -424,10 +424,261 @@
             imgObj.onerror = function(){ canvas.remove(); onComplete(); };
         };
 
-        
-            
+        /**
+         * SPIN REVEAL EFFECT
+         * Ảnh mới scale từ 0 + xoay 360deg rồi hiện ra, dùng CSS animation
+         */
+        var runSpinReveal = function(slider, settings, vars, onComplete){
+            var newSrc = vars.currentImage.attr('src');
 
-     // ─── Main run method ───────────────────────────────────────────────────
+            // Tạo một img overlay xoay vào
+            var overlay = $('<img class="nivo-effect-overlay" />')
+                .attr('src', newSrc)
+                .css({
+                    position: 'absolute',
+                    top: 0, left: 0,
+                    width: '100%',
+                    height: '100%',
+                    zIndex: 10,
+                    transformOrigin: 'center center',
+                    transform: 'scale(0) rotate(-360deg)',
+                    opacity: 0,
+                    transition: 'none'
+                });
+
+            slider.css('position','relative').append(overlay);
+
+            // Force reflow rồi kích hoạt transition
+            overlay[0].getBoundingClientRect();
+
+            var dur = (settings.animSpeed * 2) + 'ms';
+            overlay.css({
+                transition: 'transform ' + dur + ' cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity ' + dur + ' ease',
+                transform: 'scale(1) rotate(0deg)',
+                opacity: 1
+            });
+
+            setTimeout(function(){
+                overlay.remove();
+                onComplete();
+            }, settings.animSpeed * 2 + 50);
+        };
+
+        /**
+         * FLIP 3D EFFECT
+         * Slider lật như lật thẻ bài - nửa đầu ẩn ảnh cũ, nửa sau hiện ảnh mới
+         */
+        var runFlip3D = function(slider, settings, vars, onComplete){
+            var newSrc = vars.currentImage.attr('src');
+            var axis   = settings.flipAxis || 'Y'; // 'Y' = lật ngang, 'X' = lật dọc
+            var dur    = settings.animSpeed * 2;
+
+            // Wrapper cần perspective
+            slider.css({ perspective: '1000px', 'perspective-origin': '50% 50%' });
+
+            var overlay = $('<img class="nivo-effect-overlay" />')
+                .attr('src', newSrc)
+                .css({
+                    position: 'absolute',
+                    top: 0, left: 0,
+                    width: '100%',
+                    height: '100%',
+                    zIndex: 10,
+                    backfaceVisibility: 'hidden',
+                    transform: axis === 'Y' ? 'rotateY(90deg)' : 'rotateX(90deg)',
+                    transition: 'none'
+                });
+
+            slider.css('position','relative').append(overlay);
+
+            // Phase 1: Ảnh cũ xoay ra ngoài
+            sliderImg.css({
+                transition: 'transform ' + (dur/2) + 'ms ease-in',
+                transform: axis === 'Y' ? 'rotateY(-90deg)' : 'rotateX(-90deg)'
+            });
+
+            // Phase 2: Ảnh mới xoay vào
+            setTimeout(function(){
+                overlay[0].getBoundingClientRect();
+                overlay.css({
+                    transition: 'transform ' + (dur/2) + 'ms ease-out',
+                    transform: 'rotateY(0deg) rotateX(0deg)'
+                });
+            }, dur / 2);
+
+            setTimeout(function(){
+                sliderImg.css({ transition:'', transform:'' });
+                overlay.remove();
+                onComplete();
+            }, dur + 50);
+        };
+
+        /**
+         * ZOOM BLUR EFFECT
+         * Ảnh cũ zoom ra + blur biến mất, ảnh mới zoom vào từ trung tâm
+         */
+        var runZoomBlur = function(slider, settings, vars, onComplete){
+            var newSrc = vars.currentImage.attr('src');
+            var dur    = settings.animSpeed * 1.8;
+
+            var overlay = $('<img class="nivo-effect-overlay" />')
+                .attr('src', newSrc)
+                .css({
+                    position: 'absolute',
+                    top: 0, left: 0,
+                    width: '100%',
+                    height: '100%',
+                    zIndex: 10,
+                    transform: 'scale(1.5)',
+                    filter: 'blur(20px)',
+                    opacity: 0,
+                    transition: 'none'
+                });
+
+            slider.css('position','relative').append(overlay);
+            overlay[0].getBoundingClientRect();
+
+            var durStr = dur + 'ms';
+
+            // Ảnh cũ: zoom ra + blur
+            sliderImg.css({
+                transition: 'transform ' + durStr + ' ease, filter ' + durStr + ' ease, opacity ' + durStr + ' ease',
+                transform: 'scale(1.3)',
+                filter: 'blur(15px)',
+                opacity: 0
+            });
+
+            // Ảnh mới: từ blur zoom to → rõ nét
+            overlay.css({
+                transition: 'transform ' + durStr + ' ease, filter ' + durStr + ' ease, opacity ' + durStr + ' ease',
+                transform: 'scale(1)',
+                filter: 'blur(0px)',
+                opacity: 1
+            });
+
+            setTimeout(function(){
+                sliderImg.css({ transition:'', transform:'', filter:'', opacity:1 });
+                overlay.remove();
+                onComplete();
+            }, dur + 50);
+        };
+
+        /**
+         * SHATTER EFFECT  
+         * Canvas vẽ ảnh cũ vỡ thành các mảnh tam giác bay ra, rồi hiện ảnh mới
+         */
+        var runShatter = function(slider, settings, vars, onComplete){
+            var newSrc = vars.currentImage.attr('src');
+            var w = slider.width();
+            var h = sliderImg.height() || slider.height();
+
+            var canvas = $('<canvas class="nivo-custom-canvas"></canvas>').css({
+                position:'absolute', top:0, left:0, zIndex:10,
+                width:w, height:h
+            }).attr({ width:w, height:h });
+            slider.css('position','relative').append(canvas);
+
+            var ctx = canvas[0].getContext('2d');
+
+            // Load OLD image (current background)
+            var oldImg = new Image();
+            oldImg.crossOrigin = 'anonymous';
+            oldImg.src = sliderImg.attr('src');
+
+            // Load NEW image
+            var newImg = new Image();
+            newImg.crossOrigin = 'anonymous';
+
+            var cols = 6, rows = 4;
+            var pieces = [];
+
+            oldImg.onload = function(){
+                // Tạo các mảnh vỡ
+                for(var r = 0; r < rows; r++){
+                    for(var c = 0; c < cols; c++){
+                        var px = (c / cols) * w;
+                        var py = (r / rows) * h;
+                        var pw = w / cols;
+                        var ph = h / rows;
+                        pieces.push({
+                            // vị trí gốc
+                            ox: px + pw / 2,
+                            oy: py + ph / 2,
+                            // clip region
+                            x: px, y: py, pw: pw, ph: ph,
+                            // physics
+                            vx: (Math.random() - 0.5) * 12,
+                            vy: Math.random() * -8 - 2,
+                            va: (Math.random() - 0.5) * 0.2,
+                            angle: 0,
+                            gravity: 0.5,
+                            alpha: 1
+                        });
+                    }
+                }
+
+                var duration = settings.animSpeed * 1.8;
+                var start = null;
+
+                function drawShatter(ts){
+                    if(!start) start = ts;
+                    var progress = Math.min((ts - start) / duration, 1);
+
+                    ctx.clearRect(0, 0, w, h);
+
+                    // Vẽ ảnh mới ở dưới (fade in)
+                    if(progress > 0.3){
+                        ctx.globalAlpha = (progress - 0.3) / 0.7;
+                        ctx.drawImage(newImg.complete ? newImg : oldImg, 0, 0, w, h);
+                        ctx.globalAlpha = 1;
+                    }
+
+                    // Vẽ từng mảnh vỡ bay
+                    for(var i = 0; i < pieces.length; i++){
+                        var p = pieces[i];
+                        p.vy += p.gravity;
+                        p.ox += p.vx;
+                        p.oy += p.vy;
+                        p.angle += p.va;
+                        p.alpha = Math.max(0, 1 - progress * 2);
+
+                        if(p.alpha <= 0) continue;
+
+                        ctx.save();
+                        ctx.globalAlpha = p.alpha;
+                        ctx.translate(p.ox, p.oy);
+                        ctx.rotate(p.angle);
+
+                        // Clip mảnh
+                        ctx.beginPath();
+                        ctx.rect(-p.pw/2, -p.ph/2, p.pw, p.ph);
+                        ctx.clip();
+                        ctx.drawImage(oldImg, p.x - p.ox + p.pw/2, p.y - p.oy + p.ph/2, w, h);
+
+                        ctx.restore();
+                    }
+
+                    if(progress < 1){
+                        requestAnimationFrame(drawShatter);
+                    } else {
+                        canvas.remove();
+                        onComplete();
+                    }
+                }
+
+                newImg.onload = function(){
+                    requestAnimationFrame(drawShatter);
+                };
+                newImg.onerror = function(){
+                    requestAnimationFrame(drawShatter);
+                };
+                newImg.src = newSrc;
+            };
+
+            oldImg.onerror = function(){ canvas.remove(); onComplete(); };
+        };
+
+        // ─── Main run method ───────────────────────────────────────────────────
 
         var nivoRun = function(slider, kids, settings, nudge){          
             var vars = slider.data('nivo:vars');
@@ -484,7 +735,8 @@
                     'sliceUpDown','sliceUpDownLeft','fold','fade',
                     'boxRandom','boxRain','boxRainReverse','boxRainGrow','boxRainGrowReverse',
                     // ← CÁC EFFECT MỚI
-                    'glitch','pixelDissolve');
+                    'glitch','pixelDissolve','spinReveal','flip3D','zoomBlur','shatter'
+                );
                 currentEffect = anims[Math.floor(Math.random()*(anims.length + 1))];
                 if(currentEffect === undefined) { currentEffect = 'fade'; }
             }
@@ -519,7 +771,25 @@
                     slider.trigger('nivo:animFinished');
                 });
 
-            } 
+            } else if(currentEffect === 'spinReveal'){
+                runSpinReveal(slider, settings, vars, function(){
+                    slider.trigger('nivo:animFinished');
+                });
+
+            } else if(currentEffect === 'flip3D'){
+                runFlip3D(slider, settings, vars, function(){
+                    slider.trigger('nivo:animFinished');
+                });
+
+            } else if(currentEffect === 'zoomBlur'){
+                runZoomBlur(slider, settings, vars, function(){
+                    slider.trigger('nivo:animFinished');
+                });
+
+            } else if(currentEffect === 'shatter'){
+                runShatter(slider, settings, vars, function(){
+                    slider.trigger('nivo:animFinished');
+                });
 
             // ── ORIGINAL EFFECTS (giữ nguyên) ─────────────────────────────────
 
