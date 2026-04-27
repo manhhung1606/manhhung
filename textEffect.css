@@ -27,6 +27,7 @@
     max-width: 100vw;
     min-height: 35px;           /* ← Điều chỉnh nếu chữ bị lệch cao/thấp */
     line-height: 0.8;
+    margin-bottom: 2px;
     white-space: normal;
 }
 
