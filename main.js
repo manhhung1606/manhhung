@@ -64,9 +64,12 @@ function firstQuestion(){
         };
         document.body.appendChild(script);
 
-        if (typeof playMusic === 'function') {
-            playMusic();
-        }
+        // Gọi giọng đọc + nhạc SAU khi popup đóng
+setTimeout(() => {
+    if (typeof playMusic === 'function') {
+        playMusic();
+    }
+}, 800);   // đợi thêm 0.8 giây cho mượt
     })
 }
 
