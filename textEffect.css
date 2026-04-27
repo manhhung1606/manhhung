@@ -1,5 +1,6 @@
 .fly-char {
     display: inline-block;
+    position: relative;
     transform: translateX(220px);
     opacity: 0;
     
