@@ -29,6 +29,11 @@ function showLine(lineIndex, callback) {
     
     el.innerHTML = '';
     el.style.opacity = 1;
+    el.style.margin = "0";
+    el.style.padding = "0";
+    el.style.lineHeight = "1";
+    el.style.height = "auto";
+    el.style.minHeight = "0";
 
     const text = lines[lineIndex];
 
