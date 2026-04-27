@@ -4,7 +4,7 @@ const lines = [
     "Chỉ có những kỉ niệm là còn mãi..."
 ];
 
-// Tạo lá vàng (giữ nguyên)
+// Tạo lá vàng
 function createLeaf() {
     const leaf = document.createElement('div');
     leaf.classList.add('leaf');
@@ -17,7 +17,7 @@ function createLeaf() {
     setTimeout(() => leaf.remove(), 5000);
 }
 
-// Hàm showLine mới - Pre-render tất cả span trước để lock layout
+// Show line: Pre-render trước → Animate lần lượt (giữ cảm giác từng chữ bay vào)
 function showLine(lineIndex, callback) {
     if (lineIndex >= lines.length) {
         if (callback) callback();
@@ -27,12 +27,12 @@ function showLine(lineIndex, callback) {
     const demoIds = ['demo-1', 'demo-2', 'demo-3'];
     const el = document.getElementById(demoIds[lineIndex]);
     
-    el.innerHTML = '';                    // xóa trước
+    el.innerHTML = '';
     el.style.opacity = 1;
 
     const text = lines[lineIndex];
-    
-    // Bước 1: Tạo tất cả span trước (ẩn hoàn toàn)
+
+    // Bước 1: Tạo tất cả span trước (lock layout)
     for (let char of text) {
         const span = document.createElement('span');
         span.classList.add('fly-char');
@@ -40,21 +40,20 @@ function showLine(lineIndex, callback) {
         el.appendChild(span);
     }
 
-    // Bước 2: Animate lần lượt (sau khi layout đã ổn định)
+    // Bước 2: Animate từng chữ bay vào lần lượt
     const spans = el.querySelectorAll('.fly-char');
     spans.forEach((span, i) => {
         setTimeout(() => {
             span.classList.add('landed');
-        }, 50 + i * 12);   // stagger mượt hơn
+        }, 30 + i * 65);     // ← Điều chỉnh số này để thay đổi tốc độ bay (65 = khá chậm & đẹp)
     });
 
-    // Sau khi hiện xong dòng này, chuyển sang dòng sau
-    setTimeout(() => {
-        showLine(lineIndex + 1, callback);
-    }, 800 + text.length * 12);   // delay dựa trên độ dài dòng
+    // Chuyển sang dòng tiếp theo
+    const nextDelay = 600 + text.length * 65;   // delay sau khi dòng hiện xong
+    setTimeout(() => showLine(lineIndex + 1, callback), nextDelay);
 }
 
-// Fade out giữ nguyên
+// Fade out
 function fadeOutAll(callback) {
     const demoIds = ['demo-1', 'demo-2', 'demo-3'];
     demoIds.forEach(id => {
@@ -65,14 +64,14 @@ function fadeOutAll(callback) {
     setTimeout(callback, 1800);
 }
 
-// Vòng lặp chính (giữ nguyên)
+// Vòng lặp chính
 function startLoop() {
     showLine(0, function() {
         setTimeout(() => {
             fadeOutAll(() => {
                 setTimeout(startLoop, 1000);
             });
-        }, 2500);
+        }, 2800);
     });
 }
 
