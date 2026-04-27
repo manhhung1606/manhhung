@@ -1,6 +1,6 @@
 const lines = [
-    "Tháng năm vẫn vậy",
-    "Nhưng con người thì đã đổi thay",
+    "Tháng năm vẫn vậy...",
+    "Nhưng con người thì đã đổi thay...",
     "Chỉ có những kỉ niệm là còn mãi..."
 ];
 
@@ -17,7 +17,7 @@ function createLeaf() {
     setTimeout(() => leaf.remove(), 5000);
 }
 
-// Hiện từng chữ cái bay từ phải qua trái
+// Hiện từng chữ cái bay từ phải qua trái (đã tối ưu để giảm nhảy dòng)
 function showLine(lineIndex, callback) {
     if (lineIndex >= lines.length) {
         if (callback) callback();
@@ -26,6 +26,7 @@ function showLine(lineIndex, callback) {
 
     const demoIds = ['demo-1', 'demo-2', 'demo-3'];
     const el = document.getElementById(demoIds[lineIndex]);
+    
     el.innerHTML = '';
     el.style.opacity = 1;
 
@@ -35,7 +36,7 @@ function showLine(lineIndex, callback) {
     const interval = setInterval(() => {
         if (i >= text.length) {
             clearInterval(interval);
-            setTimeout(() => showLine(lineIndex + 1, callback), 800);
+            setTimeout(() => showLine(lineIndex + 1, callback), 1300); // tăng delay giữa dòng
             return;
         }
 
@@ -43,9 +44,14 @@ function showLine(lineIndex, callback) {
         span.classList.add('fly-char');
         span.textContent = text[i] === ' ' ? '\u00A0' : text[i];
         el.appendChild(span);
-        setTimeout(() => span.classList.add('landed'), 50);
+
+        // Stagger delay để chữ bay vào mượt, giảm layout shift
+        setTimeout(() => {
+            span.classList.add('landed');
+        }, 40 + i * 10);
+
         i++;
-    }, 80);
+    }, 65);
 }
 
 // Fade out tất cả các dòng
@@ -62,13 +68,11 @@ function fadeOutAll(callback) {
 // Vòng lặp chính
 function startLoop() {
     showLine(0, function() {
-        // Sau khi hiện hết 3 dòng, đợi 2 giây rồi fade out
         setTimeout(() => {
             fadeOutAll(() => {
-                // Đợi thêm 1 giây rồi lặp lại
                 setTimeout(startLoop, 1000);
             });
-        }, 2000);
+        }, 2200);
     });
 }
 
