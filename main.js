@@ -21,7 +21,7 @@ function firstQuestion(){
     $('body').css('overflow', 'hidden');
     
     // Ẩn mạnh tay tất cả phần tử, bao gồm chữ bay và lá
-    $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').hide();
+    $('#wrapper, header, #yes, #no, .inner-width, center, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').hide();
     $('.leaf').remove();   // Xóa lá nếu có
 
     Swal.fire({
@@ -36,7 +36,7 @@ function firstQuestion(){
     }).then(function(){
         
         // Hiện lại tất cả các phần tử
-        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').show(200);
+        $('#wrapper, header, #yes, #no, .inner-width, center, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').show(200);
         
         // Bật chữ bay
         $('#demo-1, #demo-2, #demo-3').css('opacity', '1');
