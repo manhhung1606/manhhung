@@ -1,6 +1,12 @@
 // Danh sách nhạc
 const ManhHung_List = [
   "https://manhhung1606.github.io/manhhung/Gặp Người Đúng Lúc [ ❣ Lời Việt ❣ ] [SASAH-gigmQ].mp3",
+  "https://manhhung1606.github.io/manhhung/Nếu Ánh Trăng Không Đến Remix ( Dj QT FunkyHouse ) [RcmyYv_ZF8M].mp3",
+  "https://manhhung1606.github.io/manhhung/Alan Walker - Play Remix ( Dj QT Mix ).mp3",
+  "https://manhhung1606.github.io/manhhung/Everytime We Touch (Original Mix) - xxxCr3 _ 2022抖音最火的歌曲 _ Trending TikTok [TQ_oIxIDKTA].mp3",
+  "https://manhhung1606.github.io/manhhung/One More Night Remix ( Dj QT Mix ) [BhI3vT23Wug].mp3",
+  "https://manhhung1606.github.io/manhhung/Why Not Me Remix - Enrique Iglesias Remix.mp3",
+  "https://manhhung1606.github.io/manhhung/The End Remix ( Dj QT Mix ) [2yA3_gmxeZY].mp3",
   "https://manhhung1606.github.io/manhhung/Alan Walker, Sabrina Carpenter & Farruko - On My Way (McYaoYao Remix V4) Chinese DJ 2020 🔥 [YzIilqoTnm4].mp3",
   "https://manhhung1606.github.io/manhhung/DnB - Feint - We Won t Be Alone (feat. Laura Brehm) Monstercat Release.mp3",
   "https://manhhung1606.github.io/manhhung/Edward Maya Vika Jigulina - Stereo Love (Jay Latune Remix).mp3",
