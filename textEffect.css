@@ -35,7 +35,9 @@
 
     position: relative !important;
 }
-
+#demo-1 {
+    margin-top: 160px !important;
+}
 
 /* Lá rơi giữ nguyên */
 .leaf {
