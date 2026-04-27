@@ -1,4 +1,3 @@
-
 // ================= MATRIX BACKGROUND =================
 const canvas = document.createElement("canvas");
 canvas.id = "matrix";
@@ -63,11 +62,7 @@ let chaffleState = {
   el: null,
   running: false,
   iteration: 0,
-  palette: colorPalettes[0],
-  colorOffset: 0,
-  mode: "char",
-  flashIndex: 0,
-  flashTick: 0
+  palette: colorPalettes[0]
 };
 
 
@@ -93,21 +88,6 @@ function createChaffleEl() {
 }
 
 
-// ================= EXPLOSION EFFECT =================
-function explode() {
-  const el = chaffleState.el;
-
-  el.style.transition = "0.2s";
-  el.style.transform = "scale(1.5)";
-  el.style.filter = "brightness(3) drop-shadow(0 0 25px cyan)";
-
-  setTimeout(() => {
-    el.style.transform = "scale(1)";
-    el.style.filter = "none";
-  }, 200);
-}
-
-
 // ================= RENDER ENGINE =================
 function updateChaffle() {
   if (!chaffleState.running) return;
@@ -115,22 +95,12 @@ function updateChaffle() {
   requestAnimationFrame(updateChaffle);
 
   let html = targetText.split("").map((char, i) => {
-
-    // 🧠 TYPEWRITER
     let display =
       i < Math.floor(chaffleState.iteration / 5)
         ? char
         : chars[Math.floor(Math.random() * chars.length)];
 
-    // ⚡ GLITCH
-    if (Math.random() < 0.06) {
-      display = chars[Math.floor(Math.random() * chars.length)];
-    }
-
     const color = chaffleState.palette[i % chaffleState.palette.length];
-
-    // 💥 FLASH CHAR
-    const flash = chaffleState.mode === "char" && i === chaffleState.flashIndex;
 
     return `<span style="
       display:inline-block;
@@ -138,48 +108,14 @@ function updateChaffle() {
       text-shadow:
         0 0 5px ${color},
         0 0 15px ${color},
-        0 0 30px ${color},
-        0 0 60px ${color};
-      transform: scale(${flash ? 1.7 : 1});
-      opacity:${flash ? 0.2 : 1};
-      transition:0.1s;
+        0 0 30px ${color};
+      transform: scale(1);
+      opacity:1;
+      transition:0s;
     ">${display}</span>`;
   }).join("");
 
   chaffleState.el.innerHTML = html;
-
-  // ================= MODE ENGINE =================
-  chaffleState.flashTick++;
-
-  // 🔥 CHAR MODE
-  if (chaffleState.mode === "char") {
-
-    if (chaffleState.flashTick % 2 === 0) {
-      chaffleState.flashIndex++;
-    }
-
-    if (chaffleState.flashIndex >= targetText.length) {
-      explode(); // 💥 nổ ánh sáng
-      chaffleState.mode = "word";
-      chaffleState.flashIndex = 0;
-    }
-  }
-
-  // 🌊 WORD MODE
-  else if (chaffleState.mode === "word") {
-    let words = targetText.split(" ");
-
-    if (chaffleState.flashTick % 10 === 0) {
-      chaffleState.flashIndex++;
-    }
-
-    if (chaffleState.flashIndex >= words.length) {
-      chaffleState.mode = "char";
-      chaffleState.flashIndex = 0;
-      chaffleState.flashTick = 0;
-    }
-  }
-
   chaffleState.iteration++;
 }
 
@@ -190,8 +126,6 @@ function startChaffle() {
 
   chaffleState.el = createChaffleEl();
   chaffleState.running = true;
-  chaffleState.mode = "char";
-  chaffleState.flashIndex = 0;
   chaffleState.iteration = 0;
 
   setInterval(() => {
@@ -210,7 +144,6 @@ function stopChaffle() {
   let el = document.getElementById("chaffle-title");
   if (el) el.remove();
 }
-
 
 // ================= CODE CŨ =================
 $(document).ready(function() {
