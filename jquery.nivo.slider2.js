@@ -1,210 +1,118 @@
-/*
- * jQuery Nivo Slider v3.2 - Pro Extended Edition
- * Fixed critical bugs + added extra premium effects
- * MIT License
- *
- * Fixes:
- * - childWidth / childHeight reference bug
- * - random effect out-of-range bug
- * - better canvas cleanup
- * - safer resize handling
- * - improved shatter rendering stability
- *
- * Added effects:
- * - glitch
- * - pixelDissolve
- * - spinReveal
- * - flip3D
- * - zoomBlur
- * - shatter
- * - rippleReveal (NEW)
- * - curtainOpen (NEW)
- * - flashFade (NEW)
- * - liquidMorph (NEW)
- * - particleExplosion (NEW)
- * - smokeTransition (NEW)
- * - fireBurn (NEW)
- * - inkSpread (NEW)
- * - glassBreak (NEW)
- * - parallaxDepth (NEW)
- * - webglDistortion (NEW)
- * - lensFlare (NEW)
- * - liquidWave (NEW)
- * - hologramScan (NEW)
- * - neonPulse (NEW)
- */
-
 (function ($) {
   var NivoSlider = function (element, options) {
     var settings = $.extend({}, $.fn.nivoSlider.defaults, options);
 
     var vars = {
-      currentSlide: 0,
+      currentSlide: settings.startSlide,
       currentImage: '',
       totalSlides: 0,
       running: false,
       paused: false,
-      stop: false,
-      controlNavEl: false
+      stop: false
     };
 
     var slider = $(element);
-    slider.css({
-      position: 'relative',
-      overflow: 'hidden'
-    });
-    slider.data('nivo:vars', vars).addClass('nivoSlider');
+    slider.css({ position: 'relative', overflow: 'hidden' });
+    slider.addClass('nivoSlider');
 
     var kids = slider.children();
-
-    /* FIX #1 */
-    var childWidth = 0;
-    var childHeight = 0;
-
     kids.each(function () {
       var child = $(this);
-      var link = '';
-
-      if (!child.is('img')) {
-        if (child.is('a')) {
-          child.addClass('nivo-imageLink');
-          link = child;
-        }
-        child = child.find('img:first');
+      if (!child.is('img')) child = child.find('img:first');
+      if (child.is('img')) {
+        child.hide();
+        vars.totalSlides++;
       }
-
-      childWidth = (childWidth === 0)
-        ? (parseInt(child.attr('width'), 10) || child.width())
-        : child.width();
-
-      childHeight = (childHeight === 0)
-        ? (parseInt(child.attr('height'), 10) || child.height())
-        : child.height();
-
-      if (link !== '') link.hide();
-      child.hide();
-      vars.totalSlides++;
     });
 
-    if ($(kids[0]).is('img')) {
-      vars.currentImage = $(kids[0]);
-    } else {
-      vars.currentImage = $(kids[0]).find('img:first');
-    }
-
-    var sliderImg = $('<img/>')
-      .addClass('nivo-main-image')
+    // Thiết lập slide đầu tiên
+    vars.currentImage = $(kids[vars.currentSlide]).is('img') ? $(kids[vars.currentSlide]) : $(kids[vars.currentSlide]).find('img:first');
+    
+    var sliderImg = $('<img class="nivo-main-image" />')
       .attr('src', vars.currentImage.attr('src'))
-      .show();
+      .appendTo(slider);
 
-    slider.append(sliderImg);
-    slider.append('<div class="nivo-caption"></div>');
-
-    function cleanupEffects() {
-      slider.find('.nivo-custom-canvas').remove();
-      slider.find('.nivo-effect-overlay').remove();
-      $('.nivo-slice,.nivo-box', slider).remove();
+    function cleanup() {
+      slider.find('.nivo-overlay, canvas').remove();
+      sliderImg.show();
     }
 
-    function finishAnimation() {
-      sliderImg.stop(true, true).css({
-        opacity: 1,
-        display: 'block'
-      });
-      cleanupEffects();
+    function finish() {
       sliderImg.attr('src', vars.currentImage.attr('src'));
+      cleanup();
       vars.running = false;
-      slider.trigger('nivo:animFinished');
+      settings.afterChange.call(this);
     }
 
-    /* ---------- NEW EFFECTS ---------- */
+    /* ---------- HIỆU ỨNG THỰC THẾ ---------- */
 
-    function runCurtainOpen(done) {
-      var src = vars.currentImage.attr('src');
-
-      var left = $('<div class="nivo-effect-overlay"></div>').css({
-        position: 'absolute', top: 0, left: 0,
-        width: '50%', height: '100%',
-        background: 'rgba(0,0,0,.85)', zIndex: 10
-      });
-
-      var right = left.clone().css({ left: '50%' });
-
-      var img = $('<img class="nivo-effect-overlay">')
-        .attr('src', src)
-        .css({
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          opacity: 0,
-          zIndex: 9
-        });
-
-      slider.css('position', 'relative').append(img, left, right);
-
-      img.animate({ opacity: 1 }, settings.animSpeed * 1.2);
-      left.animate({ width: 0 }, settings.animSpeed * 1.2);
-      right.animate({ width: 0, left: '100%' }, settings.animSpeed * 1.2, function () {
-        done();
-      });
+    // 1. Shatter (Vỡ vụn)
+    function fxShatter(done) {
+      var canvas = $('<canvas>').css({position:'absolute', top:0, left:0, zIndex:10}).appendTo(slider)[0];
+      var ctx = canvas.getContext('2d');
+      canvas.width = slider.width(); canvas.height = slider.height();
+      
+      var img = new Image(); img.src = vars.currentImage.attr('src');
+      img.onload = function() {
+        sliderImg.hide();
+        var pieces = [];
+        for(var x=0; x<canvas.width; x+=50) {
+          for(var y=0; y<canvas.height; y+=50) {
+            pieces.push({x:x, y:y, vx:(Math.random()-0.5)*15, vy:(Math.random()-0.5)*15, op:1});
+          }
+        }
+        function anim() {
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+          var active = false;
+          pieces.forEach(p => {
+            if(p.op > 0) {
+              ctx.globalAlpha = p.op;
+              ctx.drawImage(img, p.x, p.y, 50, 50, p.x, p.y, 50, 50);
+              p.x += p.vx; p.y += p.vy; p.op -= 0.02;
+              active = true;
+            }
+          });
+          if(active) requestAnimationFrame(anim); else done();
+        }
+        anim();
+      };
     }
 
-    function runFlashFade(done) {
+    // 2. Glitch (Nhiễu sóng)
+    function fxGlitch(done) {
       var src = vars.currentImage.attr('src');
-
-      var flash = $('<div class="nivo-effect-overlay"></div>').css({
-        position: 'absolute',
-        inset: 0,
-        background: '#fff',
-        opacity: 0,
-        zIndex: 11
-      });
-
-      var img = $('<img class="nivo-effect-overlay">')
-        .attr('src', src)
-        .css({
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          opacity: 0,
-          zIndex: 10
+      var gContainer = $('<div class="nivo-overlay">').css({position:'absolute', inset:0, zIndex:11}).appendTo(slider);
+      for(var i=0; i<3; i++) {
+        $('<img>').attr('src', src).css({
+          position:'absolute', inset:0, width:'100%', height:'100%',
+          opacity: 0.7, mixBlendingMode: 'hard-light'
+        }).appendTo(gContainer);
+      }
+      var count = 0;
+      var interval = setInterval(() => {
+        gContainer.children().each(function() {
+          $(this).css({
+            left: (Math.random()*20 - 10)+'px',
+            top: (Math.random()*10 - 5)+'px',
+            filter: `hue-rotate(${Math.random()*360}deg)`
+          });
         });
-
-      slider.css('position', 'relative').append(img, flash);
-
-      flash.animate({ opacity: 1 }, 150)
-        .animate({ opacity: 0 }, 250);
-
-      img.animate({ opacity: 1 }, settings.animSpeed, function () {
-        done();
-      });
+        if(count++ > 15) { clearInterval(interval); done(); }
+      }, 40);
     }
 
-    function runRippleReveal(done) {
-      var src = vars.currentImage.attr('src');
-
-      var img = $('<img class="nivo-effect-overlay">')
-        .attr('src', src)
-        .css({
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          clipPath: 'circle(0% at 50% 50%)',
-          zIndex: 10
-        });
-
-      slider.css('position', 'relative').append(img);
-
-      img[0].getBoundingClientRect();
-      img.css({
-        transition: 'clip-path ' + (settings.animSpeed * 1.5) + 'ms ease-out',
-        clipPath: 'circle(150% at 50% 50%)'
-      });
-
-      setTimeout(done, settings.animSpeed * 1.5 + 60);
+    // 3. Ripple Reveal (Vòng tròn lan tỏa)
+    function fxRipple(done) {
+      var img = $('<img class="nivo-overlay">').attr('src', vars.currentImage.attr('src')).css({
+        position:'absolute', inset:0, zIndex:10, width:'100%', height:'100%',
+        'clip-path': 'circle(0% at 50% 50%)', '-webkit-clip-path': 'circle(0% at 50% 50%)',
+        transition: `all ${settings.animSpeed}ms ease-in-out`
+      }).appendTo(slider);
+      
+      setTimeout(() => {
+        img.css({'clip-path': 'circle(150% at 50% 50%)', '-webkit-clip-path': 'circle(150% at 50% 50%)'});
+      }, 20);
+      setTimeout(done, settings.animSpeed + 50);
     }
 
     function nivoRun() {
@@ -214,127 +122,46 @@
       vars.currentSlide++;
       if (vars.currentSlide >= vars.totalSlides) vars.currentSlide = 0;
 
-      if ($(kids[vars.currentSlide]).is('img')) {
-        vars.currentImage = $(kids[vars.currentSlide]);
-      } else {
-        vars.currentImage = $(kids[vars.currentSlide]).find('img:first');
-      }
+      vars.currentImage = $(kids[vars.currentSlide]).is('img') ? $(kids[vars.currentSlide]) : $(kids[vars.currentSlide]).find('img:first');
 
-      var currentEffect = settings.effect;
+      var effect = settings.effect === 'random' 
+                   ? ['shatter', 'glitch', 'ripple', 'fade'][Math.floor(Math.random()*4)] 
+                   : settings.effect;
 
-      if (settings.effect === 'random') {
-        var anims = [
-          'fade',
-          'rippleReveal',
-          'curtainOpen',
-          'flashFade',
-          'liquidMorph',
-          'particleExplosion',
-          'smokeTransition',
-          'fireBurn',
-          'inkSpread',
-          'glassBreak',
-          'parallaxDepth',
-          'webglDistortion',
-          'lensFlare',
-          'liquidWave',
-          'hologramScan',
-          'neonPulse'
-        ];
-
-        /* FIX #2 */
-        currentEffect = anims[Math.floor(Math.random() * anims.length)];
-      }
-
-      cleanupEffects();
-
-      if (currentEffect === 'liquidMorph' ||
-          currentEffect === 'particleExplosion' ||
-          currentEffect === 'smokeTransition' ||
-          currentEffect === 'fireBurn' ||
-          currentEffect === 'inkSpread' ||
-          currentEffect === 'glassBreak' ||
-          currentEffect === 'parallaxDepth' ||
-          currentEffect === 'webglDistortion' ||
-          currentEffect === 'lensFlare' ||
-          currentEffect === 'liquidWave' ||
-          currentEffect === 'hologramScan' ||
-          currentEffect === 'neonPulse') {
-        runFlashFade(finishAnimation);
-      } else if (currentEffect === 'rippleReveal') {
-        runRippleReveal(finishAnimation);
-      } else if (currentEffect === 'curtainOpen') {
-        runCurtainOpen(finishAnimation);
-      } else if (currentEffect === 'flashFade') {
-        runFlashFade(finishAnimation);
-      } else {
-        sliderImg.fadeOut(settings.animSpeed / 2, function () {
-          sliderImg.attr('src', vars.currentImage.attr('src')).fadeIn(settings.animSpeed / 2, function () {
-            finishAnimation();
-          });
+      if(effect === 'shatter') fxShatter(finish);
+      else if(effect === 'glitch') fxGlitch(finish);
+      else if(effect === 'ripple') fxRipple(finish);
+      else {
+        sliderImg.fadeOut(settings.animSpeed, function() {
+          sliderImg.attr('src', vars.currentImage.attr('src')).fadeIn(settings.animSpeed, finish);
         });
       }
     }
 
+    // Khởi tạo Timer
     if (!settings.manualAdvance && vars.totalSlides > 1) {
-      /* FIX: ensure slider starts correctly and timer is stable */
-      setTimeout(function () {
-        nivoRun();
-      }, 800);
-
-      var sliderTimer = setInterval(function () {
-        if (!vars.paused && !vars.running && !vars.stop) {
-          nivoRun();
-        }
+      setInterval(() => {
+        if (!vars.paused && !vars.running && !vars.stop) nivoRun();
       }, settings.pauseTime);
-
-      slider.hover(
-        function () {
-          vars.paused = true;
-        },
-        function () {
-          vars.paused = false;
-        }
-      );
     }
 
-    settings.afterLoad.call(this);
+    slider.hover(() => { vars.paused = true; }, () => { vars.paused = false; });
+
     return this;
   };
 
   $.fn.nivoSlider = function (options) {
     return this.each(function () {
-      if (!$(this).data('nivoslider')) {
-        $(this).data('nivoslider', new NivoSlider(this, options));
-      }
+      if (!$(this).data('nivoslider')) $(this).data('nivoslider', new NivoSlider(this, options));
     });
   };
 
   $.fn.nivoSlider.defaults = {
     effect: 'random',
-    slices: 15,
-    boxCols: 8,
-    boxRows: 4,
-    animSpeed: 700,
-    pauseTime: 3500,
+    animSpeed: 800,
+    pauseTime: 4000,
     startSlide: 0,
-    directionNav: true,
-    controlNav: false,
-    controlNavThumbs: false,
-    pauseOnHover: false,
     manualAdvance: false,
-    prevText: 'Prev',
-    nextText: 'Next',
-    randomStart: false,
-
-    pixelSize: 20,
-    flipAxis: 'Y',
-
-    beforeChange: function () {},
-    afterChange: function () {},
-    slideshowEnd: function () {},
-    lastSlide: function () {},
-    afterLoad: function () {}
+    afterChange: function () {}
   };
-
 })(jQuery);
