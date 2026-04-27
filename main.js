@@ -46,25 +46,7 @@ function firstQuestion(){
             window.startTextEffect();
         }
 
-        // Load chaffle title (giữ nguyên phần này)
-        if (document.getElementById('chaffle-title')) return;
-        var script = document.createElement('script');
-        script.src = 'https://manhhung1606.github.io/manhhung/chaffle2.js';
-        script.onload = function() {
-            if (document.getElementById('chaffle-title')) return;
-            const div = document.createElement('div');
-            div.id = 'chaffle-title';
-            div.style.cssText = `
-                font-family: 'Jura', sans-serif;
-                font-size: 37px;
-                text-align: center;
-                padding: 10px;
-                letter-spacing: 2px;
-            `;
-            document.body.insertBefore(div, document.body.firstChild);
-            chaffleText(div);
-        };
-        document.body.appendChild(script);
+     
 
         // Gọi giọng đọc + nhạc SAU khi popup đóng
 setTimeout(() => {
