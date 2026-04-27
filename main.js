@@ -1,23 +1,25 @@
-// ================= CHAFFLE EFFECT (GỘP) =================
+// ================= CHAFFLE PRO MAX =================
 const targetText = "MẠNH.HÙNG☆☆☆16-06";
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*";
 
 const colorPalettes = [
-  ["#FF0000","#FF2200","#FF4400","#FF6600","#FF8800","#FFaa00","#FFcc00","#FFee00","#FFff00","#FFee00","#FFcc00","#FFaa00","#FF8800","#FF6600","#FF4400","#FF2200"],
-  ["#00FFFF","#00DDFF","#00BBFF","#0099FF","#0077FF","#0055FF","#0033FF","#0011FF","#0011FF","#0033FF","#0055FF","#0077FF","#0099FF","#00BBFF","#00DDFF","#00FFFF"],
-  ["#FF0000","#FF4000","#FF8000","#FFC000","#FFFF00","#C0FF00","#80FF00","#40FF00","#00FF00","#00FF40","#00FF80","#00FFC0","#00FFFF","#00C0FF","#0080FF","#FF00FF"],
-  ["#FF00FF","#EE00EE","#DD00DD","#CC00CC","#BB00BB","#AA00AA","#9900AA","#8800BB","#7700CC","#6600DD","#5500EE","#4400FF","#5500EE","#6600DD","#7700CC","#8800BB"],
+  ["#ff0000","#ff7300","#fffb00","#48ff00","#00ffd5","#002bff","#7a00ff","#ff00c8"],
+  ["#00f0ff","#00aaff","#0066ff","#0033ff","#2200ff","#4400ff","#6600ff","#8800ff"],
+  ["#ff0080","#ff00ff","#cc00ff","#9900ff","#6600ff","#3300ff","#0000ff","#00ccff"]
 ];
 
 let chaffleState = {
   el: null,
-  iteration: 0,
-  colorOffset: 0,
-  palette: colorPalettes[0],
   running: false,
+  iteration: 0,
+  palette: colorPalettes[0],
+  colorOffset: 0,
+  waveTick: 0,
+  glitchTick: 0,
   paletteInterval: null
 };
 
+// ================= CREATE =================
 function createChaffleEl() {
   let old = document.getElementById("chaffle-title");
   if (old) old.remove();
@@ -26,64 +28,104 @@ function createChaffleEl() {
   div.id = "chaffle-title";
   div.style.cssText = `
     font-family: 'Jura', sans-serif;
-    font-size: 37px;
+    font-size: 42px;
     text-align: center;
-    padding: 10px;
-    letter-spacing: 2px;
+    padding: 15px;
+    letter-spacing: 3px;
+    position: relative;
+    transition: transform 0.05s linear;
   `;
 
   document.body.prepend(div);
   return div;
 }
 
-function updateChaffle() {
+// ================= EFFECTS =================
+function wave(i, t) {
+  return Math.sin((i * 0.5) + t) * 6;
+}
+
+function glitch(char) {
+  return Math.random() < 0.08
+    ? chars[Math.floor(Math.random() * chars.length)]
+    : char;
+}
+
+// ================= RENDER =================
+function render() {
   if (!chaffleState.running) return;
 
-  const { el, iteration } = chaffleState;
   const maxIteration = targetText.length * 5;
 
-  const spans = targetText.split("").map((char, i) => {
-    if (i < Math.floor(iteration / 5)) return targetText[i];
-    if (char === ' ' || char === '.' || char === '☆') return char;
-    return chars[Math.floor(Math.random() * chars.length)];
-  });
+  let html = targetText.split("").map((char, i) => {
+    let display;
 
-  el.innerHTML = spans.map(c => `<span>${c}</span>`).join("");
+    if (i < Math.floor(chaffleState.iteration / 5)) {
+      display = char;
+    } else {
+      display = (char === ' ' || char === '.' || char === '☆')
+        ? char
+        : chars[Math.floor(Math.random() * chars.length)];
+    }
 
-  const spanEls = el.querySelectorAll("span");
-  spanEls.forEach((span, i) => {
-    const colorIndex = (i + chaffleState.colorOffset) % chaffleState.palette.length;
-    span.style.color = chaffleState.palette[colorIndex];
-    span.style.textShadow = `0 0 8px ${chaffleState.palette[colorIndex]}`;
-  });
+    display = glitch(display);
 
-  chaffleState.colorOffset = (chaffleState.colorOffset + 1) % chaffleState.palette.length;
+    const color = chaffleState.palette[(i + chaffleState.colorOffset) % chaffleState.palette.length];
+    const y = wave(i, chaffleState.waveTick);
 
-  if (iteration < maxIteration) {
-    chaffleState.iteration++;
+    return `<span style="
+      display:inline-block;
+      transform: translateY(${y}px);
+      color:${color};
+      text-shadow:
+        0 0 5px ${color},
+        0 0 10px ${color},
+        0 0 20px ${color},
+        0 0 40px ${color},
+        0 0 80px ${color};
+    ">${display}</span>`;
+  }).join("");
+
+  chaffleState.el.innerHTML = html;
+
+  // ⚡ glitch toàn dòng
+  if (Math.random() < 0.05) {
+    chaffleState.el.style.transform =
+      `translate(${Math.random()*4-2}px, ${Math.random()*2-1}px)`;
   } else {
-    setTimeout(() => {
-      chaffleState.iteration = 0;
-    }, 3000);
+    chaffleState.el.style.transform = `translate(0,0)`;
   }
 
-  requestAnimationFrame(updateChaffle);
+  chaffleState.colorOffset++;
+  chaffleState.waveTick += 0.25;
+
+  if (chaffleState.iteration < maxIteration) {
+    chaffleState.iteration++;
+  } else {
+    setTimeout(() => chaffleState.iteration = 0, 2500);
+  }
+
+  requestAnimationFrame(render);
 }
 
+// ================= START =================
 function startChaffle() {
-  stopChaffle(); // đảm bảo không bị chồng
+  stopChaffle();
 
   chaffleState.el = createChaffleEl();
-  chaffleState.iteration = 0;
   chaffleState.running = true;
+  chaffleState.iteration = 0;
+  chaffleState.waveTick = 0;
 
   chaffleState.paletteInterval = setInterval(() => {
-    chaffleState.palette = colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
-  }, 5000);
+    chaffleState.palette =
+      colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
+  }, 4000);
 
-  updateChaffle();
+  render();
 }
 
+// ================= STOP =================
 function stopChaffle() {
   chaffleState.running = false;
 
@@ -95,6 +137,7 @@ function stopChaffle() {
   let el = document.getElementById("chaffle-title");
   if (el) el.remove();
 }
+// ================= END CHAFFLE PRO =================
 // ================= END CHAFFLE =================
 
 
