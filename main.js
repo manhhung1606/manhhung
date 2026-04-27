@@ -37,7 +37,7 @@ function firstQuestion(){
         
         // Hiện lại tất cả các phần tử
         $('#wrapper, header, #yes, #no, .inner-width, center, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').show(200);
-           $(window).on('load', function() {
+        $(window).on('load', function() {
            $('#slider').nivoSlider({
            animSpeed: 500,
           pauseTime: 4000
