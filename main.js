@@ -19,7 +19,11 @@ function init(){
 
 function firstQuestion(){
     $('body').css('overflow', 'hidden');
-    $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p,  span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3, .leaf').hide();
+    
+    // Ẩn mạnh tay tất cả phần tử, bao gồm chữ bay và lá
+    $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').hide();
+    $('.leaf').remove();   // Xóa lá nếu có
+
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
@@ -29,9 +33,20 @@ function firstQuestion(){
         background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
-      }).then(function(){
-        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3, .leaf').show(200);
+    }).then(function(){
+        
+        // Hiện lại tất cả các phần tử
+        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').show(200);
+        
+        // Bật chữ bay
+        $('#demo-1, #demo-2, #demo-3').css('opacity', '1');
 
+        // === KHỞI ĐỘNG hiệu ứng chữ bay + lá rơi ===
+        if (typeof window.startTextEffect === 'function') {
+            window.startTextEffect();
+        }
+
+        // Load chaffle title (giữ nguyên phần này)
         var script = document.createElement('script');
         script.src = 'https://manhhung1606.github.io/manhhung/chaffle2.js';
         script.onload = function() {
