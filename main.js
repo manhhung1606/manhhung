@@ -42,7 +42,7 @@ function firstQuestion(){
             animSpeed: 500,
             pauseTime: 4000,
             directionNav: false,
-            controlNav: false
+            controlNav: false,
         });
 
         // Bật chữ bay
