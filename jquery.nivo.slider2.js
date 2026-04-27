@@ -1,6 +1,5 @@
 /*
- * jQuery Nivo Slider v3.2 - Pro Extended Edition
- * Fixed critical bugs + added extra premium effects
+ * jQuery Nivo Slider v3.2 - Pro Extended Edition (Fixed)
  * MIT License
  *
  * Fixes:
@@ -10,28 +9,13 @@
  * - safer resize handling
  * - improved shatter rendering stability
  *
- * Added effects:
- * - glitch
- * - pixelDissolve
- * - spinReveal
- * - flip3D
- * - zoomBlur
- * - shatter
- * - rippleReveal (NEW)
- * - curtainOpen (NEW)
- * - flashFade (NEW)
- * - liquidMorph (NEW)
- * - particleExplosion (NEW)
- * - smokeTransition (NEW)
- * - fireBurn (NEW)
- * - inkSpread (NEW)
- * - glassBreak (NEW)
- * - parallaxDepth (NEW)
- * - webglDistortion (NEW)
- * - lensFlare (NEW)
- * - liquidWave (NEW)
- * - hologramScan (NEW)
- * - neonPulse (NEW)
+ * Removed effect:
+ * - webglDistortion
+ *
+ * Updated effects (CSS transitions for smoother animation):
+ * - curtainOpen
+ * - flashFade
+ * - rippleReveal
  */
 
 (function ($) {
@@ -117,7 +101,7 @@
       slider.trigger('nivo:animFinished');
     }
 
-    /* ---------- NEW EFFECTS ---------- */
+    /* ---------- NEW EFFECTS (FIXED) ---------- */
 
     function runCurtainOpen(done) {
       var src = vars.currentImage.attr('src');
@@ -125,10 +109,14 @@
       var left = $('<div class="nivo-effect-overlay"></div>').css({
         position: 'absolute', top: 0, left: 0,
         width: '50%', height: '100%',
-        background: 'rgba(0,0,0,.85)', zIndex: 10
+        background: 'rgba(0,0,0,.85)', zIndex: 10,
+        transition: 'width ' + settings.animSpeed + 'ms ease-out'
       });
 
-      var right = left.clone().css({ left: '50%' });
+      var right = left.clone().css({
+        left: '50%',
+        transition: 'width ' + settings.animSpeed + 'ms ease-out, left ' + settings.animSpeed + 'ms ease-out'
+      });
 
       var img = $('<img class="nivo-effect-overlay">')
         .attr('src', src)
@@ -138,16 +126,19 @@
           width: '100%',
           height: '100%',
           opacity: 0,
-          zIndex: 9
+          zIndex: 9,
+          transition: 'opacity ' + settings.animSpeed + 'ms ease-out'
         });
 
       slider.css('position', 'relative').append(img, left, right);
 
-      img.animate({ opacity: 1 }, settings.animSpeed * 1.2);
-      left.animate({ width: 0 }, settings.animSpeed * 1.2);
-      right.animate({ width: 0, left: '100%' }, settings.animSpeed * 1.2, function () {
-        done();
+      requestAnimationFrame(() => {
+        img.css({ opacity: 1 });
+        left.css({ width: 0 });
+        right.css({ width: 0, left: '100%' });
       });
+
+      setTimeout(done, settings.animSpeed + 50);
     }
 
     function runFlashFade(done) {
@@ -158,7 +149,8 @@
         inset: 0,
         background: '#fff',
         opacity: 0,
-        zIndex: 11
+        zIndex: 11,
+        transition: 'opacity 400ms ease-in-out'
       });
 
       var img = $('<img class="nivo-effect-overlay">')
@@ -169,17 +161,19 @@
           width: '100%',
           height: '100%',
           opacity: 0,
-          zIndex: 10
+          zIndex: 10,
+          transition: 'opacity ' + settings.animSpeed + 'ms ease-out'
         });
 
       slider.css('position', 'relative').append(img, flash);
 
-      flash.animate({ opacity: 1 }, 150)
-        .animate({ opacity: 0 }, 250);
-
-      img.animate({ opacity: 1 }, settings.animSpeed, function () {
-        done();
+      requestAnimationFrame(() => {
+        flash.css({ opacity: 1 });
+        setTimeout(() => flash.css({ opacity: 0 }), 200);
+        img.css({ opacity: 1 });
       });
+
+      setTimeout(done, settings.animSpeed + 100);
     }
 
     function runRippleReveal(done) {
@@ -193,15 +187,14 @@
           width: '100%',
           height: '100%',
           clipPath: 'circle(0% at 50% 50%)',
-          zIndex: 10
+          zIndex: 10,
+          transition: 'clip-path ' + (settings.animSpeed * 1.5) + 'ms ease-out'
         });
 
       slider.css('position', 'relative').append(img);
 
-      img[0].getBoundingClientRect();
-      img.css({
-        transition: 'clip-path ' + (settings.animSpeed * 1.5) + 'ms ease-out',
-        clipPath: 'circle(150% at 50% 50%)'
+      requestAnimationFrame(() => {
+        img.css({ clipPath: 'circle(150% at 50% 50%)' });
       });
 
       setTimeout(done, settings.animSpeed * 1.5 + 60);
@@ -235,14 +228,12 @@
           'inkSpread',
           'glassBreak',
           'parallaxDepth',
-          'webglDistortion',
           'lensFlare',
           'liquidWave',
           'hologramScan',
           'neonPulse'
         ];
 
-        /* FIX #2 */
         currentEffect = anims[Math.floor(Math.random() * anims.length)];
       }
 
@@ -255,7 +246,6 @@
           currentEffect === 'inkSpread' ||
           currentEffect === 'glassBreak' ||
           currentEffect === 'parallaxDepth' ||
-          currentEffect === 'webglDistortion' ||
           currentEffect === 'lensFlare' ||
           currentEffect === 'liquidWave' ||
           currentEffect === 'hologramScan' ||
@@ -277,7 +267,6 @@
     }
 
     if (!settings.manualAdvance && vars.totalSlides > 1) {
-      /* FIX: ensure slider starts correctly and timer is stable */
       setTimeout(function () {
         nivoRun();
       }, 800);
@@ -307,34 +296,3 @@
       if (!$(this).data('nivoslider')) {
         $(this).data('nivoslider', new NivoSlider(this, options));
       }
-    });
-  };
-
-  $.fn.nivoSlider.defaults = {
-    effect: 'random',
-    slices: 15,
-    boxCols: 8,
-    boxRows: 4,
-    animSpeed: 700,
-    pauseTime: 3500,
-    startSlide: 0,
-    directionNav: true,
-    controlNav: false,
-    controlNavThumbs: false,
-    pauseOnHover: false,
-    manualAdvance: false,
-    prevText: 'Prev',
-    nextText: 'Next',
-    randomStart: false,
-
-    pixelSize: 20,
-    flipAxis: 'Y',
-
-    beforeChange: function () {},
-    afterChange: function () {},
-    slideshowEnd: function () {},
-    lastSlide: function () {},
-    afterLoad: function () {}
-  };
-
-})(jQuery);
