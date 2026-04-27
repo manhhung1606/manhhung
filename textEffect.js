@@ -1,6 +1,6 @@
 const lines = [
-    "Tháng năm vẫn vậy...",
-    "Nhưng con người thì đã đổi thay...",
+    "Tháng năm vẫn vậy",
+    "Nhưng con người thì đã đổi thay",
     "Chỉ có những kỉ niệm là còn mãi..."
 ];
 
