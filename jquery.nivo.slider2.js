@@ -49,6 +49,10 @@
     };
 
     var slider = $(element);
+    slider.css({
+      position: 'relative',
+      overflow: 'hidden'
+    });
     slider.data('nivo:vars', vars).addClass('nivoSlider');
 
     var kids = slider.children();
@@ -103,6 +107,10 @@
     }
 
     function finishAnimation() {
+      sliderImg.stop(true, true).css({
+        opacity: 1,
+        display: 'block'
+      });
       cleanupEffects();
       sliderImg.attr('src', vars.currentImage.attr('src'));
       vars.running = false;
@@ -269,7 +277,25 @@
     }
 
     if (!settings.manualAdvance && vars.totalSlides > 1) {
-      setInterval(nivoRun, settings.pauseTime);
+      /* FIX: ensure slider starts correctly and timer is stable */
+      setTimeout(function () {
+        nivoRun();
+      }, 800);
+
+      var sliderTimer = setInterval(function () {
+        if (!vars.paused && !vars.running && !vars.stop) {
+          nivoRun();
+        }
+      }, settings.pauseTime);
+
+      slider.hover(
+        function () {
+          vars.paused = true;
+        },
+        function () {
+          vars.paused = false;
+        }
+      );
     }
 
     settings.afterLoad.call(this);
