@@ -291,3 +291,14 @@
       if (!$(this).data('nivoslider')) {
         $(this).data('nivoslider', new NivoSlider(this, options));
       }
+      });
+  };
+
+  $.fn.nivoSlider.defaults = {
+    effect: 'random',
+    animSpeed: 700,
+    pauseTime: 3500,
+    manualAdvance: false,
+    afterLoad: function () {}
+  };
+})(jQuery);
