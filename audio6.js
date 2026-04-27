@@ -39,7 +39,7 @@ function playMusic() {
 
 // Khi nhạc kết thúc → chuyển bài tiếp theo
 audio.addEventListener("ended", function() {
-  currentIndex = Math.floor(Math.random() * ManhHung_List.length);
+  currentIndex = (currentIndex + 1) % ManhHung_List.length;
   audio.src = ManhHung_List[currentIndex];
   audio.play().catch(err => console.log("Audio play error:", err));
 });
