@@ -19,7 +19,7 @@ function init(){
 
 function firstQuestion(){
     $('body').css('overflow', 'hidden');
-    $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p,  span[id^="a"], #chaffle-title, #slider, footer').hide();
+    $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p,  span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3, .leaf').hide();
     Swal.fire({
         title: CONFIG.introTitle,
         text: CONFIG.introDesc,
@@ -30,7 +30,7 @@ function firstQuestion(){
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
       }).then(function(){
-        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer').show(200);
+        $('#wrapper, header, #yes, #no, .inner-width, center, .demo, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3, .leaf').show(200);
 
         var script = document.createElement('script');
         script.src = 'https://manhhung1606.github.io/manhhung/chaffle2.js';
