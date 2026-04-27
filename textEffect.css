@@ -16,12 +16,17 @@
 
 /* Lock layout để chống nhảy dòng */
 #demo-1, #demo-2, #demo-3 {
+    font-family: 'Jura', sans-serif;
+    color: #FAFAFA;
+    text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
+    padding: 50px;
+    font-size: 37px;
     display: block !important;
     text-align: center;
     overflow: hidden;
     max-width: 100vw;
-    min-height: 55px;           /* ← Điều chỉnh nếu chữ bị lệch cao/thấp */
-    line-height: 1.25;
+    min-height: 35px;           /* ← Điều chỉnh nếu chữ bị lệch cao/thấp */
+    line-height: 0.8;
     white-space: normal;
 }
 
