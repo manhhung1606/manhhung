@@ -75,23 +75,6 @@ a {
   color: white;
 }
 
-.demo {
-  font-family: 'Jura', sans-serif;
-  color: #FAFAFA;
-  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
-  padding: 50px;
-  font-size: 37px;
-}
-
-#snow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: 1000;
-}
 
 @-webkit-keyframes blink {
   0% { opacity: 0; }
