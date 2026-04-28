@@ -21,7 +21,7 @@ function firstQuestion(){
     $('body').css('overflow', 'hidden');
     
     // Ẩn mạnh tay tất cả phần tử, bao gồm chữ bay và lá
-    $('#wrapper, header, #yes, #no, .inner-width, center, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').hide(100);
+    $('#wrapper, header, #yes, #no, .inner-width, center, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').hide();
     $('.leaf').remove();   // Xóa lá nếu có
 
     Swal.fire({
