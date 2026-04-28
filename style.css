@@ -27,6 +27,11 @@ html, body {
   position: relative;
 }
 
+/* Thêm vào CSS */
+#chaffle-title {
+    visibility: hidden;
+}
+
 #a {
   animation-name: rotate;
   animation-duration: 5s;
