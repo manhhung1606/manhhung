@@ -34,7 +34,7 @@ function firstQuestion(){
         imageAlt: ' Xấu zai từ bé ',
         confirmButtonText: CONFIG.btnIntro
     }).then(function(){
-        
+        $('#chaffle-title').css('visibility', 'visible');
         // Hiện lại tất cả các phần tử
         $('#wrapper, header, #yes, #no, .inner-width, center, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').show(200);
 
