@@ -674,17 +674,15 @@ function showGlitchPopup2() {
     }
     drawNeon2();
 
-    // FIX 3: click ra ngoài → vỡ mảnh
+    // Click ra ngoài → chỉ vỡ mảnh đóng lại, KHÔNG mở popup sau
     overlay2.addEventListener('click', function(e) {
         if (e.target === overlay2) {
             cancelAnimationFrame(animId2);
-            shatterAndRemove('g2-overlay', animId2, function() {
-                showGlitchPopup3();
-            });
+            shatterAndRemove('g2-overlay', animId2, null);
         }
     });
 
-    // Bấm Send → vỡ mảnh
+    // Bấm Send → vỡ mảnh rồi mới mở popup3
     document.getElementById('g2-btn-send').addEventListener('click', function() {
         cancelAnimationFrame(animId2);
         shatterAndRemove('g2-overlay', animId2, function() {
