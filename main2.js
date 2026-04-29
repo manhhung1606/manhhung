@@ -394,7 +394,7 @@ function firstQuestion(){
     // Dòng 1 — introTitle, bắt đầu ngay
     startScramble(CONFIG.introTitle, document.getElementById('g-typeText'), 700);
     // Dòng 2 — introDesc, bắt đầu sau dòng 1 chút
-    startScramble(CONFIG.introDesc, document.getElementById('g-sub-scramble'), 1400);
+    startScramble(CONFIG.introDesc, document.getElementById('g-sub-scramble'), 700);
 
     // FIX 3: click ra ngoài → vỡ mảnh
     overlay.addEventListener('click', function(e) {
