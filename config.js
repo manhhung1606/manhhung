@@ -1,7 +1,7 @@
 const CONFIG = {
     introTitle: 'Hi, chào cậu ! Mình là  Mạnh Hùng...',
     introDesc: ` (∪ ◡ ∪) ...Vào nghe nhạc nha bạn iu... (*^ -^*) `,
-    btnIntro: ' Ok, lest go! ',
+    btnIntro: ' Ok, lets go! ',
     title: ' Đằng ấy có thấy đẹp không? ',
     desc: ' Nếu mà nói dối là đằng ấy sẽ ế suốt đời😂... ',
     btnYes: ' Có ',
