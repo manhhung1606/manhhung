@@ -844,7 +844,7 @@ function showGlitchPopup3() {
             <canvas id="g3-canvas"></canvas>
             <div id="g3-box">
                 <div class="g3-avatar-wrap">
-                    <img src="THAY_ANH_O_DAY"
+                    <img src="https://manhhung1606.github.io/manhhung/1777441906182.png"
                          onerror="this.style.background='linear-gradient(135deg,#1a1a4e,#0d0d2b)'"
                          alt="Popup 3 Image">
                     <div class="g3-glitch-r"></div>
