@@ -253,7 +253,7 @@ function firstQuestion(){
         .g-sub {
             position: relative;
             z-index: 3;
-            font-size: 13px;
+            font-size: 18px;
             color: #5cf;
             letter-spacing: 1px;
             margin-bottom: 24px;
