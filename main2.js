@@ -253,12 +253,14 @@ function firstQuestion(){
         .g-sub {
             position: relative;
             z-index: 3;
+            font-family: 'Orbitron', sans-serif;
             font-size: 18px;
-            color: #5cf;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(0,200,255,0.8), 0 0 20px rgba(0,150,255,0.4);
             letter-spacing: 1px;
+            line-height: 1.5;
             margin-bottom: 24px;
-            opacity: 0.85;
-            animation: gBlink 2s steps(1) infinite;
             word-break: break-word;
         }
         @keyframes gBlink { 0%,100%{opacity:0.85} 50%{opacity:0.4} }
@@ -312,7 +314,7 @@ function firstQuestion(){
                     <div class="g-glitch-b"></div>
                 </div>
                 <div class="g-greeting"><span id="g-typeText"></span><span class="g-cursor"></span></div>
-                <div class="g-sub">${CONFIG.introDesc}</div>
+                <div class="g-sub" id="g-sub-scramble"></div>
                 <button class="g-btn" id="g-btn-ok">${CONFIG.btnIntro}</button>
             </div>
         </div>
@@ -385,6 +387,41 @@ function firstQuestion(){
         }
     }
     setTimeout(type, 700);
+
+    // Scramble effect cho .g-sub
+    (function() {
+        var target = CONFIG.introDesc;
+        var el = document.getElementById('g-sub-scramble');
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&!?';
+        var revealed = 0;
+        var total = target.length;
+        var intervalMs = 40;
+        var revealEvery = 3; // cứ 3 frame reveal 1 ký tự
+
+        var frame = 0;
+        function scrambleStep() {
+            if (revealed >= total) {
+                el.textContent = target;
+                return;
+            }
+            // Phần đã reveal: đúng
+            var display = target.slice(0, revealed);
+            // Phần chưa reveal: random chars
+            for (var i = revealed; i < total; i++) {
+                if (target[i] === ' ') {
+                    display += ' ';
+                } else {
+                    display += chars[Math.floor(Math.random() * chars.length)];
+                }
+            }
+            el.textContent = display;
+            frame++;
+            if (frame % revealEvery === 0) revealed++;
+            setTimeout(scrambleStep, intervalMs);
+        }
+        // Bắt đầu sau khi typewriter xong ~
+        setTimeout(scrambleStep, 1200);
+    })();
 
     // FIX 3: click ra ngoài → vỡ mảnh
     overlay.addEventListener('click', function(e) {
@@ -759,14 +796,14 @@ function showGlitchPopup3() {
             .g3-glitch-r { background-color: rgba(255,0,60,0.5); animation: gGlitchR 3s infinite; }
             .g3-glitch-b { background-color: rgba(0,200,255,0.5); animation: gGlitchB 3s infinite; }
             .g3-emoji {
-                font-size: 48px;
+                font-size: 36px;
                 margin-bottom: 12px;
                 z-index: 3;
                 position: relative;
             }
             .g3-msg {
                 font-family: 'Share Tech Mono', monospace;
-                font-size: 20px;
+                font-size: 16px;
                 color: #0cf;
                 margin-bottom: 24px;
                 z-index: 3;
@@ -780,9 +817,9 @@ function showGlitchPopup3() {
                 display: inline-block;
                 padding: 12px 38px;
                 font-family: 'Orbitron', sans-serif;
-                font-size: 28px;
+                font-size: 13px;
                 font-weight: 700;
-                letter-spacing: 6px;
+                letter-spacing: 2px;
                 color: #fff;
                 background: transparent;
                 border: 1.5px solid #0af;
@@ -807,7 +844,7 @@ function showGlitchPopup3() {
             <canvas id="g3-canvas"></canvas>
             <div id="g3-box">
                 <div class="g3-avatar-wrap">
-                    <img src="https://manhhung1606.github.io/manhhung/1777441906182.png"
+                    <img src="THAY_ANH_O_DAY"
                          onerror="this.style.background='linear-gradient(135deg,#1a1a4e,#0d0d2b)'"
                          alt="Popup 3 Image">
                     <div class="g3-glitch-r"></div>
