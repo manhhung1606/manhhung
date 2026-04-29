@@ -11,6 +11,6 @@ const CONFIG = {
     reply: ' Thật mà...hjhj... Tớ mà nói điêu thì tớ làm chó😂... ',
     mess: ' 💓💓💓 ',
     messDesc: ' Mình biết mà .hiihaa...!',
-    btnAccept: ' 🫰🫰🫰 ',
+    btnAccept: ' Thả tym...🫰🫰🫰 ',
     messLink: '',
 }
