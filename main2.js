@@ -33,11 +33,14 @@ function firstQuestion(){
             align-items: center;
             justify-content: center;
             font-family: 'Share Tech Mono', monospace;
+            padding: 16px;
         }
 
         #glitch-wrap {
             position: relative;
             border-radius: 8px;
+            width: 100%;
+            max-width: 560px;
             animation: gPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
         }
         @keyframes gPopIn {
@@ -57,34 +60,26 @@ function firstQuestion(){
 
         #glitch-box {
             position: relative;
-            width: 340px;
+            width: 100%;
             background: rgba(5, 5, 30, 0.92);
             border-radius: 6px;
             padding: 32px 24px 28px;
             text-align: center;
             box-shadow: inset 0 0 40px rgba(0,50,150,0.15);
         }
-        #glitch-box::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 6px;
-            background: repeating-linear-gradient(
-                0deg, transparent, transparent 2px,
-                rgba(0,200,255,0.03) 2px, rgba(0,200,255,0.03) 4px
-            );
-            pointer-events: none;
-            z-index: 2;
-        }
 
         .g-avatar-wrap {
             position: relative;
-            width: 150px;
-            height: 150px;
+            width: 100%;
+            max-width: 500px;
+            height: 0;
+            padding-bottom: min(500px, 100%);
             margin: 0 auto 22px;
             z-index: 3;
         }
         .g-avatar-wrap img {
+            position: absolute;
+            inset: 0;
             width: 100%; height: 100%;
             object-fit: cover;
             border-radius: 3px;
