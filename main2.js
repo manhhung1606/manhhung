@@ -732,6 +732,32 @@ function showGlitchPopup3() {
                 text-align: center;
                 box-shadow: inset 0 0 40px rgba(0,50,150,0.15);
             }
+            .g3-avatar-wrap {
+                position: relative;
+                width: 100%;
+                max-width: 320px;
+                aspect-ratio: 1 / 1;
+                margin: 0 auto 20px;
+                z-index: 3;
+                overflow: hidden;
+                border-radius: 3px;
+            }
+            .g3-avatar-wrap img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                border-radius: 3px;
+            }
+            .g3-glitch-r, .g3-glitch-b {
+                position: absolute;
+                inset: 0;
+                border-radius: 3px;
+                mix-blend-mode: screen;
+                opacity: 0;
+            }
+            .g3-glitch-r { background-color: rgba(255,0,60,0.5); animation: gGlitchR 3s infinite; }
+            .g3-glitch-b { background-color: rgba(0,200,255,0.5); animation: gGlitchB 3s infinite; }
             .g3-emoji {
                 font-size: 36px;
                 margin-bottom: 12px;
@@ -780,6 +806,13 @@ function showGlitchPopup3() {
         <div id="g3-wrap">
             <canvas id="g3-canvas"></canvas>
             <div id="g3-box">
+                <div class="g3-avatar-wrap">
+                    <img src="https://manhhung1606.github.io/manhhung/1777441906182.png"
+                         onerror="this.style.background='linear-gradient(135deg,#1a1a4e,#0d0d2b)'"
+                         alt="Popup 3 Image">
+                    <div class="g3-glitch-r"></div>
+                    <div class="g3-glitch-b"></div>
+                </div>
                 <div class="g3-emoji">${CONFIG.mess}</div>
                 <div class="g3-msg">${CONFIG.messDesc}</div>
                 <button class="g3-btn" id="g3-btn-ok">${CONFIG.btnAccept}</button>
