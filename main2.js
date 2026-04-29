@@ -358,32 +358,211 @@ function textGenerate() {
 $('#yes').click(function() {
     var audio = new Audio('https://hungdeptrai.com');
     audio.play();
-    Swal.fire({
-        title: CONFIG.question,
-        html: true,
-        width: 800,
-        padding: '3em',
-        html: "<input type='text' class='form-control' id='txtReason' onmousemove=textGenerate() placeholder=' Viết gì cũng được '>",
-        background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
-        backdrop: `
-            rgba(0,0,123,0.4)
-            url("https://manhhung1606.github.io/manhhung/FB_IMG_1630673201387.jpg")
-            center top
-            no-repeat
-        `,
-        confirmButtonColor: '#fe8a71',
-        confirmButtonText: CONFIG.btnReply
-    }).then((result) => {
-        if (result.value) {
-            Swal.fire({
-                width: 900,
-                confirmButtonText: CONFIG.btnAccept,
-                background: '#fff url("https://manhhung1606.github.io/manhhung/291de5d2aac98028a7c1d139298a3b46.jpg")',
-                title: CONFIG.mess,
-                text: CONFIG.messDesc,
-                confirmButtonColor: '#83d0c9',
-                onClose: () => { window.location = CONFIG.messLink; }
-            })
-        }
-    })
+    showGlitchPopup2();
 })
+
+function showGlitchPopup2() {
+    var style2 = document.getElementById('glitch-style2');
+    if (!style2) {
+        style2 = document.createElement('style');
+        style2.id = 'glitch-style2';
+        style2.textContent = `
+            #g2-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 99999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 16px;
+                background: rgba(0,0,40,0.7);
+            }
+            #g2-wrap {
+                position: relative;
+                border-radius: 8px;
+                width: 100%;
+                max-width: 560px;
+                animation: gPopIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+            }
+            #g2-canvas {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+                pointer-events: none;
+                z-index: 20;
+            }
+            #g2-box {
+                position: relative;
+                width: 100%;
+                background: rgba(5, 5, 30, 0.92);
+                border-radius: 6px;
+                padding: 32px 24px 28px;
+                text-align: center;
+                box-shadow: inset 0 0 40px rgba(0,50,150,0.15);
+            }
+            #g2-box::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: 6px;
+                background: repeating-linear-gradient(
+                    0deg, transparent, transparent 2px,
+                    rgba(0,200,255,0.03) 2px, rgba(0,200,255,0.03) 4px
+                );
+                pointer-events: none;
+                z-index: 2;
+            }
+            .g2-title {
+                position: relative;
+                z-index: 3;
+                font-family: 'Orbitron', sans-serif;
+                font-size: 22px;
+                font-weight: 900;
+                color: #fff;
+                text-shadow: 0 0 8px rgba(0,200,255,0.8), 0 0 20px rgba(0,150,255,0.4);
+                animation: gTextGlitch 4s infinite;
+                margin-bottom: 20px;
+            }
+            .g2-input {
+                position: relative;
+                z-index: 3;
+                width: 100%;
+                padding: 12px 16px;
+                font-family: 'Share Tech Mono', monospace;
+                font-size: 14px;
+                color: #0cf;
+                background: rgba(0,10,40,0.8);
+                border: 1.5px solid #0af;
+                border-radius: 3px;
+                outline: none;
+                margin-bottom: 20px;
+                box-sizing: border-box;
+            }
+            .g2-input::placeholder { color: rgba(0,200,255,0.4); }
+            .g2-input:focus { border-color: #0ff; box-shadow: 0 0 10px rgba(0,255,255,0.3); }
+            .g2-btn {
+                position: relative;
+                z-index: 3;
+                display: inline-block;
+                padding: 12px 38px;
+                font-family: 'Orbitron', sans-serif;
+                font-size: 13px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                color: #fff;
+                background: transparent;
+                border: 1.5px solid #0af;
+                border-radius: 2px;
+                cursor: pointer;
+                text-transform: uppercase;
+                transition: color 0.2s;
+                width: 100%;
+            }
+            .g2-btn:hover {
+                color: #0df;
+                box-shadow: 0 0 15px rgba(0,170,255,0.5), inset 0 0 10px rgba(0,150,255,0.1);
+            }
+        `;
+        document.head.appendChild(style2);
+    }
+
+    var overlay2 = document.createElement('div');
+    overlay2.id = 'g2-overlay';
+    overlay2.innerHTML = `
+        <div id="g2-wrap">
+            <canvas id="g2-canvas"></canvas>
+            <div id="g2-box">
+                <div class="g2-title">${CONFIG.question}</div>
+                <input type="text" class="g2-input" id="txtReason" onmousemove="textGenerate()" placeholder=" Viết gì cũng được ">
+                <button class="g2-btn" id="g2-btn-send">${CONFIG.btnReply}</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay2);
+
+    // Neon border
+    var wrap2 = document.getElementById('g2-wrap');
+    var canvas2 = document.getElementById('g2-canvas');
+    var ctx2 = canvas2.getContext('2d');
+    var angle2 = 0, animId2;
+
+    function drawBorderPath2(w, h, r) {
+        var p = new Path2D();
+        p.moveTo(r,0); p.lineTo(w-r,0); p.arcTo(w,0,w,r,r);
+        p.lineTo(w,h-r); p.arcTo(w,h,w-r,h,r);
+        p.lineTo(r,h); p.arcTo(0,h,0,h-r,r);
+        p.lineTo(0,r); p.arcTo(0,0,r,0,r);
+        p.closePath();
+        return p;
+    }
+    function drawNeon2() {
+        var w = wrap2.offsetWidth, h = wrap2.offsetHeight;
+        canvas2.width = w; canvas2.height = h;
+        var r=8, perimeter=2*(w+h), tailLen=perimeter*0.2;
+        var pos=(angle2/360)*perimeter;
+        var path=drawBorderPath2(w,h,r);
+        ctx2.clearRect(0,0,w,h);
+        ctx2.save(); ctx2.strokeStyle='rgba(0,200,255,0.2)'; ctx2.lineWidth=2; ctx2.stroke(path); ctx2.restore();
+        var hue=(angle2*3)%360;
+        ctx2.save();
+        ctx2.strokeStyle='hsl('+hue+',100%,65%)';
+        ctx2.lineWidth=3;
+        ctx2.shadowColor='hsl('+hue+',100%,70%)';
+        ctx2.shadowBlur=18;
+        ctx2.setLineDash([tailLen,perimeter-tailLen]);
+        ctx2.lineDashOffset=-pos;
+        ctx2.stroke(path);
+        ctx2.restore();
+        angle2=(angle2+1.5)%360;
+        animId2=requestAnimationFrame(drawNeon2);
+    }
+    drawNeon2();
+
+    // Bấm Send
+    document.getElementById('g2-btn-send').addEventListener('click', function() {
+        cancelAnimationFrame(animId2);
+        var w2 = document.getElementById('g2-wrap');
+        w2.style.animation = 'gGlitchOut 0.5s ease forwards';
+        setTimeout(function() {
+            document.getElementById('g2-overlay').remove();
+            // Popup xác nhận cuối
+            showGlitchPopup3();
+        }, 520);
+    });
+}
+
+function showGlitchPopup3() {
+    var overlay3 = document.createElement('div');
+    overlay3.id = 'g3-overlay';
+    overlay3.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,40,0.7);';
+    overlay3.innerHTML = `
+        <div id="g3-wrap" style="position:relative;border-radius:8px;width:100%;max-width:560px;animation:gPopIn 0.6s cubic-bezier(0.175,0.885,0.32,1.275) both;">
+            <canvas id="g3-canvas" style="position:absolute;inset:0;width:100%;height:100%;border-radius:8px;pointer-events:none;z-index:20;"></canvas>
+            <div id="g3-box" style="position:relative;width:100%;background:rgba(5,5,30,0.92);border-radius:6px;padding:32px 24px 28px;text-align:center;box-shadow:inset 0 0 40px rgba(0,50,150,0.15);">
+                <div style="font-family:'Orbitron',sans-serif;font-size:36px;margin-bottom:12px;z-index:3;position:relative;">${CONFIG.mess}</div>
+                <div style="font-family:'Share Tech Mono',monospace;font-size:16px;color:#0cf;margin-bottom:24px;z-index:3;position:relative;">${CONFIG.messDesc}</div>
+                <button class="g2-btn" id="g3-btn-ok" style="width:100%;">${CONFIG.btnAccept}</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay3);
+
+    var wrap3=document.getElementById('g3-wrap');
+    var canvas3=document.getElementById('g3-canvas');
+    var ctx3=canvas3.getContext('2d');
+    var angle3=0, animId3;
+    function drawBP3(w,h,r){var p=new Path2D();p.moveTo(r,0);p.lineTo(w-r,0);p.arcTo(w,0,w,r,r);p.lineTo(w,h-r);p.arcTo(w,h,w-r,h,r);p.lineTo(r,h);p.arcTo(0,h,0,h-r,r);p.lineTo(0,r);p.arcTo(0,0,r,0,r);p.closePath();return p;}
+    function drawN3(){var w=wrap3.offsetWidth,h=wrap3.offsetHeight;canvas3.width=w;canvas3.height=h;var r=8,per=2*(w+h),tl=per*0.2,pos=(angle3/360)*per,path=drawBP3(w,h,r);ctx3.clearRect(0,0,w,h);ctx3.save();ctx3.strokeStyle='rgba(0,200,255,0.2)';ctx3.lineWidth=2;ctx3.stroke(path);ctx3.restore();var hue=(angle3*3)%360;ctx3.save();ctx3.strokeStyle='hsl('+hue+',100%,65%)';ctx3.lineWidth=3;ctx3.shadowColor='hsl('+hue+',100%,70%)';ctx3.shadowBlur=18;ctx3.setLineDash([tl,per-tl]);ctx3.lineDashOffset=-pos;ctx3.stroke(path);ctx3.restore();angle3=(angle3+1.5)%360;animId3=requestAnimationFrame(drawN3);}
+    drawN3();
+
+    document.getElementById('g3-btn-ok').addEventListener('click', function() {
+        cancelAnimationFrame(animId3);
+        document.getElementById('g3-wrap').style.animation = 'gGlitchOut 0.5s ease forwards';
+        setTimeout(function() {
+            document.getElementById('g3-overlay').remove();
+            if (CONFIG.messLink) window.location = CONFIG.messLink;
+        }, 520);
+    });
+}
