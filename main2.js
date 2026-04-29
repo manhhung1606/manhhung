@@ -313,7 +313,7 @@ function firstQuestion(){
                     <div class="g-glitch-r"></div>
                     <div class="g-glitch-b"></div>
                 </div>
-                <div class="g-greeting"><span id="g-typeText"></span><span class="g-cursor"></span></div>
+                <div class="g-greeting"><span id="g-typeText"></span></div>
                 <div class="g-sub" id="g-sub-scramble"></div>
                 <button class="g-btn" id="g-btn-ok">${CONFIG.btnIntro}</button>
             </div>
@@ -366,62 +366,35 @@ function firstQuestion(){
     }
     drawNeon();
 
-    // Typewriter
-    var lines = [CONFIG.introTitle];
-    var el = document.getElementById('g-typeText');
-    var lineIdx = 0, charIdx = 0;
-    function type() {
-        if (lineIdx >= lines.length) return;
-        var line = lines[lineIdx];
-        if (charIdx < line.length) {
-            el.innerHTML += line[charIdx] === ' ' ? '&nbsp;' : line[charIdx];
-            charIdx++;
-            setTimeout(type, Math.random() * 60 + 50);
-        } else {
-            lineIdx++;
-            charIdx = 0;
-            if (lineIdx < lines.length) {
-                el.innerHTML += '<br>';
-                setTimeout(type, 350);
-            }
-        }
-    }
-    setTimeout(type, 700);
-
-    // Scramble effect cho .g-sub
-    (function() {
-        var target = CONFIG.introDesc;
-        var el = document.getElementById('g-sub-scramble');
+    // Scramble effect dùng chung cho cả 2 dòng
+    function startScramble(targetText, element, delayMs) {
         var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&!?';
         var revealed = 0;
-        var total = target.length;
-        var intervalMs = 40;
-        var revealEvery = 3; // cứ 3 frame reveal 1 ký tự
-
+        var total = targetText.length;
         var frame = 0;
-        function scrambleStep() {
+        var revealEvery = 3;
+        var intervalMs = 40;
+        function step() {
             if (revealed >= total) {
-                el.textContent = target;
+                element.textContent = targetText;
                 return;
             }
-            // Phần đã reveal: đúng
-            var display = target.slice(0, revealed);
-            // Phần chưa reveal: random chars
+            var display = targetText.slice(0, revealed);
             for (var i = revealed; i < total; i++) {
-                if (target[i] === ' ') {
-                    display += ' ';
-                } else {
-                    display += chars[Math.floor(Math.random() * chars.length)];
-                }
+                display += targetText[i] === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)];
             }
-            el.textContent = display;
+            element.textContent = display;
             frame++;
             if (frame % revealEvery === 0) revealed++;
-            setTimeout(scrambleStep, intervalMs);
+            setTimeout(step, intervalMs);
         }
-        // Bắt đầu sau khi typewriter xong ~
-        setTimeout(scrambleStep, 1200);
-    })();
+        setTimeout(step, delayMs);
+    }
+
+    // Dòng 1 — introTitle, bắt đầu ngay
+    startScramble(CONFIG.introTitle, document.getElementById('g-typeText'), 700);
+    // Dòng 2 — introDesc, bắt đầu sau dòng 1 chút
+    startScramble(CONFIG.introDesc, document.getElementById('g-sub-scramble'), 1400);
 
     // FIX 3: click ra ngoài → vỡ mảnh
     overlay.addEventListener('click', function(e) {
@@ -803,7 +776,7 @@ function showGlitchPopup3() {
             }
             .g3-msg {
                 font-family: 'Share Tech Mono', monospace;
-                font-size: 20px;
+                font-size: 16px;
                 color: #0cf;
                 margin-bottom: 24px;
                 z-index: 3;
@@ -817,7 +790,7 @@ function showGlitchPopup3() {
                 display: inline-block;
                 padding: 12px 38px;
                 font-family: 'Orbitron', sans-serif;
-                font-size: 20px;
+                font-size: 13px;
                 font-weight: 700;
                 letter-spacing: 2px;
                 color: #fff;
