@@ -759,14 +759,14 @@ function showGlitchPopup3() {
             .g3-glitch-r { background-color: rgba(255,0,60,0.5); animation: gGlitchR 3s infinite; }
             .g3-glitch-b { background-color: rgba(0,200,255,0.5); animation: gGlitchB 3s infinite; }
             .g3-emoji {
-                font-size: 36px;
+                font-size: 48px;
                 margin-bottom: 12px;
                 z-index: 3;
                 position: relative;
             }
             .g3-msg {
                 font-family: 'Share Tech Mono', monospace;
-                font-size: 16px;
+                font-size: 20px;
                 color: #0cf;
                 margin-bottom: 24px;
                 z-index: 3;
