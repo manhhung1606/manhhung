@@ -7,7 +7,7 @@ const CONFIG = {
     btnYes: ' Có ',
     btnNo: ' Không ',
     question: ' Thật hả ? ',
-    btnReply: ' Send to Xấu zai từ bé ',
+    btnReply: ' Send to Mạnh Hùng ',
     reply: ' Thật mà...hjhj... Tớ mà nói điêu thì tớ làm chó😂... ',
     mess: ' 💓💓💓 ',
     messDesc: ' Mình biết mà .hiihaa...!',
