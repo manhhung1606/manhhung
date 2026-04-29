@@ -325,46 +325,9 @@ function firstQuestion(){
     var wrap = document.getElementById('glitch-wrap');
     var canvas = document.getElementById('glitch-canvas');
     var ctx = canvas.getContext('2d');
-    var angle = 0;
     var animId;
 
-    function drawBorderPath(w, h, r) {
-        var p = new Path2D();
-        p.moveTo(r, 0); p.lineTo(w-r, 0); p.arcTo(w,0,w,r,r);
-        p.lineTo(w,h-r); p.arcTo(w,h,w-r,h,r);
-        p.lineTo(r,h); p.arcTo(0,h,0,h-r,r);
-        p.lineTo(0,r); p.arcTo(0,0,r,0,r);
-        p.closePath();
-        return p;
-    }
-
-    function drawNeon() {
-        var w = wrap.offsetWidth, h = wrap.offsetHeight;
-        canvas.width = w; canvas.height = h;
-        var r = 8, perimeter = 2*(w+h);
-        var tailLen = perimeter * 0.2;
-        var pos = (angle/360) * perimeter;
-        var path = drawBorderPath(w, h, r);
-        ctx.clearRect(0, 0, w, h);
-        ctx.save();
-        ctx.strokeStyle = 'rgba(0,200,255,0.2)';
-        ctx.lineWidth = 2;
-        ctx.stroke(path);
-        ctx.restore();
-        var hue = (angle * 3) % 360;
-        ctx.save();
-        ctx.strokeStyle = 'hsl('+hue+',100%,65%)';
-        ctx.lineWidth = 3;
-        ctx.shadowColor = 'hsl('+hue+',100%,70%)';
-        ctx.shadowBlur = 18;
-        ctx.setLineDash([tailLen, perimeter - tailLen]);
-        ctx.lineDashOffset = -pos;
-        ctx.stroke(path);
-        ctx.restore();
-        angle = (angle + 1.5) % 360;
-        animId = requestAnimationFrame(drawNeon);
-    }
-    drawNeon();
+    animId = startNeonSnow(wrap, canvas, ctx);
 
     // Scramble effect dùng chung cho cả 2 dòng
     function startScramble(targetText, element, delayMs) {
@@ -394,7 +357,7 @@ function firstQuestion(){
     // Dòng 1 — introTitle, bắt đầu ngay
     startScramble(CONFIG.introTitle, document.getElementById('g-typeText'), 700);
     // Dòng 2 — introDesc, bắt đầu sau dòng 1 chút
-    startScramble(CONFIG.introDesc, document.getElementById('g-sub-scramble'), 700);
+    startScramble(CONFIG.introDesc, document.getElementById('g-sub-scramble'), 1400);
 
     // FIX 3: click ra ngoài → vỡ mảnh
     overlay.addEventListener('click', function(e) {
@@ -413,6 +376,107 @@ function firstQuestion(){
             afterFirstPopup();
         });
     });
+}
+
+// ============================================================
+// SHARED: Dual neon border (2 tia đối xứng) + tuyết rơi
+// ============================================================
+function startNeonSnow(wrap, canvas, ctx) {
+    var angle = 0;
+    var snowflakes = [];
+    var SNOW_COUNT = 35;
+    var prevW = 0, prevH = 0;
+    var animId;
+
+    function initSnow(w, h) {
+        snowflakes = [];
+        for (var i = 0; i < SNOW_COUNT; i++) {
+            snowflakes.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: 1 + Math.random() * 2.5,
+                speed: 0.4 + Math.random() * 0.8,
+                drift: (Math.random() - 0.5) * 0.4,
+                alpha: 0.4 + Math.random() * 0.5
+            });
+        }
+    }
+
+    function makePath(w, h, r) {
+        var p = new Path2D();
+        p.moveTo(r,0); p.lineTo(w-r,0); p.arcTo(w,0,w,r,r);
+        p.lineTo(w,h-r); p.arcTo(w,h,w-r,h,r);
+        p.lineTo(r,h); p.arcTo(0,h,0,h-r,r);
+        p.lineTo(0,r); p.arcTo(0,0,r,0,r);
+        p.closePath();
+        return p;
+    }
+
+    function draw() {
+        var w = wrap.offsetWidth, h = wrap.offsetHeight;
+        if (w < 1 || h < 1) { animId = requestAnimationFrame(draw); return; }
+        canvas.width = w; canvas.height = h;
+        if (w !== prevW || h !== prevH) { initSnow(w, h); prevW = w; prevH = h; }
+
+        ctx.clearRect(0, 0, w, h);
+        var r = 8, perimeter = 2*(w+h), tailLen = perimeter * 0.18;
+        var path = makePath(w, h, r);
+
+        // Viền nền mờ
+        ctx.save();
+        ctx.strokeStyle = 'rgba(0,200,255,0.15)';
+        ctx.lineWidth = 1.5;
+        ctx.stroke(path);
+        ctx.restore();
+
+        // Tia 1 — chạy xuôi
+        var pos1 = (angle/360) * perimeter;
+        var hue1 = (angle * 3) % 360;
+        ctx.save();
+        ctx.strokeStyle = 'hsl('+hue1+',100%,65%)';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = 'hsl('+hue1+',100%,70%)';
+        ctx.shadowBlur = 20;
+        ctx.setLineDash([tailLen, perimeter - tailLen]);
+        ctx.lineDashOffset = -pos1;
+        ctx.stroke(path);
+        ctx.restore();
+
+        // Tia 2 — đối xứng 180°, màu bổ sung
+        var pos2 = ((angle + 180)/360) * perimeter;
+        var hue2 = (hue1 + 160) % 360;
+        ctx.save();
+        ctx.strokeStyle = 'hsl('+hue2+',100%,65%)';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = 'hsl('+hue2+',100%,70%)';
+        ctx.shadowBlur = 20;
+        ctx.setLineDash([tailLen, perimeter - tailLen]);
+        ctx.lineDashOffset = -pos2;
+        ctx.stroke(path);
+        ctx.restore();
+
+        // Tuyết rơi bên trong popup
+        ctx.save();
+        for (var i = 0; i < snowflakes.length; i++) {
+            var s = snowflakes[i];
+            s.y += s.speed;
+            s.x += s.drift;
+            if (s.y > h + s.r) { s.y = -s.r; s.x = Math.random() * w; }
+            if (s.x > w + s.r) s.x = -s.r;
+            if (s.x < -s.r) s.x = w + s.r;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(200,230,255,' + s.alpha + ')';
+            ctx.fill();
+        }
+        ctx.restore();
+
+        angle = (angle + 1.2) % 360;
+        animId = requestAnimationFrame(draw);
+    }
+
+    draw();
+    return animId;
 }
 
 function afterFirstPopup() {
@@ -650,39 +714,8 @@ function showGlitchPopup2() {
     var wrap2 = document.getElementById('g2-wrap');
     var canvas2 = document.getElementById('g2-canvas');
     var ctx2 = canvas2.getContext('2d');
-    var angle2 = 0, animId2;
-
-    function drawBorderPath2(w, h, r) {
-        var p = new Path2D();
-        p.moveTo(r,0); p.lineTo(w-r,0); p.arcTo(w,0,w,r,r);
-        p.lineTo(w,h-r); p.arcTo(w,h,w-r,h,r);
-        p.lineTo(r,h); p.arcTo(0,h,0,h-r,r);
-        p.lineTo(0,r); p.arcTo(0,0,r,0,r);
-        p.closePath();
-        return p;
-    }
-    function drawNeon2() {
-        var w = wrap2.offsetWidth, h = wrap2.offsetHeight;
-        canvas2.width = w; canvas2.height = h;
-        var r=8, perimeter=2*(w+h), tailLen=perimeter*0.2;
-        var pos=(angle2/360)*perimeter;
-        var path=drawBorderPath2(w,h,r);
-        ctx2.clearRect(0,0,w,h);
-        ctx2.save(); ctx2.strokeStyle='rgba(0,200,255,0.2)'; ctx2.lineWidth=2; ctx2.stroke(path); ctx2.restore();
-        var hue=(angle2*3)%360;
-        ctx2.save();
-        ctx2.strokeStyle='hsl('+hue+',100%,65%)';
-        ctx2.lineWidth=3;
-        ctx2.shadowColor='hsl('+hue+',100%,70%)';
-        ctx2.shadowBlur=18;
-        ctx2.setLineDash([tailLen,perimeter-tailLen]);
-        ctx2.lineDashOffset=-pos;
-        ctx2.stroke(path);
-        ctx2.restore();
-        angle2=(angle2+1.5)%360;
-        animId2=requestAnimationFrame(drawNeon2);
-    }
-    drawNeon2();
+    var animId2;
+    animId2 = startNeonSnow(wrap2, canvas2, ctx2);
 
     // Click ra ngoài → chỉ vỡ mảnh đóng lại, KHÔNG mở popup sau
     overlay2.addEventListener('click', function(e) {
@@ -834,29 +867,8 @@ function showGlitchPopup3() {
     var wrap3 = document.getElementById('g3-wrap');
     var canvas3 = document.getElementById('g3-canvas');
     var ctx3 = canvas3.getContext('2d');
-    var angle3 = 0, animId3;
-
-    function drawBP3(w,h,r){
-        var p=new Path2D();
-        p.moveTo(r,0);p.lineTo(w-r,0);p.arcTo(w,0,w,r,r);
-        p.lineTo(w,h-r);p.arcTo(w,h,w-r,h,r);
-        p.lineTo(r,h);p.arcTo(0,h,0,h-r,r);
-        p.lineTo(0,r);p.arcTo(0,0,r,0,r);
-        p.closePath();return p;
-    }
-    function drawN3(){
-        var w=wrap3.offsetWidth,h=wrap3.offsetHeight;
-        canvas3.width=w;canvas3.height=h;
-        var r=8,per=2*(w+h),tl=per*0.2,pos=(angle3/360)*per,path=drawBP3(w,h,r);
-        ctx3.clearRect(0,0,w,h);
-        ctx3.save();ctx3.strokeStyle='rgba(0,200,255,0.2)';ctx3.lineWidth=2;ctx3.stroke(path);ctx3.restore();
-        var hue=(angle3*3)%360;
-        ctx3.save();ctx3.strokeStyle='hsl('+hue+',100%,65%)';ctx3.lineWidth=3;
-        ctx3.shadowColor='hsl('+hue+',100%,70%)';ctx3.shadowBlur=18;
-        ctx3.setLineDash([tl,per-tl]);ctx3.lineDashOffset=-pos;ctx3.stroke(path);ctx3.restore();
-        angle3=(angle3+1.5)%360;animId3=requestAnimationFrame(drawN3);
-    }
-    drawN3();
+    var animId3;
+    animId3 = startNeonSnow(wrap3, canvas3, ctx3);
 
     // FIX 3: click ra ngoài → vỡ mảnh
     overlay3.addEventListener('click', function(e) {
