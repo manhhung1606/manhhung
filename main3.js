@@ -359,7 +359,7 @@ function firstQuestion(){
     // Dòng 1 — introTitle, bắt đầu ngay
     startScramble(CONFIG.introTitle, document.getElementById('g-typeText'), 700);
     // Dòng 2 — introDesc, bắt đầu sau dòng 1 chút
-    startScramble(CONFIG.introDesc, document.getElementById('g-sub-scramble'), 1400);
+    startScramble(CONFIG.introDesc, document.getElementById('g-sub-scramble'), 700);
 
     // click ra ngoài → vỡ mảnh
     overlay.addEventListener('click', function(e) {
@@ -818,7 +818,7 @@ function showGlitchPopup2() {
                     <canvas class="g2-glitch-canvas" id="g2-glitch-cv"></canvas>
                 </div>
                 <div class="g2-title">${CONFIG.question}</div>
-                <input type="text" class="g2-input" id="txtReason" onmousemove="textGenerate()" placeholder=" Viết gì cũng được ">
+                <input type="text" class="g2-input" id="txtReason" onmousemove="textGenerate()" placeholder=" Viết gì cũng được... ">
                 <button class="g2-btn" id="g2-btn-send">${CONFIG.btnReply}</button>
             </div>
         </div>
