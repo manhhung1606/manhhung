@@ -787,7 +787,7 @@ function showGlitchPopup2() {
                 display: inline-block;
                 padding: 12px 38px;
                 font-family: 'Orbitron', sans-serif;
-                font-size: 13px;
+                font-size: 20px;
                 font-weight: 700;
                 letter-spacing: 2px;
                 color: #fff;
