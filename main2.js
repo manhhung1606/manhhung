@@ -809,7 +809,7 @@ function showGlitchPopup3() {
             }
             .g3-msg {
                 font-family: 'Share Tech Mono', monospace;
-                font-size: 16px;
+                font-size: 20px;
                 color: #0cf;
                 margin-bottom: 24px;
                 z-index: 3;
@@ -823,7 +823,7 @@ function showGlitchPopup3() {
                 display: inline-block;
                 padding: 12px 38px;
                 font-family: 'Orbitron', sans-serif;
-                font-size: 13px;
+                font-size: 20px;
                 font-weight: 700;
                 letter-spacing: 2px;
                 color: #fff;
