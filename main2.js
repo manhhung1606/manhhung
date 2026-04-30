@@ -620,18 +620,16 @@ function startVhsGlitch(imgId, canvasId) {
 }
 
 // ============================================================
-// INNER NEON: 2 tia đuổi nhau trên canvas nhỏ bọc element
+// INNER NEON: 2 tia đuổi nhau ôm sát khung element
 // ============================================================
 function startInnerNeon(elId) {
     var el = document.getElementById(elId);
     if (!el) return;
-    var wrapper = document.createElement('div');
-    wrapper.className = 'neon-frame-wrap';
-    el.parentNode.insertBefore(wrapper, el);
-    wrapper.appendChild(el);
+
+    // Tạo canvas absolute đặt đúng vị trí element
     var cv = document.createElement('canvas');
-    cv.className = 'neon-frame-cv';
-    wrapper.appendChild(cv);
+    cv.style.cssText = 'position:absolute;pointer-events:none;z-index:9999;border-radius:4px;';
+    document.body.appendChild(cv);
     var ctx = cv.getContext('2d');
     var angle = 0;
 
@@ -645,15 +643,26 @@ function startInnerNeon(elId) {
     }
 
     function draw() {
-        var w = wrapper.offsetWidth, h = wrapper.offsetHeight;
+        var rect = el.getBoundingClientRect();
+        var w = rect.width, h = rect.height;
         if (w < 1 || h < 1) { requestAnimationFrame(draw); return; }
-        cv.width = w; cv.height = h;
+
+        // Căn canvas đúng vị trí element trên màn hình
+        cv.style.left = (rect.left + window.scrollX) + 'px';
+        cv.style.top  = (rect.top  + window.scrollY) + 'px';
+        cv.style.width  = w + 'px';
+        cv.style.height = h + 'px';
+        cv.width  = w;
+        cv.height = h;
+
         ctx.clearRect(0, 0, w, h);
         var r = 4, per = 2*(w+h), tail = per*0.2;
         var path = makePath(w, h, r);
 
-        ctx.save(); ctx.strokeStyle='rgba(0,200,255,0.15)'; ctx.lineWidth=1; ctx.stroke(path); ctx.restore();
+        // Viền nền mờ
+        ctx.save(); ctx.strokeStyle='rgba(0,200,255,0.2)'; ctx.lineWidth=1; ctx.stroke(path); ctx.restore();
 
+        // Tia 1
         var hue1 = (angle*3)%360;
         ctx.save();
         ctx.strokeStyle='hsl('+hue1+',100%,65%)'; ctx.lineWidth=2;
@@ -661,6 +670,7 @@ function startInnerNeon(elId) {
         ctx.setLineDash([tail,per-tail]); ctx.lineDashOffset=-(angle/360)*per;
         ctx.stroke(path); ctx.restore();
 
+        // Tia 2 — đối xứng 180°
         var hue2=(hue1+160)%360;
         ctx.save();
         ctx.strokeStyle='hsl('+hue2+',100%,65%)'; ctx.lineWidth=2;
