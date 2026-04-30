@@ -285,6 +285,21 @@ function firstQuestion(){
         }
         @keyframes gCursorBlink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
 
+        /* Khung neon 2 tia đuổi nhau cho elements bên trong */
+        .neon-frame-wrap {
+            position: relative;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .neon-frame-wrap canvas.neon-frame-cv {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            border-radius: 4px;
+        }
         .g-btn {
             position: relative;
             z-index: 3;
@@ -296,19 +311,15 @@ function firstQuestion(){
             letter-spacing: 2px;
             color: #fff;
             background: transparent;
-            border: 1.5px solid #0af;
+            border: 1.5px solid rgba(0,170,255,0.3);
             border-radius: 2px;
             cursor: pointer;
             text-transform: uppercase;
             overflow: hidden;
-            transition: color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 0 6px rgba(0,170,255,0.4), inset 0 0 4px rgba(0,150,255,0.1);
-            animation: innerNeonPulse 2.5s ease-in-out infinite;
+            transition: color 0.2s;
+            margin-bottom: 0;
         }
-        .g-btn:hover {
-            color: #0df;
-            box-shadow: 0 0 16px rgba(0,170,255,0.7), inset 0 0 10px rgba(0,150,255,0.2);
-        }
+        .g-btn:hover { color: #0df; }
     `;
     document.head.appendChild(style);
 
@@ -342,6 +353,9 @@ function firstQuestion(){
 
     // VHS Glitch canvas cho ảnh popup1
     startVhsGlitch('g1-img', 'g1-glitch-cv');
+    // Neon 2 tia cho các khung bên trong popup1
+    startInnerNeon('g-btn-ok');
+    startInnerNeon('g-sub-scramble');
 
     // Scramble effect dùng chung cho cả 2 dòng
     function startScramble(targetText, element, delayMs) {
@@ -605,6 +619,61 @@ function startVhsGlitch(imgId, canvasId) {
     }
 }
 
+// ============================================================
+// INNER NEON: 2 tia đuổi nhau trên canvas nhỏ bọc element
+// ============================================================
+function startInnerNeon(elId) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    var wrapper = document.createElement('div');
+    wrapper.className = 'neon-frame-wrap';
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
+    var cv = document.createElement('canvas');
+    cv.className = 'neon-frame-cv';
+    wrapper.appendChild(cv);
+    var ctx = cv.getContext('2d');
+    var angle = 0;
+
+    function makePath(w, h, r) {
+        var p = new Path2D();
+        p.moveTo(r,0); p.lineTo(w-r,0); p.arcTo(w,0,w,r,r);
+        p.lineTo(w,h-r); p.arcTo(w,h,w-r,h,r);
+        p.lineTo(r,h); p.arcTo(0,h,0,h-r,r);
+        p.lineTo(0,r); p.arcTo(0,0,r,0,r);
+        p.closePath(); return p;
+    }
+
+    function draw() {
+        var w = wrapper.offsetWidth, h = wrapper.offsetHeight;
+        if (w < 1 || h < 1) { requestAnimationFrame(draw); return; }
+        cv.width = w; cv.height = h;
+        ctx.clearRect(0, 0, w, h);
+        var r = 4, per = 2*(w+h), tail = per*0.2;
+        var path = makePath(w, h, r);
+
+        ctx.save(); ctx.strokeStyle='rgba(0,200,255,0.15)'; ctx.lineWidth=1; ctx.stroke(path); ctx.restore();
+
+        var hue1 = (angle*3)%360;
+        ctx.save();
+        ctx.strokeStyle='hsl('+hue1+',100%,65%)'; ctx.lineWidth=2;
+        ctx.shadowColor='hsl('+hue1+',100%,70%)'; ctx.shadowBlur=10;
+        ctx.setLineDash([tail,per-tail]); ctx.lineDashOffset=-(angle/360)*per;
+        ctx.stroke(path); ctx.restore();
+
+        var hue2=(hue1+160)%360;
+        ctx.save();
+        ctx.strokeStyle='hsl('+hue2+',100%,65%)'; ctx.lineWidth=2;
+        ctx.shadowColor='hsl('+hue2+',100%,70%)'; ctx.shadowBlur=10;
+        ctx.setLineDash([tail,per-tail]); ctx.lineDashOffset=-((angle+180)/360)*per;
+        ctx.stroke(path); ctx.restore();
+
+        angle=(angle+1.5)%360;
+        requestAnimationFrame(draw);
+    }
+    draw();
+}
+
 function afterFirstPopup() {
     $('#chaffle-title').css('visibility', 'visible');
     $('#wrapper, header, #yes, #no, .inner-width, center, p, span[id^="a"], #chaffle-title, #slider, footer, #demo-1, #demo-2, #demo-3').show(200);
@@ -775,10 +844,6 @@ function showGlitchPopup2() {
                 margin-bottom: 20px;
                 word-break: break-word;
                 line-height: 1.4;
-                border: 1px solid rgba(0,200,255,0.25);
-                border-radius: 4px;
-                padding: 8px 12px;
-                box-shadow: 0 0 6px rgba(0,200,255,0.2), inset 0 0 4px rgba(0,200,255,0.08);
             }
             .g2-input {
                 position: relative;
@@ -789,16 +854,14 @@ function showGlitchPopup2() {
                 font-size: 14px;
                 color: #0cf;
                 background: rgba(0,10,40,0.8);
-                border: 1.5px solid #0af;
+                border: 1.5px solid rgba(0,170,255,0.3);
                 border-radius: 3px;
                 outline: none;
-                margin-bottom: 20px;
+                margin-bottom: 0;
                 box-sizing: border-box;
-                box-shadow: 0 0 6px rgba(0,170,255,0.4), inset 0 0 4px rgba(0,150,255,0.1);
-                animation: innerNeonPulse 2.5s ease-in-out infinite;
             }
             .g2-input::placeholder { color: rgba(0,200,255,0.4); }
-            .g2-input:focus { border-color: #0ff; box-shadow: 0 0 12px rgba(0,255,255,0.5), inset 0 0 6px rgba(0,200,255,0.15); }
+            .g2-input:focus { border-color: #0ff; }
             .g2-btn {
                 position: relative;
                 z-index: 3;
@@ -810,19 +873,15 @@ function showGlitchPopup2() {
                 letter-spacing: 2px;
                 color: #fff;
                 background: transparent;
-                border: 1.5px solid #0af;
+                border: 1.5px solid rgba(0,170,255,0.3);
                 border-radius: 2px;
                 cursor: pointer;
                 text-transform: uppercase;
-                transition: color 0.2s, box-shadow 0.2s;
+                transition: color 0.2s;
                 width: 100%;
-                box-shadow: 0 0 6px rgba(0,170,255,0.4), inset 0 0 4px rgba(0,150,255,0.1);
-                animation: innerNeonPulse 2.5s ease-in-out infinite;
+                margin-bottom: 0;
             }
-            .g2-btn:hover {
-                color: #0df;
-                box-shadow: 0 0 16px rgba(0,170,255,0.7), inset 0 0 10px rgba(0,150,255,0.2);
-            }
+            .g2-btn:hover { color: #0df; }
         `;
         document.head.appendChild(style2);
     }
@@ -854,6 +913,9 @@ function showGlitchPopup2() {
     var animId2;
     animId2 = startNeonSnow(wrap2, canvas2, ctx2);
     startVhsGlitch('g2-img', 'g2-glitch-cv');
+    // Neon 2 tia cho các khung bên trong popup2
+    startInnerNeon('txtReason');
+    startInnerNeon('g2-btn-send');
 
     // Click ra ngoài → chỉ vỡ mảnh đóng lại, KHÔNG mở popup sau
     overlay2.addEventListener('click', function(e) {
@@ -949,26 +1011,19 @@ function showGlitchPopup3() {
                 margin-bottom: 12px;
                 z-index: 3;
                 position: relative;
-                border: 1px solid rgba(0,200,255,0.25);
-                border-radius: 4px;
-                padding: 8px 12px;
-                box-shadow: 0 0 6px rgba(0,200,255,0.2), inset 0 0 4px rgba(0,200,255,0.08);
-                animation: innerNeonPulse 2.5s ease-in-out infinite;
             }
             .g3-msg {
                 font-family: 'Share Tech Mono', monospace;
                 font-size: 16px;
                 color: #0cf;
-                margin-bottom: 24px;
+                margin-bottom: 0;
                 z-index: 3;
                 position: relative;
                 word-break: break-word;
                 line-height: 1.5;
-                border: 1px solid rgba(0,200,255,0.25);
+                border: 1px solid rgba(0,200,255,0.1);
                 border-radius: 4px;
                 padding: 8px 12px;
-                box-shadow: 0 0 6px rgba(0,200,255,0.2), inset 0 0 4px rgba(0,200,255,0.08);
-                animation: innerNeonPulse 2.5s ease-in-out infinite;
             }
             .g3-btn {
                 position: relative;
@@ -981,19 +1036,15 @@ function showGlitchPopup3() {
                 letter-spacing: 2px;
                 color: #fff;
                 background: transparent;
-                border: 1.5px solid #0af;
+                border: 1.5px solid rgba(0,170,255,0.3);
                 border-radius: 2px;
                 cursor: pointer;
                 text-transform: uppercase;
-                transition: color 0.2s, box-shadow 0.2s;
+                transition: color 0.2s;
                 width: 100%;
-                box-shadow: 0 0 6px rgba(0,170,255,0.4), inset 0 0 4px rgba(0,150,255,0.1);
-                animation: innerNeonPulse 2.5s ease-in-out infinite;
+                margin-bottom: 0;
             }
-            .g3-btn:hover {
-                color: #0df;
-                box-shadow: 0 0 16px rgba(0,170,255,0.7), inset 0 0 10px rgba(0,150,255,0.2);
-            }
+            .g3-btn:hover { color: #0df; }
         `;
         document.head.appendChild(style3);
     }
@@ -1011,7 +1062,7 @@ function showGlitchPopup3() {
                     <canvas class="g3-glitch-canvas" id="g3-glitch-cv"></canvas>
                 </div>
                 <div class="g3-emoji">${CONFIG.mess}</div>
-                <div class="g3-msg">${CONFIG.messDesc}</div>
+                <div class="g3-msg" id="g3-msg-el">${CONFIG.messDesc}</div>
                 <button class="g3-btn" id="g3-btn-ok">${CONFIG.btnAccept}</button>
             </div>
         </div>
@@ -1024,6 +1075,9 @@ function showGlitchPopup3() {
     var animId3;
     animId3 = startNeonSnow(wrap3, canvas3, ctx3);
     startVhsGlitch('g3-img', 'g3-glitch-cv');
+    // Neon 2 tia cho các khung bên trong popup3
+    startInnerNeon('g3-btn-ok');
+    startInnerNeon('g3-msg-el');
 
     // click ra ngoài → vỡ mảnh
     overlay3.addEventListener('click', function(e) {
