@@ -779,7 +779,8 @@ function showGlitchPopup2() {
                 margin-bottom: 0;
                 box-sizing: border-box;
             }
-            .g2-input::placeholder { color: rgba(0,200,255,0.4); }
+            .g2-input::placeholder { color: #FAFAFA;
+  text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan; }
             .g2-input:focus { border-color: #0ff; }
             .g2-btn {
                 position: relative;
