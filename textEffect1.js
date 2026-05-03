@@ -7,7 +7,6 @@ var lines = [
 var leafInterval = null;
 var loopRunning = false;
 
-// Tạo lá tim rơi
 function createLeaf() {
     var leaf = document.createElement('div');
     leaf.classList.add('leaf');
@@ -20,7 +19,6 @@ function createLeaf() {
     setTimeout(function() { leaf.remove(); }, 6000);
 }
 
-// Render chữ bay vào từ phải, gọi callback khi xong
 function renderLine(elId, text, callback) {
     var el = document.getElementById(elId);
     if (!el) { if (callback) callback(); return; }
@@ -47,38 +45,53 @@ function renderLine(elId, text, callback) {
     }, landDuration);
 }
 
-// Từng ký tự bay sang trái kiểu lá, gọi callback khi xong
 function flyLineLeft(elId, callback) {
     var el = document.getElementById(elId);
     if (!el) { if (callback) callback(); return; }
     var spans = el.querySelectorAll('.fly-char');
     if (!spans.length) { if (callback) callback(); return; }
 
+    // Tạo "làn gió" — delay tăng dần nhưng có dao động nhẹ để tự nhiên hơn
     spans.forEach(function(span, i) {
+        // Mỗi ký tự delay lệch nhau một chút + thêm jitter nhỏ
+        var baseDelay = i * 35;
+        var jitter = Math.random() * 20; // dao động 0-20ms
+        var totalDelay = baseDelay + jitter;
+
         setTimeout(function(s) {
-            var rot1 = (Math.random() * 40 - 20).toFixed(1) + 'deg';
-            var rot2 = (Math.random() * 40 - 20).toFixed(1) + 'deg';
-            var rot3 = (Math.random() * 60 - 30).toFixed(1) + 'deg';
-            var y1   = (Math.random() * 24 - 12).toFixed(1) + 'px';
-            var y2   = (Math.random() * 24 - 12).toFixed(1) + 'px';
-            var y3   = (Math.random() * 30 - 15).toFixed(1) + 'px';
-            var dur  = (0.9 + Math.random() * 0.5).toFixed(2) + 's';
+            // Góc xoay nhỏ, chiều Y lắc lư mềm
+            var rot1 = (Math.random() * 8  - 4 ).toFixed(1) + 'deg';
+            var rot2 = (Math.random() * 12 - 6 ).toFixed(1) + 'deg';
+            var rot3 = (Math.random() * 10 - 5 ).toFixed(1) + 'deg';
+            var rot4 = (Math.random() * 14 - 7 ).toFixed(1) + 'deg';
+
+            // Y lắc lên xuống nhẹ, biên độ nhỏ — giống gió thổi
+            var y1 = (Math.random() * 12 - 6 ).toFixed(1) + 'px';
+            var y2 = (Math.random() * 16 - 8 ).toFixed(1) + 'px';
+            var y3 = (Math.random() * 14 - 7 ).toFixed(1) + 'px';
+            var y4 = (Math.random() * 18 - 9 ).toFixed(1) + 'px';
+
+            // Thời gian bay mỗi ký tự hơi khác nhau — không đều nhau trông mượt hơn
+            var dur = (1.3 + Math.random() * 0.6).toFixed(2) + 's';
 
             s.style.setProperty('--fly-rot1', rot1);
             s.style.setProperty('--fly-rot2', rot2);
             s.style.setProperty('--fly-rot3', rot3);
+            s.style.setProperty('--fly-rot4', rot4);
             s.style.setProperty('--fly-y1', y1);
             s.style.setProperty('--fly-y2', y2);
             s.style.setProperty('--fly-y3', y3);
+            s.style.setProperty('--fly-y4', y4);
             s.style.setProperty('--fly-duration', dur);
             s.style.setProperty('--fly-delay', '0s');
 
             s.classList.remove('landed');
             s.classList.add('fly-left');
-        }, i * 45, span);
+        }, totalDelay, span);
     });
 
-    var flyDuration = (spans.length - 1) * 45 + 1300;
+    // Chờ ký tự cuối bay xong
+    var flyDuration = (spans.length - 1) * 35 + 20 + 1900;
     setTimeout(function() {
         if (callback) callback();
     }, flyDuration);
@@ -89,46 +102,33 @@ function clearLine(elId) {
     if (el) el.innerHTML = '';
 }
 
-// Loop dùng callback thuần, không async/await
 function runLoop() {
     if (!loopRunning) return;
 
-    // Bước 1: dòng 1 bay vào
     renderLine('demo-1', lines[0], function() {
         if (!loopRunning) return;
-
-        // Đứng yên 2s
         setTimeout(function() {
             if (!loopRunning) return;
 
-            // Bước 2: dòng 1 bay trái + dòng 2 bay vào cùng lúc
-            var done1 = false, done2 = false;
+            var d1 = false, d2 = false;
             function after12() {
-                if (!done1 || !done2) return;
+                if (!d1 || !d2) return;
                 clearLine('demo-1');
                 if (!loopRunning) return;
-
-                // Đứng yên 2s
                 setTimeout(function() {
                     if (!loopRunning) return;
 
-                    // Bước 3: dòng 2 bay trái + dòng 3 bay vào cùng lúc
-                    var done3 = false, done4 = false;
+                    var d3 = false, d4 = false;
                     function after23() {
-                        if (!done3 || !done4) return;
+                        if (!d3 || !d4) return;
                         clearLine('demo-2');
                         if (!loopRunning) return;
-
-                        // Đứng yên 2s
                         setTimeout(function() {
                             if (!loopRunning) return;
 
-                            // Bước 4: dòng 3 bay trái
                             flyLineLeft('demo-3', function() {
                                 clearLine('demo-3');
                                 if (!loopRunning) return;
-
-                                // Nghỉ 1.2s rồi lặp lại
                                 setTimeout(function() {
                                     if (loopRunning) runLoop();
                                 }, 1200);
@@ -136,29 +136,26 @@ function runLoop() {
                         }, 2000);
                     }
 
-                    flyLineLeft('demo-2', function() { done3 = true; after23(); });
-                    renderLine('demo-3', lines[2], function() { done4 = true; after23(); });
+                    flyLineLeft('demo-2', function() { d3 = true; after23(); });
+                    renderLine('demo-3', lines[2], function() { d4 = true; after23(); });
 
                 }, 2000);
             }
 
-            flyLineLeft('demo-1', function() { done1 = true; after12(); });
-            renderLine('demo-2', lines[1], function() { done2 = true; after12(); });
+            flyLineLeft('demo-1', function() { d1 = true; after12(); });
+            renderLine('demo-2', lines[1], function() { d2 = true; after12(); });
 
         }, 2000);
     });
 }
 
-// === Hàm để main.js gọi từ bên ngoài ===
 window.startTextEffect = function() {
     ['demo-1', 'demo-2', 'demo-3'].forEach(function(id) {
         var el = document.getElementById(id);
         if (el) { el.innerHTML = ''; el.style.opacity = 1; }
     });
-
     if (leafInterval) clearInterval(leafInterval);
     leafInterval = setInterval(createLeaf, 400);
-
     loopRunning = true;
     runLoop();
 };
@@ -173,7 +170,6 @@ window.stopTextEffect = function() {
     document.querySelectorAll('.leaf').forEach(function(l) { l.remove(); });
 };
 
-// Ẩn hết lúc đầu
 window.addEventListener('load', function() {
     ['demo-1', 'demo-2', 'demo-3'].forEach(function(id) {
         var el = document.getElementById(id);
