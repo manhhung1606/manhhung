@@ -930,8 +930,9 @@ function showGlitchPopup3() {
             }
             .g3-msg {
                 font-family: 'Share Tech Mono', monospace;
-                font-size: 25px;
-                color: #0cf;
+                font-size: 30px;
+                color: #FAFAFA;
+                text-shadow: 0 0 0.5em cyan, 0 0 0.5em cyan;
                 margin-bottom: 24px;
                 z-index: 3;
                 position: relative;
