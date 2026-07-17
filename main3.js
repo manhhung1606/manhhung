@@ -307,7 +307,7 @@ function firstQuestion(){
             <canvas id="glitch-canvas"></canvas>
             <div id="glitch-box">
                 <div class="g-avatar-wrap" id="g1-avatar-wrap">
-                    <img id="g1-img" src="https://manhhung1606.github.io/manhhung/Save = Follow♡「Hương 」♡.jpeg"
+                    <img id="g1-img" src="https://manhhung1606.github.io/manhhung/IMG_20190606_214928.jpg"
                          onerror="this.style.background='linear-gradient(135deg,#1a1a4e,#0d0d2b)'"
                          alt="Mạnh Hùng">
                     <canvas class="g-glitch-canvas" id="g1-glitch-cv"></canvas>
