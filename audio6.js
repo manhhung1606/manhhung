@@ -1,6 +1,5 @@
 // Danh sách nhạc
 const ManhHung_List = [
-  "https://manhhung1606.github.io/manhhung/FDownloader.net-1802929510666143-(320kbps).mp3",
   "https://manhhung1606.github.io/manhhung/游京 - (唐伯虎 Annie) - Du Kinh Remix - Đường Bá Hổ Annie __ 悠悠的古城中 - Hot TikTok Douyin [3p2nUr5zuX4].mp3",
   "https://manhhung1606.github.io/manhhung/Mây (Thazh x Đông Remix) - Jank ft Sỹ Tây ♫ Mây Hoà Theo Gió Có Người Đơn Phương Remix _ H2K Cover [i5auqtV6wvg].mp3", 
   "https://manhhung1606.github.io/manhhung/Nếu Ánh Trăng Không Đến Remix ( Dj QT FunkyHouse ) [RcmyYv_ZF8M].mp3",
